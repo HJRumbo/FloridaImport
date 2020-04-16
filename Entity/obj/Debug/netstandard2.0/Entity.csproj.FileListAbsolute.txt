@@ -1,0 +1,8 @@
+C:\Users\usuario\Documents\My Web Sites\FloridaImportWeb\Entity\bin\Debug\netstandard2.0\Entity.deps.json
+C:\Users\usuario\Documents\My Web Sites\FloridaImportWeb\Entity\bin\Debug\netstandard2.0\Entity.dll
+C:\Users\usuario\Documents\My Web Sites\FloridaImportWeb\Entity\bin\Debug\netstandard2.0\Entity.pdb
+C:\Users\usuario\Documents\My Web Sites\FloridaImportWeb\Entity\obj\Debug\netstandard2.0\Entity.csprojAssemblyReference.cache
+C:\Users\usuario\Documents\My Web Sites\FloridaImportWeb\Entity\obj\Debug\netstandard2.0\Entity.AssemblyInfoInputs.cache
+C:\Users\usuario\Documents\My Web Sites\FloridaImportWeb\Entity\obj\Debug\netstandard2.0\Entity.AssemblyInfo.cs
+C:\Users\usuario\Documents\My Web Sites\FloridaImportWeb\Entity\obj\Debug\netstandard2.0\Entity.dll
+C:\Users\usuario\Documents\My Web Sites\FloridaImportWeb\Entity\obj\Debug\netstandard2.0\Entity.pdb

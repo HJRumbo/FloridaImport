@@ -1,0 +1,60 @@
+<p>Consultar clientes registrados.</p>
+
+<div class="row">
+
+    <div class="col-6">
+    
+    <input [(ngModel)]="searchText" type="text" class="form-control" placeh
+    older="Type to filter">
+    
+    </div>
+    
+    </div>
+    
+    <hr>
+    
+    <table class="table table-striped" *ngIf='clientes && clientes.length'>
+    
+    <thead>
+    
+    <tr>
+    
+    <th scope="col">#</th>
+    
+    <th scope="col">identificación</th>
+    
+    <th scope="col">Nombre </th>
+    
+    <th scope="col">Apellido</th>
+    
+    <th scope="col">Tipo de persona</th>
+    
+    <th scope="col">Correo</th>
+    
+    </tr>
+    
+    </thead>
+    
+    <tbody>
+    
+    <tr *ngFor="let cliente of clientes; index as i ">
+    
+    <th scope="row">{{ i + 1 }}</th>
+    
+    <td>{{ cliente.identificacion }} </td>
+    
+    <td>{{ cliente.nombre }}</td>
+    
+    <td>{{ cliente.apellido }}</td>
+    
+    <td>{{ cliente.tipoPersona }}</td>
+    
+    <td>{{ cliente.tiempoDuracion }}</td>
+
+    <td>{{ cliente.correo }}</td>
+    
+    </tr>
+    
+    </tbody>
+    
+    </table>

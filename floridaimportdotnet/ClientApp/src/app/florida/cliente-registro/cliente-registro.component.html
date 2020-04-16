@@ -1,0 +1,133 @@
+<div class="container">
+
+  <div class="row">
+  
+  <div class="col-md-6 offset-md-3">
+  
+  <h2 class="text-success" id="PaddingText">Registro de Clientes</h2>
+  
+  <form [formGroup]="formGroup" id="Padding">
+  
+<div class="row">
+  <div class="form-group col">
+  
+  <label>Nombre</label>
+  
+  <input type="text" name="nombre" formControlName="nombre" class="form-control border border-success" 
+  placeholder="Nombre" [ngClass]="{ 'is-invalid': control.nombre.errors && formGroup.get('nombre').touched}"
+
+  />
+  
+  <div *ngIf="control.nombre.errors" class="invalid-feedback">
+
+    <div *ngIf="control.nombre.errors.required">Se require el nombre</div>
+    
+  </div>
+  </div>
+  
+  <div class="form-group col">
+  
+    <label>Apellido</label>
+
+    <input type="text" name="apellido" formControlName="apellido" class="form-control border border-success" 
+    placeholder="Apellido" [ngClass]="{ 'is-invalid': control.apellido.errors && formGroup.get('apellido').touched}"/>
+
+    <div *ngIf="control.apellido.errors" class="invalid-feedback">
+
+      <div *ngIf="control.apellido.errors.required">Se require el apellido</div>
+      
+    </div>
+  
+  </div>
+
+</div>
+  <div class="row">
+  <div class="form-group col">
+  
+    <label>Identificacion</label>
+    
+    <input type="text" name="identificacion" formControlName="identificacion" class="form-control border border-success" 
+    placeholder="CC" [ngClass]="{ 'is-invalid': control.identificacion.errors && formGroup.get('identificacion').touched}"/>
+  
+    <div *ngIf="control.identificacion.errors" class="invalid-feedback">
+  
+        <div *ngIf="control.identificacion.errors.required">Se require identificacion</div>
+        
+      </div>
+    
+    </div>
+  
+  <div class="form-group col">
+  
+  <label>Tipo de persona</label>
+  
+  <select name="tipoPersona" class="form-control border border-success" formControlName="tipoPersona"
+  [ngClass]="{ 'is-invalid': control.tipoPersona.errors && formGroup.get('tipoPersona').touched}">
+
+    <option value="Natural" selected>Natural</option>
+
+    <option value="Juridica">Juridica</option>
+
+    <div *ngIf="control.tipoPersona.errors" class="invalid-feedback">
+  
+      <div *ngIf="control.tipoPersona.errors.required">Se require el tipo de persona.</div>
+      
+    </div>
+
+  </select>
+  
+  </div>
+</div>
+  
+  <div class="form-group">
+  
+      <label>Correo</label>
+      
+      <input type="email" name="correo" formControlName="correo" class="form-control border border-success" 
+      placeholder="email@example.com" [ngClass]="{ 'is-invalid': control.correo.errors && formGroup.get('correo').touched}"/>
+
+        <div *ngIf="control.correo.errors" class="invalid-feedback">
+
+          <div *ngIf="control.correo.errors.required">Se require el correo</div>
+          <div *ngIf="control.correo.errors.email">{{control.correo.value}} No corresponde a un correo electronico. Por favor, 
+            asegurese de digitar bien su correo.</div>
+
+        </div>
+      
+   </div>
+
+   <div class="form-group">
+  
+    <label>Contraseña</label>
+    
+    <input type="password" name="contrasena" formControlName="contrasena" class="form-control border border-success" 
+    placeholder="Contraseña" [ngClass]="{ 'is-invalid': control.contrasena.errors && formGroup.get('contrasena').touched}"/>
+
+      <div *ngIf="control.contrasena.errors" class="invalid-feedback">
+
+        <div *ngIf="control.contrasena.errors.required">Se require la contraseña</div>
+        <div *ngIf="control.contrasena.errors.minLength">La contraseña debe contener minimo 8 caracteres</div>
+        <div *ngIf="control.contrasena.errors.maxLength">La contraseña debe contener maximo 20 caracteres</div>
+      </div>
+    
+ </div>
+
+  <div class="text-center">
+      
+  <button class="btn btn-success mr-1"(click)="onSubmit()" [disabled]="formGroup.invalid">Registrar</button>
+  
+  <button class="btn btn-secondary" type="reset">Cancel</button>
+  
+  </div>
+  
+  </form>
+  
+  </div>
+  
+  </div>
+  
+  </div>
+
+  <footer class="container">
+    <p>&copy; Company 2017-2019</p>
+  </footer>

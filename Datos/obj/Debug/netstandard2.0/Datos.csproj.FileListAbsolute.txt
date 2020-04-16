@@ -1,0 +1,11 @@
+C:\Users\usuario\Documents\My Web Sites\FloridaImportWeb\Datos\bin\Debug\netstandard2.0\Datos.deps.json
+C:\Users\usuario\Documents\My Web Sites\FloridaImportWeb\Datos\bin\Debug\netstandard2.0\Datos.dll
+C:\Users\usuario\Documents\My Web Sites\FloridaImportWeb\Datos\bin\Debug\netstandard2.0\Datos.pdb
+C:\Users\usuario\Documents\My Web Sites\FloridaImportWeb\Datos\bin\Debug\netstandard2.0\Entity.dll
+C:\Users\usuario\Documents\My Web Sites\FloridaImportWeb\Datos\bin\Debug\netstandard2.0\Entity.pdb
+C:\Users\usuario\Documents\My Web Sites\FloridaImportWeb\Datos\obj\Debug\netstandard2.0\Datos.csprojAssemblyReference.cache
+C:\Users\usuario\Documents\My Web Sites\FloridaImportWeb\Datos\obj\Debug\netstandard2.0\Datos.AssemblyInfoInputs.cache
+C:\Users\usuario\Documents\My Web Sites\FloridaImportWeb\Datos\obj\Debug\netstandard2.0\Datos.AssemblyInfo.cs
+C:\Users\usuario\Documents\My Web Sites\FloridaImportWeb\Datos\obj\Debug\netstandard2.0\Datos.csproj.CopyComplete
+C:\Users\usuario\Documents\My Web Sites\FloridaImportWeb\Datos\obj\Debug\netstandard2.0\Datos.dll
+C:\Users\usuario\Documents\My Web Sites\FloridaImportWeb\Datos\obj\Debug\netstandard2.0\Datos.pdb
