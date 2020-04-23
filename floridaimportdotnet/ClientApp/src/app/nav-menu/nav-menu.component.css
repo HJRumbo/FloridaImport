@@ -16,3 +16,18 @@ html {
 .box-shadow {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
+
+.letra{
+
+  font-size:13px;
+}
+
+.p{
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.margen{
+
+  margin-right: 10%;
+}

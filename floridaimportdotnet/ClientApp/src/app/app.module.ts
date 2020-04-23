@@ -16,6 +16,8 @@ import { ClienteRegistroComponent } from './florida/cliente-registro/cliente-reg
 import { ClienteService } from './services/cliente.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormularioContactoComponent } from './florida/formulario-contacto/formulario-contacto.component';
+import { IngresoComponent } from './florida/ingreso/ingreso.component';
+import { FiltroClientePipe } from './pipe/filtro-cliente.pipe';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { FormularioContactoComponent } from './florida/formulario-contacto/formu
     NosotrosConsultaComponent,
     ClienteConsultaComponent,
     ClienteRegistroComponent,
-    FormularioContactoComponent
+    FormularioContactoComponent,
+    IngresoComponent,
+    FiltroClientePipe
   ],
   imports: [
     ReactiveFormsModule,

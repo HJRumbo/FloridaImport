@@ -3,7 +3,7 @@
     class="navbar navbar-expand-lg navbar-expand-sm navbar-toggleable-sm navbar-light bg-success border-success box-shadow mb-3"
   >
     <div class="container">
-      <a class="navbar-brand text-white" [routerLink]="['/']">Florida Import</a>
+      <a class="navbar-brand text-white" [routerLink]="['/']">Florida <br/> Import</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -15,49 +15,80 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
+
       <div
-        class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"
-        [ngClass]="{ show: isExpanded }"
+        class="navbar-nav navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse row"
+        [ngClass]="{ show: isExpanded }" 
       >
-        <ul class="navbar-nav flex-grow">
+
+      <div class="input-group">
+        <input class="form-control p text-success span2" id="input-search" type="search" placeholder="¿Que estas buscando?">
+        
+      </div>
+
+        <ul class="navbar-nav flex-grow margen">
+      
           <li
             class="nav-item"
             [routerLinkActive]="['link-active']"
             [routerLinkActiveOptions]="{ exact: true }"
           >
-            <a class="nav-link text-white" [routerLink]="['/']">Inicio</a>
+        <a class="nav-link text-white letra" [routerLink]="['/']">Categorias</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-white" [routerLink]="['/nosotrosConsulta']"
-              >Nosotros</a
+            <a class="nav-link text-white letra" [routerLink]="['/nosotrosConsulta']"
+              >Historial</a
             >
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-white" [routerLink]="['/fetch-data']"
-              >Nuestros productos</a
+            <a class="nav-link text-white letra" [routerLink]="['/fetch-data']"
+              >Agencias oficiales</a
             >
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-white" [routerLink]="['/fetch-data']"
-              >Noticias</a
+            <a class="nav-link text-white letra" [routerLink]="['/fetch-data']"
+              >Ofertas de la semana</a
             >
           </li>
           <li ngbDropdown class="nav-item">
-            <a href (click)="false" class="nav-link text-white" ngbDropdownToggle>Registrarse/Ingresar</a>
+            <a href (click)="false" class="nav-link text-white letra" ngbDropdownToggle>Registrarse/Ingresar</a>
             <div ngbDropdownMenu class="border border-success">
-                <a class="dropdown-item text-success"  [routerLink]="['/clienteRegistro']">Soy cliente</a>
-                <a class="dropdown-item text-success" >Soy Proveedor</a>
-                <a class="dropdown-item text-success" >Ingresar</a>
+                <a class="dropdown-item text-success letra"  [routerLink]="['/clienteRegistro']">Soy cliente</a>
+                <a class="dropdown-item text-success letra" >Soy Proveedor</a>
+                <a class="dropdown-item text-success letra" >Ingresar</a>
               
             </div>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-white" [routerLink]="['/formularioContacto']"
+            <a class="nav-link text-white letra" [routerLink]="['/formularioContacto']"
               >Contactenos</a
             >
           </li>
         </ul>
       </div>
+      <div
+        class="navbar-nav navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse nav justify-content-center row"
+        [ngClass]="{ show: isExpanded }" 
+      >
+      <ul class="navbar-nav flex-grow">
+      
+        <li class="nav-item" [routerLinkActive]="['link-active']">
+          <a class="nav-link text-white letra" [routerLink]="['/clienteRegistro']"
+            >Crea tu cuenta</a
+          >
+        </li>
+        <li class="nav-item" [routerLinkActive]="['link-active']">
+          <a class="nav-link text-white letra" [routerLink]="['/ingreso']"
+            >Ingresa</a
+          >
+        </li>
+        <li class="nav-item" [routerLinkActive]="['link-active']">
+          <a class="nav-link text-white letra" [routerLink]="['/clienteConsulta']"
+            >Compras</a
+          >
+        </li>
+        </ul>
+    </div>
     </div>
   </nav>
 </header>

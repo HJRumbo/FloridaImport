@@ -1,11 +1,10 @@
-<p>Consultar clientes registrados.</p>
+<h2 class="text-success paddingText">Consultar clientes registrados.</h2>
 
-<div class="row">
+<div class="row paddingText">
 
     <div class="col-6">
     
-    <input [(ngModel)]="searchText" type="text" class="form-control" placeh
-    older="Type to filter">
+    <input [(ngModel)]="searchText" type="text" class="form-control" placeholder="Type to filter">
     
     </div>
     
@@ -37,7 +36,7 @@
     
     <tbody>
     
-    <tr *ngFor="let cliente of clientes; index as i ">
+    <tr *ngFor="let cliente of clientes|filtroCliente:searchText; index as i ">
     
     <th scope="row">{{ i + 1 }}</th>
     
@@ -52,7 +51,7 @@
     <td>{{ cliente.tiempoDuracion }}</td>
 
     <td>{{ cliente.correo }}</td>
-    
+
     </tr>
     
     </tbody>
