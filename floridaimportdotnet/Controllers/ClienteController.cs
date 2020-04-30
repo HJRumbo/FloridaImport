@@ -60,6 +60,15 @@ namespace floridaimportdotnet.Controllers
 
             return cliente;
         }
+
+        [HttpGet("{correo}")]
+        public ActionResult<ClienteViewModel> Get(string correo)
+        {
+            var cliente = _clienteService.BuscarxCorreo(correo);
+            if (cliente == null) return NotFound();
+            var clienteViewModel = new ClienteViewModel(cliente);
+            return clienteViewModel;
+        }
         
     }
 }

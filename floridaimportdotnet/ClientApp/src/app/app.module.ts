@@ -18,6 +18,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormularioContactoComponent } from './florida/formulario-contacto/formulario-contacto.component';
 import { IngresoComponent } from './florida/ingreso/ingreso.component';
 import { FiltroClientePipe } from './pipe/filtro-cliente.pipe';
+import { ProveedorConsultaComponent } from './florida/proveedor-consulta/proveedor-consulta.component';
+import { ProveedorRegistroComponent } from './florida/proveedor-registro/proveedor-registro.component';
+import { AdministradorConsultaComponent } from './florida/administrador-consulta/administrador-consulta.component';
+import { AdministradorRegistroComponent } from './florida/administrador-registro/administrador-registro.component';
+import { ProductoConsultaComponent } from './florida/producto-consulta/producto-consulta.component';
+import { ProductoRegistroComponent } from './florida/producto-registro/producto-registro.component';
+import { AlertModalComponent } from './@base/alert-modal/alert-modal.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +38,14 @@ import { FiltroClientePipe } from './pipe/filtro-cliente.pipe';
     ClienteRegistroComponent,
     FormularioContactoComponent,
     IngresoComponent,
-    FiltroClientePipe
+    FiltroClientePipe,
+    ProveedorConsultaComponent,
+    ProveedorRegistroComponent,
+    AdministradorConsultaComponent,
+    AdministradorRegistroComponent,
+    ProductoConsultaComponent,
+    ProductoRegistroComponent,
+    AlertModalComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -46,6 +60,7 @@ import { FiltroClientePipe } from './pipe/filtro-cliente.pipe';
     AppRoutingModule,
     NgbModule
   ],
+  entryComponents:[AlertModalComponent],
   providers: [ClienteService],
   bootstrap: [AppComponent]
 })

@@ -3,7 +3,9 @@
     class="navbar navbar-expand-lg navbar-expand-sm navbar-toggleable-sm navbar-light bg-success border-success box-shadow mb-3"
   >
     <div class="container">
-      <a class="navbar-brand text-white" [routerLink]="['/']">Florida <br/> Import</a>
+      <a class="navbar-brand" [routerLink]="['/']">
+        <img src="../../assets/icons8-uva.png" width="120" class="rounded-circle mr-3 d-block mx-auto text-center">
+      </a>
       <button
         class="navbar-toggler"
         type="button"
@@ -50,15 +52,7 @@
               >Ofertas de la semana</a
             >
           </li>
-          <li ngbDropdown class="nav-item">
-            <a href (click)="false" class="nav-link text-white letra" ngbDropdownToggle>Registrarse/Ingresar</a>
-            <div ngbDropdownMenu class="border border-success">
-                <a class="dropdown-item text-success letra"  [routerLink]="['/clienteRegistro']">Soy cliente</a>
-                <a class="dropdown-item text-success letra" >Soy Proveedor</a>
-                <a class="dropdown-item text-success letra" >Ingresar</a>
-              
-            </div>
-          </li>
+          
           <li class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-white letra" [routerLink]="['/formularioContacto']"
               >Contactenos</a
@@ -66,27 +60,52 @@
           </li>
         </ul>
       </div>
-      <div
-        class="navbar-nav navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse nav justify-content-center row"
-        [ngClass]="{ show: isExpanded }" 
-      >
+      <div>
       <ul class="navbar-nav flex-grow">
       
-        <li class="nav-item" [routerLinkActive]="['link-active']">
-          <a class="nav-link text-white letra" [routerLink]="['/clienteRegistro']"
-            >Crea tu cuenta</a
-          >
+        <div *ngIf="rol=='Clien'; else noClien" class="navbar-nav navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse nav justify-content-center row"
+        [ngClass]="{ show: isExpanded }">
+        <li ngbDropdown class="nav-item">
+          <a href (click)="false" class="nav-link text-white" ngbDropdownToggle>
+            <svg class="bi bi-people-circle" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 008 15a6.987 6.987 0 005.468-2.63z"/>
+              <path fill-rule="evenodd" d="M8 9a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/>
+              <path fill-rule="evenodd" d="M8 1a7 7 0 100 14A7 7 0 008 1zM0 8a8 8 0 1116 0A8 8 0 010 8z" clip-rule="evenodd"/>
+            </svg>
+            {{nombre}}</a>
+          <div ngbDropdownMenu class="border border-success">
+              <a class="dropdown-item text-success"  [routerLink]="['/clienteRegistro']">Mi cuenta</a>
+              <a class="dropdown-item text-success" (click)="salir()">Salir</a>
+          </div>
         </li>
-        <li class="nav-item" [routerLinkActive]="['link-active']">
-          <a class="nav-link text-white letra" [routerLink]="['/ingreso']"
-            >Ingresa</a
-          >
-        </li>
-        <li class="nav-item" [routerLinkActive]="['link-active']">
-          <a class="nav-link text-white letra" [routerLink]="['/clienteConsulta']"
-            >Compras</a
-          >
-        </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-white letra" [routerLink]="['/ingreso']"
+              >Compras</a
+            >
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-white letra" [routerLink]="['/clienteConsulta']"
+              >Notificaciones</a
+            >
+          </li>
+        </div>
+        <ng-template #noClien>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-white letra" [routerLink]="['/clienteRegistro']"
+              >Crea tu cuenta</a
+            >
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-white letra" [routerLink]="['/ingreso']"
+              >Ingresa</a
+            >
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-white letra" [routerLink]="['/clienteConsulta']"
+              >Compras</a
+            >
+          </li>
+        </ng-template>
         </ul>
     </div>
     </div>

@@ -2,8 +2,17 @@ import { Injectable, Inject } from '@angular/core';
 import { Cliente } from './../florida/models/cliente';
 import { Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HandleHttpErrorService } from '../@base/handle-http-error.service';
+
+const httpOptionsPut = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  responseType: 'text'
+};
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
  
 @Injectable({
   providedIn: 'root'
@@ -31,7 +40,7 @@ get(): Observable<Cliente[]> {
   
   .pipe(
   
-  tap(_ => this.handleErrorService.log('datos enviados')),
+  tap(_ => this.handleErrorService.log('Consulta')),
   
   catchError(this.handleErrorService.handleError<Cliente[]>('Consulta Cliente', null))
   
@@ -45,13 +54,22 @@ get(): Observable<Cliente[]> {
       return this.http.post<Cliente>(this.baseUrl + 'api/Cliente', cliente)
         .pipe(
 
-          tap(_ => this.handleErrorService.log('datos enviados')),
+          tap(_ => this.handleErrorService.log('Cliente registrado correctamente.')),
       
           catchError(this.handleErrorService.handleError<Cliente>('Registrar Cliente', null))
 
     );
 
 
+  }
+
+  getCorreo(correo: string): Observable<Cliente> {
+    const url = `${this.baseUrl + 'api/Cliente'}/${correo}`;
+      return this.http.get<Cliente>(url, httpOptions)
+      .pipe(
+        tap(_ => this.handleErrorService.log('Consulta')),
+        catchError(this.handleErrorService.handleError<Cliente>('Buscar Cliente', null))
+      );
   }
 
 }

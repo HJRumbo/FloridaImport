@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Cliente } from './../models/cliente';
 import { ClienteService } from './../../services/cliente.service';
 import { FormGroup, FormBuilder, Validators, AbstractControl} from '@angular/forms';
+import { AlertModalComponent } from 'src/app/@base/alert-modal/alert-modal.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-cliente-registro',
@@ -12,7 +14,8 @@ export class ClienteRegistroComponent implements OnInit {
 
   formGroup: FormGroup;
   cliente:  Cliente;
-  constructor(private clienteService: ClienteService, private formBuilder: FormBuilder) { }
+  constructor(private clienteService: ClienteService, private formBuilder: FormBuilder, 
+  private modalService: NgbModal) { }
 
   ngOnInit() {
     this.buildForm();
@@ -54,13 +57,12 @@ export class ClienteRegistroComponent implements OnInit {
   add() {
 
     this.cliente = this.formGroup.value;
+    this.cliente.tipoDePersona='Cliente';
     this.clienteService.post(this.cliente).subscribe(c => {
       if (c != null) {
-        alert('Cliente creado!');
+        
         this.cliente = c;
 
-      }else{
-        alert('Error.');
       }
     });
   }

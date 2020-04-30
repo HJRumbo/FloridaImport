@@ -1,3 +1,5 @@
-export class Proveedor {
+import { Persona } from "./persona";
+
+export class Proveedor extends Persona{
     
 }

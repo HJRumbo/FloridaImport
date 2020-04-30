@@ -1,10 +1,6 @@
-export class Cliente {
+import { Persona } from "./persona";
 
-    identificacion: string;
-    nombre: string;
-    apellido: string;
+export class Cliente extends Persona{
+
     tipoPersona: string;
-    correo: string;
-    contrasena: string;
-
 }

@@ -63,6 +63,20 @@ namespace Datos
             cliente.Contrasena = (string)dataReader["Contrasena"];
             return cliente;
         }
+
+        public Cliente BuscarxCorreo(string correo)
+        {
+            SqlDataReader dataReader;
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "select * from cliente where correo=@correo";
+                command.Parameters.AddWithValue("@correo", correo);
+                dataReader = command.ExecuteReader();
+                dataReader.Read();
+                return DataReaderMapToClient(dataReader);
+            }
+        }
+
        
     }
 }

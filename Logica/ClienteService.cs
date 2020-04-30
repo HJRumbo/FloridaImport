@@ -40,6 +40,14 @@ namespace Logica
             return clientes;
         }
 
+        public Cliente BuscarxCorreo(string correo)
+        {
+            _conexion.Open();
+            Cliente cliente = _repositorio.BuscarxCorreo(correo);
+            _conexion.Close();
+            return cliente;
+        }
+
     }
 
     public class GuardarClienteResponse 
