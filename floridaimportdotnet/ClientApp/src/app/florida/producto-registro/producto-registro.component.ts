@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Producto } from './../models/producto';
+import { ProductoService } from './../../services/producto.service';
+import { FormGroup, FormBuilder, Validators, AbstractControl} from '@angular/forms';
+import { AlertModalComponent } from 'src/app/@base/alert-modal/alert-modal.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-producto-registro',
@@ -7,9 +12,56 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductoRegistroComponent implements OnInit {
 
-  constructor() { }
+  formGroup: FormGroup;
+  producto:  Producto;
+  constructor(private productoService: ProductoService, private formBuilder: FormBuilder, 
+  private modalService: NgbModal) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.buildForm();
+  }
+
+  private buildForm(){
+    this.producto = new Producto()
+    this.producto.nombre = '';
+    this.producto.descripcion = '';
+    this.producto.cantidad = 0;
+    this.producto.precio = 0;
+    this.producto.proveedor = '';
+
+    this.formGroup = this.formBuilder.group({
+      nombre: [this.producto.nombre, Validators.required],
+      descripcion: [this.producto.descripcion, Validators.required],
+      cantidad: [this.producto.cantidad, [Validators.required, Validators.minLength(1)]],
+      precio: [this.producto.precio, [Validators.required, Validators.minLength(100)]],
+      proveedor: [this.producto.proveedor, Validators.required]
+    });
+  }
+
+  get control(){
+
+    return this.formGroup.controls;
+  }
+
+  onSubmit(){
+    if(this.formGroup.invalid){
+      return;
+    }
+    this.add();
+  }
+
+  resultado = 0;
+
+  add() {
+
+    this.producto = this.formGroup.value;
+    this.productoService.post(this.producto).subscribe(p => {
+      if (p != null) {
+        
+        this.producto = p;
+
+      }
+    });
   }
 
 }

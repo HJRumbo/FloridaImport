@@ -2,8 +2,10 @@ import { ClienteRegistroComponent } from './florida/cliente-registro/cliente-reg
 import { ClienteConsultaComponent } from './florida/cliente-consulta/cliente-consulta.component';
 import { ProveedorRegistroComponent } from './florida/proveedor-registro/proveedor-registro.component';
 import { ProveedorConsultaComponent } from './florida/proveedor-consulta/proveedor-consulta.component';
-import { AdministradorRegistroComponent } from './florida/administrador-registro/administrador-registro.component';
-import { AdministradorConsultaComponent } from './florida/administrador-consulta/administrador-consulta.component';
+import { AdministradorVistaComponent } from './florida/administrador-vista/administrador-vista.component';
+import { ProductoRegistroComponent } from './florida/producto-registro/producto-registro.component';
+import { ProductoConsultaComponent } from './florida/producto-consulta/producto-consulta.component';
+import { PersonaPerfilComponent } from './florida/persona-perfil/persona-perfil.component';
 import { FormularioContactoComponent } from './florida/formulario-contacto/formulario-contacto.component';
 import { NosotrosConsultaComponent } from './florida/nosotros-consulta/nosotros-consulta.component';
 import { HomeComponent } from './home/home.component';
@@ -31,12 +33,20 @@ const routes: Routes = [
     component: ProveedorRegistroComponent
   },
   {
-    path: 'administradorConsulta',
-    component: AdministradorConsultaComponent
+    path: 'administradorVista',
+    component: AdministradorVistaComponent
   },
   {
-    path: 'administradorRegistro',
-    component: AdministradorRegistroComponent
+    path: 'productoConsulta',
+    component: ProductoConsultaComponent
+  },
+  {
+    path: 'productoRegistro',
+    component: ProductoRegistroComponent
+  },
+  {
+    path: 'personaPerfil',
+    component: PersonaPerfilComponent
   },
   {
     path: 'home',

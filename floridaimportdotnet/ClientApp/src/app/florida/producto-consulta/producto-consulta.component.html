@@ -1,1 +1,61 @@
-<p>producto-consulta works!</p>
+<h2 class="text-success paddingText">Consultar Productos registrados.</h2>
+
+<div class="row paddingText">
+
+    <div class="col-6">
+    
+    <input [(ngModel)]="searchText" type="text" class="form-control" placeholder="Type to filter">
+    
+    </div>
+    
+    </div>
+    
+    <hr>
+    
+    <table class="table table-striped" *ngIf='productos && productos.length'>
+    
+    <thead>
+    
+    <tr>
+    
+    <th scope="col">#</th>
+    
+    <th scope="col">Codigo</th>
+    
+    <th scope="col">Nombre </th>
+    
+    <th scope="col">Descripcion</th>
+    
+    <th scope="col">Cantidad</th>
+    
+    <th scope="col">Precio</th>
+
+    <th scope="col">Proveedor</th>
+    
+    </tr>
+    
+    </thead>
+    
+    <tbody>
+    
+    <tr *ngFor="let producto of productos; index as i ">
+    
+    <th scope="row">{{ i + 1 }}</th>
+    
+    <td>{{ producto.codigo }} </td>
+    
+    <td>{{ producto.nombre }}</td>
+    
+    <td>{{ producto.decripcion }}</td>
+    
+    <td>{{ producto.cantidad }}</td>
+    
+    <td>{{ producto.precio }}</td>
+
+    <td>{{ producto.proveedor }}</td>
+
+    </tr>
+    
+    </tbody>
+    
+    </table>

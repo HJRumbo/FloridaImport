@@ -20,11 +20,12 @@ import { IngresoComponent } from './florida/ingreso/ingreso.component';
 import { FiltroClientePipe } from './pipe/filtro-cliente.pipe';
 import { ProveedorConsultaComponent } from './florida/proveedor-consulta/proveedor-consulta.component';
 import { ProveedorRegistroComponent } from './florida/proveedor-registro/proveedor-registro.component';
-import { AdministradorConsultaComponent } from './florida/administrador-consulta/administrador-consulta.component';
-import { AdministradorRegistroComponent } from './florida/administrador-registro/administrador-registro.component';
+import { AdministradorVistaComponent } from './florida/administrador-vista/administrador-vista.component';
 import { ProductoConsultaComponent } from './florida/producto-consulta/producto-consulta.component';
 import { ProductoRegistroComponent } from './florida/producto-registro/producto-registro.component';
 import { AlertModalComponent } from './@base/alert-modal/alert-modal.component';
+import { ProductoService } from './services/producto.service';
+import { PersonaPerfilComponent } from './florida/persona-perfil/persona-perfil.component';
 
 @NgModule({
   declarations: [
@@ -41,11 +42,11 @@ import { AlertModalComponent } from './@base/alert-modal/alert-modal.component';
     FiltroClientePipe,
     ProveedorConsultaComponent,
     ProveedorRegistroComponent,
-    AdministradorConsultaComponent,
-    AdministradorRegistroComponent,
+    AdministradorVistaComponent,
     ProductoConsultaComponent,
     ProductoRegistroComponent,
-    AlertModalComponent
+    AlertModalComponent,
+    PersonaPerfilComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -61,7 +62,7 @@ import { AlertModalComponent } from './@base/alert-modal/alert-modal.component';
     NgbModule
   ],
   entryComponents:[AlertModalComponent],
-  providers: [ClienteService],
+  providers: [ClienteService, ProductoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

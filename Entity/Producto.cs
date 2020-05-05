@@ -1,0 +1,12 @@
+namespace Entity
+{
+    public class Producto
+    {
+        public decimal Codigo{get;set;}
+        public string Nombre {get;set;}
+        public string Descripcion {get;set;}
+        public int Cantidad {get;set;}
+        public decimal Precio {get;set;}
+        public string Proveedor {get;set;}
+    }
+}

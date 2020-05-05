@@ -62,30 +62,58 @@ export class IngresoComponent implements OnInit {
   }
 
   acceder(){
+    this.validarAcceso();
+  }
+
+  validarAcceso(){
     this.login = this.formGroup.value;
     this.clienteServicio.getCorreo(this.login.correo).subscribe(
       cliente => {
       if(cliente!==null){
         if(cliente.contrasena==this.login.contrasena){
-          this.router.navigate(['/home']);
+          window.location.href="https://localhost:5001/home";
             sessionStorage.setItem("User" , "Clien");
             sessionStorage.setItem("Nom" , cliente.nombre);
+            sessionStorage.setItem("Correo" , cliente.correo);
         }else{
-          const messageBox = this.modalService.open(AlertModalComponent)
-          messageBox.componentInstance.title = "Resultado del ingreso.";
-          messageBox.componentInstance.message = 'Contraseña incorrecta, la contraceña no coincide con el correo '+
-          cliente.correo;
+          
           console.log('Contraseña incorrecta, la contraceña de no coincide con el correo '+
           cliente.correo);
+          this.mensaje(cliente.correo, 'No Contraseña');
         }
       }else{
-        const messageBox = this.modalService.open(AlertModalComponent)
-        messageBox.componentInstance.title = "Resultado del ingreso.";
-        messageBox.componentInstance.message = 'El usuario con el correo '+
-        this.login.correo+' no se encuentra registrado';
-        console.log('El usuario con el correo'+
-        cliente.correo+' no se encuentra registrado');
+        
+        if(this.login.correo==="admin@gmail.com" && this.login.contrasena==="1234567a"){
+          window.location.href="https://localhost:5001/home";
+          sessionStorage.setItem("User" , "Admin");
+          sessionStorage.setItem("Nom" , "Administrador");
+  
+      }else{
+          this.mensaje(this.login.correo, "No Contraseña");
+          console.log('El usuario con el correo'+
+          this.login.correo+' no se encuentra registrado');
+        
+      }
+        
       }
     })
+  }
+
+
+  mensaje(correo, mc){
+
+    const messageBox = this.modalService.open(AlertModalComponent)
+
+    if(mc==='No Correo'){
+
+        messageBox.componentInstance.title = "Resultado del ingreso.";
+        messageBox.componentInstance.message = 'El usuario con el correo '+
+        correo+' no se encuentra registrado';
+        
+    }else{
+      messageBox.componentInstance.title = "Resultado del ingreso.";
+      messageBox.componentInstance.message = 'Contraseña incorrecta, la contraceña no coincide con el correo '+
+      correo;
+    }
   }
 }

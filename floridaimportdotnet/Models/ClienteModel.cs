@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,20 @@ namespace floridaimportdotnet.Models
 {
     public class ClienteInputModel
     {
+        [Required(ErrorMessage = "La identificacion es requerida")]
         public string Identificacion{get;set;}
+        [Required(ErrorMessage = "El nombre es requerido")]
         public string Nombre {get;set;}
+        [Required(ErrorMessage = "El apellido es requerido")]
         public string Apellido {get;set;}
+        [Required(ErrorMessage = "El apellido es requerido (Natural o Juridica)")]
+        [TipoPersonaValidacion(ErrorMessage= "El tipo de cliente debe ser Juridica o Natural")]
         public string TipoPersona {get;set;}
+        [EmailAddress(ErrorMessage = "Ingrese un correo electronico valido.")]
         public string Correo {get;set;}
+        [Required(ErrorMessage = "La contraseña es requerida")]
+        [MaxLength(20, ErrorMessage = "La contraseña no puede ser mayor a 20 caracteres.")]
+        [MinLength(8, ErrorMessage = "La contraseña no puede ser menor a 8 caracteres.")]
         public string Contrasena {get;set;}
     }
 
@@ -35,4 +45,18 @@ namespace floridaimportdotnet.Models
         }
     }
 
+    public class TipoPersonaValidacion : ValidationAttribute
+    {
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            if ((value.ToString() == "Natural") || (value.ToString() == "Juridica"))
+            {
+                return ValidationResult.Success;
+            }
+            else
+            {
+                return new ValidationResult(ErrorMessage);
+            }
+        }
+    }
 }

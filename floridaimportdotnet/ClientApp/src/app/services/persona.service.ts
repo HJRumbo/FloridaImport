@@ -1,5 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { Cliente } from './../florida/models/cliente';
+import { Persona } from './../florida/models/persona';
 import { Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -13,11 +14,11 @@ const httpOptionsPut = {
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
- 
+
 @Injectable({
   providedIn: 'root'
 })
-export class ClienteService {
+export class PersonaService {
 
   baseUrl: string;
 
@@ -34,51 +35,41 @@ private handleErrorService: HandleHttpErrorService)
 this.baseUrl = baseUrl;
 }
 
-get(): Observable<Cliente[]> {
+get(): Observable<Persona[]> {
 
-  return this.http.get<Cliente[]>(this.baseUrl + 'api/Cliente')
+  return this.http.get<Persona[]>(this.baseUrl + 'api/Cliente')
   
   .pipe(
   
   tap(_ => this.handleErrorService.log('Consulta')),
   
-  catchError(this.handleErrorService.handleError<Cliente[]>('Consulta Cliente', null))
+  catchError(this.handleErrorService.handleError<Persona[]>('Consulta Cliente', null))
   
   );
   
   }
 
-  post(cliente: Cliente): Observable<Cliente> {
+  post(persona: Persona): Observable<Persona> {
 
 
-      return this.http.post<Cliente>(this.baseUrl + 'api/Cliente', cliente)
+      return this.http.post<Persona>(this.baseUrl + 'api/Cliente', persona)
         .pipe(
 
           tap(_ => this.handleErrorService.log('Cliente registrado correctamente.')),
       
-          catchError(this.handleErrorService.handleError<Cliente>('Registrar Cliente', null))
+          catchError(this.handleErrorService.handleError<Persona>('Registrar Cliente', null))
 
     );
 
 
   }
 
-  put(cliente: Cliente): Observable<any> {
-    const url = `${this.baseUrl}api/Cliente/${cliente.identificacion}`;
-    return this.http.put(url, cliente, httpOptions)
-    .pipe(
-      tap(_ => this.handleErrorService.log('Informacion del cliente modificada correctamente')),
-      catchError(this.handleErrorService.handleError<any>('Editar Cliente'))
-    );
-  }
-
-  getCorreo(correo: string): Observable<Cliente> {
+  getCorreo(correo: string): Observable<Persona> {
     const url = `${this.baseUrl + 'api/Cliente'}/${correo}`;
-      return this.http.get<Cliente>(url, httpOptions)
+      return this.http.get<Persona>(url, httpOptions)
       .pipe(
         tap(_ => this.handleErrorService.log('Consulta')),
-        catchError(this.handleErrorService.handleError<Cliente>('Buscar Cliente', null))
+        catchError(this.handleErrorService.handleError<Persona>('Buscar Cliente', null))
       );
   }
-
 }

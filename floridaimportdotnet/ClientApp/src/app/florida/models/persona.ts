@@ -4,5 +4,10 @@ export class Persona {
     apellido: string;
     correo: string;
     contrasena: string;
-    tipoDePersona: string;
+    pais: string;
+    ciudad: string;
+    direccion: string;
+    barrio: string;
+    codigoPostal: string;
+    telefono: string;
 }

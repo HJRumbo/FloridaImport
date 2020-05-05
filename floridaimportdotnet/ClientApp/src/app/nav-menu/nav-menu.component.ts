@@ -29,6 +29,6 @@ export class NavMenuComponent implements OnInit{
   salir(){
     sessionStorage.removeItem('User');
     sessionStorage.removeItem('Nom');
-    this.router.navigate(['/home']);
+    window.location.href="https://localhost:5001/home";
   }
 }

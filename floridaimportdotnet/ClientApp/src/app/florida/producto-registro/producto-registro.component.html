@@ -1,1 +1,109 @@
-<p>producto-registro works!</p>
+<div class="container">
+
+    <div class="row">
+    
+    <div class="col-md-6 offset-md-3">
+    
+    <h2 class="text-success" id="PaddingText">Registro de Productos</h2>
+    
+    <form [formGroup]="formGroup" id="Padding">
+    
+    <div class="row">
+    <div class="form-group col">
+    
+    <label>Nombre</label>
+    
+    <input type="text" name="nombre" formControlName="nombre" class="form-control border border-success" 
+    placeholder="Nombre" [ngClass]="{ 'is-invalid': control.nombre.errors && formGroup.get('nombre').touched}"
+  
+    />
+    
+    <div *ngIf="control.nombre.errors" class="invalid-feedback">
+  
+      <div *ngIf="control.nombre.errors.required">Se require el nombre</div>
+      
+    </div>
+    </div>
+    
+    <div class="form-group col">
+    
+      <label>Descripcion</label>
+  
+      <textarea type="text" name="descripcion" formControlName="descripcion" class="form-control border border-success" 
+      placeholder="Descripcion..." [ngClass]="{ 'is-invalid': control.descripcion.errors && formGroup.get('descripcion').touched}"></textarea>
+  
+      <div *ngIf="control.descripcion.errors" class="invalid-feedback">
+  
+        <div *ngIf="control.descripcion.errors.required">Se require una descripcion</div>
+        
+      </div>
+    
+    </div>
+  
+  </div>
+    <div class="row">
+    <div class="form-group col">
+    
+      <label>Cantidad</label>
+      
+      <input type="number" name="cantidad" formControlName="cantidad" class="form-control border border-success" 
+      placeholder="Cantidad" [ngClass]="{ 'is-invalid': control.cantidad.errors && formGroup.get('cantidad').touched}"/>
+    
+      <div *ngIf="control.cantidad.errors" class="invalid-feedback">
+    
+          <div *ngIf="control.cantidad.errors.required">Se require la cantidad comprada</div>
+          <div *ngIf="control.cantidad.errors.minLength">La cantidad del producto debe ser mayor a cero</div>
+                    
+        </div>
+      
+      </div>
+    
+      <div class="form-group">
+    
+        <label>Precio</label>
+        
+        <input type="number" name="precio" formControlName="precio" class="form-control border border-success" 
+        placeholder="Precio" [ngClass]="{ 'is-invalid': control.precio.errors && formGroup.get('precio').touched}"/>
+  
+          <div *ngIf="control.precio.errors" class="invalid-feedback">
+  
+            <div *ngIf="control.precio.errors.required">Se require el precio del producto</div>
+            <div *ngIf="control.precio.errors.minLengthl">El precio debe ser mayor de 100 pesos</div>
+          </div>
+     </div>
+  </div>
+  
+     <div class="form-group">
+    
+      <label>Proveedor</label>
+      
+      <input type="text" name="proveedor" formControlName="proveedor" class="form-control border border-success" 
+      placeholder="Proveedor" [ngClass]="{ 'is-invalid': control.proveedor.errors && formGroup.get('proveedor').touched}"/>
+  
+        <div *ngIf="control.proveedor.errors" class="invalid-feedback">
+  
+          <div *ngIf="control.proveedor.errors.required">Se require el proveedor</div>
+          
+        </div>
+      
+   </div>
+  
+    <div class="text-center">
+        
+    <button class="btn btn-success mr-1"(click)="onSubmit()" [disabled]="formGroup.invalid">Registrar</button>
+    
+    <button class="btn btn-secondary" type="reset">Cancel</button>
+    
+    </div>
+    
+    </form>
+    
+    </div>
+    
+    </div>
+    
+    </div>
+  
+    <footer class="container">
+      <p>&copy; Company 2017-2019</p>
+    </footer>

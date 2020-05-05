@@ -32,6 +32,14 @@ namespace floridaimportdotnet.Controllers
             return clientes;
         }
 
+       /* [HttpGet("{identificacion}")]
+        public ActionResult<ClienteViewModel> Get(string identificacion)
+        {
+            var cliente = _clienteService.BuscarxIdentificacion(identificacion);
+            if (cliente == null) return NotFound();
+            var clienteViewModel = new ClienteViewModel(cliente);
+            return clienteViewModel;
+        }*/
         
         [HttpPost]
         public ActionResult<ClienteViewModel> Post(ClienteInputModel clienteInput)
@@ -40,9 +48,33 @@ namespace floridaimportdotnet.Controllers
             var response = _clienteService.Guardar(cliente);
             if (response.Error) 
             {
-                return BadRequest(response.Mensaje);
+                ModelState.AddModelError("Guardar Cliente", response.Mensaje);
+                var problemDetails = new ValidationProblemDetails(ModelState)
+                {
+                    Status = StatusCodes.Status400BadRequest,
+                };
+                return BadRequest(problemDetails);
             }
             return Ok(response.Cliente);
+        }
+
+        [HttpDelete("{identificacion}")]
+        public ActionResult<string> Delete(string identificacion)
+        {
+            string mensaje = _clienteService.Eliminar(identificacion);
+            return Ok(mensaje);
+        }
+
+        [HttpPut("{identificacion}")]
+        public ActionResult<string> Put(string identificacion, Cliente cliente)
+        {
+            var id=_clienteService.BuscarxIdentificacion(cliente.identificacion);
+            if(id==null){
+                return BadRequest("No encontrado");
+            }
+            var mensaje=_clienteService.Modificar(cliente);
+           return Ok(mensaje);
+
         }
         
         private Cliente MapearCliente(ClienteInputModel clienteInput)
@@ -62,7 +94,7 @@ namespace floridaimportdotnet.Controllers
         }
 
         [HttpGet("{correo}")]
-        public ActionResult<ClienteViewModel> Get(string correo)
+        public ActionResult<ClienteViewModel> GetCorreo(string correo)
         {
             var cliente = _clienteService.BuscarxCorreo(correo);
             if (cliente == null) return NotFound();

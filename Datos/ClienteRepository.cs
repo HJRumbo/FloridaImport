@@ -64,6 +64,19 @@ namespace Datos
             return cliente;
         }
 
+        public Cliente BuscarxIdentificacion(string identificacion)
+        {
+            SqlDataReader dataReader;
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "select * from cliente where identificacion=@identificacion";
+                command.Parameters.AddWithValue("@identificacion", identificacion);
+                dataReader = command.ExecuteReader();
+                dataReader.Read();
+                return DataReaderMapToClient(dataReader);
+            }
+        }
+
         public Cliente BuscarxCorreo(string correo)
         {
             SqlDataReader dataReader;
@@ -77,6 +90,30 @@ namespace Datos
             }
         }
 
+        public void Modificar( Cliente cliente)
+        {
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "update cliente set nombre=@Nombre, Apellido=@Apellido, TipoPersona=@TipoPersona, Correo=@Correo, Contrasena=@Contrasena where Identificacion=@Identificacion";              
+                command.Parameters.AddWithValue("@Identificacion", cliente.Identificacion);
+                command.Parameters.AddWithValue("@Nombre", cliente.Nombre);
+                command.Parameters.AddWithValue("@Apellido", cliente.Apellido);
+                command.Parameters.AddWithValue("@TipoPersona", cliente.TipoPersona);
+                command.Parameters.AddWithValue("@Correo", cliente.Correo);
+                command.Parameters.AddWithValue("@Contrasena", cliente.Contrasena);
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public void Eliminar(Cliente cliente)
+        {
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "Delete from cliente where Identificacion=@Identificacion";
+                command.Parameters.AddWithValue("@Identificacion", cliente.Identificacion);
+                command.ExecuteNonQuery();
+            }
+        }
        
     }
 }

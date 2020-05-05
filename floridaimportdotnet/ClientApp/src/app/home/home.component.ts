@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -6,5 +6,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit{
+
+  rol: string;
+  nombre: string
+
+  ngOnInit(){
+    this.rol = sessionStorage.getItem('User');
+    this.nombre = sessionStorage.getItem('Nom');
+  }
 }
+

@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdministradorRegistroComponent } from './administrador-registro.component';
+import { AdministradorRegistroComponent } from './administrador-vista.component';
 
 describe('AdministradorRegistroComponent', () => {
   let component: AdministradorRegistroComponent;

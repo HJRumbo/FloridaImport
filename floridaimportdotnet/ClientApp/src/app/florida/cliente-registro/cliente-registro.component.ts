@@ -14,11 +14,15 @@ export class ClienteRegistroComponent implements OnInit {
 
   formGroup: FormGroup;
   cliente:  Cliente;
+  verCon: boolean;
+  tipo: string;
   constructor(private clienteService: ClienteService, private formBuilder: FormBuilder, 
   private modalService: NgbModal) { }
 
   ngOnInit() {
     this.buildForm();
+    this.verCon=false;
+    this.tipo="password";
   }
 
   private buildForm(){
@@ -57,7 +61,6 @@ export class ClienteRegistroComponent implements OnInit {
   add() {
 
     this.cliente = this.formGroup.value;
-    this.cliente.tipoDePersona='Cliente';
     this.clienteService.post(this.cliente).subscribe(c => {
       if (c != null) {
         
@@ -65,6 +68,17 @@ export class ClienteRegistroComponent implements OnInit {
 
       }
     });
+  }
+
+  ver(){
+
+    if(this.verCon != true){
+    this.tipo = "text";
+    this.verCon = true;
+    }else{
+      this.tipo = "password";
+      this.verCon = false;
+    }
   }
 
 }
