@@ -32,14 +32,14 @@ namespace floridaimportdotnet.Controllers
             return clientes;
         }
 
-       /* [HttpGet("{identificacion}")]
-        public ActionResult<ClienteViewModel> Get(string identificacion)
+       [HttpGet("{identificacion}")]
+        public ActionResult<ClienteViewModel> GetId(string identificacion)
         {
             var cliente = _clienteService.BuscarxIdentificacion(identificacion);
             if (cliente == null) return NotFound();
             var clienteViewModel = new ClienteViewModel(cliente);
             return clienteViewModel;
-        }*/
+        }
         
         [HttpPost]
         public ActionResult<ClienteViewModel> Post(ClienteInputModel clienteInput)
@@ -68,7 +68,7 @@ namespace floridaimportdotnet.Controllers
         [HttpPut("{identificacion}")]
         public ActionResult<string> Put(string identificacion, Cliente cliente)
         {
-            var id=_clienteService.BuscarxIdentificacion(cliente.identificacion);
+            var id=_clienteService.BuscarxIdentificacion(cliente.Identificacion);
             if(id==null){
                 return BadRequest("No encontrado");
             }

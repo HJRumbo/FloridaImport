@@ -5,4 +5,5 @@ export class Producto {
     cantidad: number;
     precio: number;
     proveedor: string;
+    tipo: string;
 }

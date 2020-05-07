@@ -22,7 +22,7 @@
       </button>
 
       <div
-        class="navbar-nav navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse justify-content-center"
+        class="navbar-nav navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse justify-content-center pInAdmin"
         [ngClass]="{ show: isExpanded }" 
       >
 
@@ -51,13 +51,22 @@
             {{nombre}}</a>
           <div ngbDropdownMenu class="border border-success">
               <a class="dropdown-item text-success"  [routerLink]="['/clienteRegistro']">Mi cuenta</a>
-              <a class="dropdown-item text-success" (click)="salir()" onclick="location.reload()">Salir</a>
+              <button class="dropdown-item text-success" (click)="salir()" onclick="location.reload()">Salir</button>
           </div>
         </li>
       </ul>
-      <div class="input-group">
-        <input class="form-control p text-success span2" id="input-search" type="search" placeholder="¿Que estas buscando?">
-        
+      <div>
+        <div class="input-group mb-4">
+          <input class="form-control border border-white col" id="input-search" type="search" placeholder="¿Que estas buscando?">
+          <div class="input-group-append pButton">
+            <button class="btn btn-success border border-white">
+              <svg class="bi bi-search" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z" clip-rule="evenodd"/>
+                <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clip-rule="evenodd"/>
+              </svg>
+            </button>
+          </div>
+        </div>
       </div>
       </div>
     </div>
@@ -114,12 +123,26 @@
         </li>
         <li ngbDropdown class="nav-item">
           <a href (click)="false" class="nav-link text-success" ngbDropdownToggle>
+            Paises
+          </a>
+          <div ngbDropdownMenu class="border border-success">
+              <a class="dropdown-item text-success" [routerLink]="['/productoConsulta']">Consultar</a>
+              <a class="dropdown-item text-success" [routerLink]="['/paisRegistro']">Registrar</a>
+          </div>
+        </li>
+        <li ngbDropdown class="nav-item">
+          <a href (click)="false" class="nav-link text-success" ngbDropdownToggle>
             Informes
           </a>
           <div ngbDropdownMenu class="border border-success">
               <a class="dropdown-item text-success" [routerLink]="['/clienteConsulta']">Inventario</a>
-              <a class="dropdown-item text-success" [routerLink]="['/clienteRegistro']">Ventas por mes</a>
+              <a class="dropdown-item text-success" [routerLink]="['/clienteRegistro']">Reportes</a>
           </div>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['link-active']">
+          <a class="nav-link text-success" [routerLink]="['/fetch-data']"
+            >Gestionar Ofertas</a
+          >
         </li>
       </ul>
       </div>
@@ -152,10 +175,17 @@
         class="navbar-nav navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse row justify-content-center"
         [ngClass]="{ show: isExpanded }" 
       >
-
-      <div class="input-group">
-        <input class="form-control p text-success span2" id="input-search" type="search" placeholder="¿Que estas buscando?">
-        
+      <!--Input de buscar-->
+      <div class="input-group input-group-sm">
+        <input class="form-control border border-white col pInput" id="input-search" type="search" placeholder="¿Que estas buscando?">
+        <div class="input-group-append pButton">
+          <button class="btn btn-success border border-white">
+            <svg class="bi bi-search" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z" clip-rule="evenodd"/>
+              <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clip-rule="evenodd"/>
+            </svg>
+          </button>
+        </div>
       </div>
 
         <ul class="navbar-nav flex-grow margen">
@@ -165,7 +195,15 @@
             [routerLinkActive]="['link-active']"
             [routerLinkActiveOptions]="{ exact: true }"
           >
-        <a class="nav-link text-white letra" [routerLink]="['/']">Categorias</a>
+        <a class="nav-link text-white letra" href="#productos">Productos</a>
+          </li>
+          <li ngbDropdown class="nav-item">
+            <a href (click)="false" class="nav-link text-white letra" ngbDropdownToggle>Categorias</a>
+            <div ngbDropdownMenu class="border border-success">
+                <a class="dropdown-item text-success"  [routerLink]="['/personaPerfil']">Frutas</a>
+                <a class="dropdown-item text-success" >Verduras</a>
+                <a class="dropdown-item text-success" >Hortalizas</a>
+            </div>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-white letra" [routerLink]="['/nosotrosConsulta']"
@@ -179,7 +217,7 @@
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-white letra" [routerLink]="['/fetch-data']"
-              >Ofertas de la semana</a
+              >Ofertas</a
             >
           </li>
           
@@ -205,13 +243,13 @@
             {{nombre}}</a>
           <div ngbDropdownMenu class="border border-success">
               <a class="dropdown-item text-success"  [routerLink]="['/personaPerfil']">Perfil</a>
-              <a class="dropdown-item text-success" (click)="salir()">Salir</a>
+              <button class="dropdown-item text-success" (click)="salir()">Salir</button>
           </div>
         </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-white letra" [routerLink]="['/ingreso']"
-              >Compras</a
-            >
+            <button type="button" class="btn btn-success mr-1">
+              <span class="glyphicon glyphicon-shopping-cart"></span>
+            </button>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-white letra" [routerLink]="['/clienteConsulta']"
@@ -222,6 +260,11 @@
         <!--Sin ingreso-->
         <div *ngIf="rol===null" class="navbar-nav navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse nav justify-content-center row"
         [ngClass]="{ show: isExpanded }">
+        <li class="nav-item" [routerLinkActive]="['link-active']">
+          <a class="nav-link text-white" href="#">
+            <span class="glyphicon glyphicon-shopping-cart">&#xe116;</span>
+          </a>
+        </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-white letra" [routerLink]="['/clienteRegistro']"
               >Crea tu cuenta</a
@@ -230,11 +273,6 @@
           <li class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-white letra" [routerLink]="['/ingreso']"
               >Ingresa</a
-            >
-          </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-white letra" [routerLink]="['/clienteConsulta']"
-              >Compras</a
             >
           </li>
         </div>

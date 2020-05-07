@@ -23,6 +23,8 @@ export class IngresoComponent implements OnInit {
   formGroup: FormGroup;
   clientes : Cliente[];
   private login : login;
+  verCon: boolean;
+  tipo: string;
   cliente: Cliente;
   searchText:string;
   constructor(private clienteServicio: ClienteService, private formBuilder: FormBuilder, 
@@ -31,6 +33,8 @@ export class IngresoComponent implements OnInit {
   ngOnInit(): void {
     this.buildForm();
     this.login = {correo : "", contrasena : ""}
+    this.verCon=false;
+    this.tipo="password";
   }
 
   private buildForm(){
@@ -71,7 +75,7 @@ export class IngresoComponent implements OnInit {
       cliente => {
       if(cliente!==null){
         if(cliente.contrasena==this.login.contrasena){
-          window.location.href="https://localhost:5001/home";
+          window.location.href="https://localhost:5001";
             sessionStorage.setItem("User" , "Clien");
             sessionStorage.setItem("Nom" , cliente.nombre);
             sessionStorage.setItem("Correo" , cliente.correo);
@@ -114,6 +118,17 @@ export class IngresoComponent implements OnInit {
       messageBox.componentInstance.title = "Resultado del ingreso.";
       messageBox.componentInstance.message = 'Contraseña incorrecta, la contraceña no coincide con el correo '+
       correo;
+    }
+  }
+
+  ver(){
+
+    if(this.verCon != true){
+    this.tipo = "text";
+    this.verCon = true;
+    }else{
+      this.tipo = "password";
+      this.verCon = false;
     }
   }
 }

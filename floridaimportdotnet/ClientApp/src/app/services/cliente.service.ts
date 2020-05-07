@@ -81,4 +81,13 @@ get(): Observable<Cliente[]> {
       );
   }
 
+  delete(cliente: Cliente| string): Observable<string> {
+    const id = typeof cliente === 'string' ? cliente : cliente.identificacion;
+    return this.http.delete<string>(this.baseUrl + 'api/Cliente/'+ id)
+    .pipe(
+      tap(_ => this.handleErrorService.log('datos enviados')),
+      catchError(this.handleErrorService.handleError<string>('Elimiar Cliente', null))
+    );
+  }
+
 }

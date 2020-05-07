@@ -51,4 +51,8 @@ export class PersonaPerfilComponent implements OnInit {
 
     });
   }
+
+  irAUbicacion(){
+    this.router.navigate['/agregarUbicacion'];
+  }
 }

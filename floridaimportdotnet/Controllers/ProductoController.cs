@@ -39,7 +39,12 @@ namespace floridaimportdotnet.Controllers
             var response = _productoService.Guardar(producto);
             if (response.Error) 
             {
-                return BadRequest(response.Mensaje);
+                ModelState.AddModelError("Guardar Producto", response.Mensaje);
+                var problemDetails = new ValidationProblemDetails(ModelState)
+                {
+                    Status = StatusCodes.Status400BadRequest,
+                };
+                return BadRequest(problemDetails);
             }
             return Ok(response.Producto);
         }
@@ -52,21 +57,39 @@ namespace floridaimportdotnet.Controllers
                 Descripcion = productoInput.Descripcion,
                 Cantidad = productoInput.Cantidad,
                 Precio = productoInput.Precio,
-                Proveedor = productoInput.Proveedor
-                
+                Proveedor = productoInput.Proveedor,
+                Tipo = productoInput.Tipo
             };
 
             return producto;
         }
 
-        /*[HttpGet("{correo}")]
-        public ActionResult<ClienteViewModel> Get(string correo)
+        [HttpGet("{codigo}")]
+        public ActionResult<ProductoViewModel> Get(decimal codigo)
         {
-            var cliente = _clienteService.BuscarxCorreo(correo);
-            if (cliente == null) return NotFound();
-            var clienteViewModel = new ClienteViewModel(cliente);
-            return clienteViewModel;
+            var producto = _productoService.BuscarxCodigo(codigo);
+            if (producto == null) return NotFound();
+            var productoViewModel = new ProductoViewModel(producto);
+            return productoViewModel;
         }
-        */
+
+        [HttpDelete("{codigo}")]
+        public ActionResult<string> Delete(decimal codigo)
+        {
+            string mensaje = _productoService.Eliminar(codigo);
+            return Ok(mensaje);
+        }
+
+        [HttpPut("{codigo}")]
+        public ActionResult<string> Put(decimal codigo, Producto producto)
+        {
+            var id=_productoService.BuscarxCodigo(producto.Codigo);
+            if(id==null){
+                return BadRequest("No encontrado");
+            }
+            var mensaje=_productoService.Modificar(producto);
+           return Ok(mensaje);
+
+        }
     }
 }

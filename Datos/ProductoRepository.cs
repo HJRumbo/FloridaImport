@@ -19,14 +19,15 @@ namespace Datos
             using (var command = _connection.CreateCommand())
             {
                 command.CommandText = @"Insert Into Producto (Codigo,Nombre,
-                Descripcion, Cantidad, Precio,Proveedor) 
+                Descripcion, Cantidad, Precio,Proveedor, Tipo) 
                 values (NEXT VALUE FOR CodigoSequence,@Nombre,@Descripcion,
-                @Cantidad,@Precio, @Proveedor)";
+                @Cantidad,@Precio, @Proveedor, @Tipo)";
                 command.Parameters.AddWithValue("@Nombre", producto.Nombre);
                 command.Parameters.AddWithValue("@Descripcion", producto.Descripcion);
                 command.Parameters.AddWithValue("@Cantidad", producto.Cantidad);
                 command.Parameters.AddWithValue("@Precio", producto.Precio);
                 command.Parameters.AddWithValue("@Proveedor", producto.Proveedor);
+                command.Parameters.AddWithValue("@Tipo", producto.Tipo);
                 var filas = command.ExecuteNonQuery();
             }
         }
@@ -61,6 +62,7 @@ namespace Datos
             producto.Cantidad = (int)dataReader["Cantidad"];
             producto.Precio = (decimal)dataReader["Precio"];
             producto.Proveedor = (string)dataReader["Proveedor"];
+            producto.Tipo = (string)dataReader["Tipo"];
             return producto;
         }
 

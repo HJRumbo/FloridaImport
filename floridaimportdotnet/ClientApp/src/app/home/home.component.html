@@ -1,16 +1,12 @@
 <div *ngIf="rol=='Admin'; else noAdmin">
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Dashboard</h1>
+        <h1 class="h2">Informe</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
           <div class="btn-group mr-2">
             <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
             <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
           </div>
-          <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-            <span data-feather="calendar"></span>
-            This week
-          </button>
         </div>
       </div>
 
@@ -50,24 +46,70 @@
 
 <div class="container Padding">
   <!-- Example row of columns -->
+  <a name="productos">
+  <div *ngIf='productos && productos.length'>
+    <h2 class="text-success">Frutas</h2>
+    <hr style="color: black;"/>
   <div class="row">
-    <div class="col-md-4">
-      <h2 class="text-success">Nuestra empresa</h2>
-      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-      <p><a class="btn btn-secondary" [routerLink]="['/nosotrosConsulta']" role="button">View details &raquo;</a></p>
+    <div class="col-md-4" *ngFor="let producto of productos; index as i " >
+    <div *ngIf="producto.tipo=='Fruta'">
+      <svg class="bi bi-card-image justify-content-center" width="5em" height="5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M14.5 3h-13a.5.5 0 00-.5.5v9a.5.5 0 00.5.5h13a.5.5 0 00.5-.5v-9a.5.5 0 00-.5-.5zm-13-1A1.5 1.5 0 000 3.5v9A1.5 1.5 0 001.5 14h13a1.5 1.5 0 001.5-1.5v-9A1.5 1.5 0 0014.5 2h-13z" clip-rule="evenodd"/>
+        <path d="M10.648 7.646a.5.5 0 01.577-.093L15.002 9.5V13h-14v-1l2.646-2.354a.5.5 0 01.63-.062l2.66 1.773 3.71-3.71z"/>
+        <path fill-rule="evenodd" d="M4.502 7a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" clip-rule="evenodd"/>
+      </svg>
+      <h3 >{{producto.nombre}}</h3>
+      <p>{{producto.descripcion}}</p>
+      <p>{{producto.precio | currency: ' COP ' :true:'1.1-2'}}</p>
+      <div class="btn-group" role="group">
+        <p><a type="button" class="btn btn-secondary" [routerLink]="['/nosotrosConsulta']" role="button">Comprar &raquo;</a></p>
+        <p><a type="button" class="btn btn-secondary" [routerLink]="['/nosotrosConsulta']" role="button">Agregar &raquo;</a></p>
+        </div>
     </div>
-    <div class="col-md-4">
-      <h2 class="text-success">Nuestras agencias</h2>
-      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-      <p><a class="btn btn-secondary" [routerLink]="['/nosotrosConsulta']" role="button">View details &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-      <h2 class="text-success">Nuestros productos</h2>
-      <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-      <p><a class="btn btn-secondary" [routerLink]="['/nosotrosConsulta']" role="button">View details &raquo;</a></p>
     </div>
   </div>
-
+  <h2 class="Padding text-success" >Verduras</h2>
+  <hr style="color: black;"/>
+  <div class="row">
+    <div class="col-md-4" *ngFor="let producto of productos; index as i " >
+    <div *ngIf="producto.tipo=='Verdura'">
+      <svg class="bi bi-card-image justify-content-center" width="5em" height="5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M14.5 3h-13a.5.5 0 00-.5.5v9a.5.5 0 00.5.5h13a.5.5 0 00.5-.5v-9a.5.5 0 00-.5-.5zm-13-1A1.5 1.5 0 000 3.5v9A1.5 1.5 0 001.5 14h13a1.5 1.5 0 001.5-1.5v-9A1.5 1.5 0 0014.5 2h-13z" clip-rule="evenodd"/>
+        <path d="M10.648 7.646a.5.5 0 01.577-.093L15.002 9.5V13h-14v-1l2.646-2.354a.5.5 0 01.63-.062l2.66 1.773 3.71-3.71z"/>
+        <path fill-rule="evenodd" d="M4.502 7a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" clip-rule="evenodd"/>
+      </svg>
+      <h3>{{producto.nombre}}</h3>
+      <p>{{producto.descripcion}}</p>
+      <p>{{producto.precio | currency: ' COP ' :true:'1.1-2'}}</p>
+      <div class="btn-group" role="group">
+        <p ><a class="btn btn-secondary" [routerLink]="['/nosotrosConsulta']" role="button">Comprar &raquo;</a></p>
+        <p ><a class="btn btn-secondary" [routerLink]="['/nosotrosConsulta']" role="button">Agregar &raquo;</a></p>
+        </div>
+    </div>
+    </div>
+  </div>
+  <h2 class="Padding text-success">Hortalizas</h2>
+  <hr style="color: black;"/>
+  <div class="row">
+    <div class="col-md-4" *ngFor="let producto of productos; index as i " >
+    <div *ngIf="producto.tipo=='Hortaliza'">
+      <svg class="bi bi-card-image justify-content-center" width="5em" height="5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M14.5 3h-13a.5.5 0 00-.5.5v9a.5.5 0 00.5.5h13a.5.5 0 00.5-.5v-9a.5.5 0 00-.5-.5zm-13-1A1.5 1.5 0 000 3.5v9A1.5 1.5 0 001.5 14h13a1.5 1.5 0 001.5-1.5v-9A1.5 1.5 0 0014.5 2h-13z" clip-rule="evenodd"/>
+        <path d="M10.648 7.646a.5.5 0 01.577-.093L15.002 9.5V13h-14v-1l2.646-2.354a.5.5 0 01.63-.062l2.66 1.773 3.71-3.71z"/>
+        <path fill-rule="evenodd" d="M4.502 7a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" clip-rule="evenodd"/>
+      </svg>
+      <h3>{{producto.nombre}}</h3>
+      <p>{{producto.descripcion}}</p>
+      <p>{{producto.precio | currency: ' COP ' :true:'1.1-2'}}</p>
+      <div class="btn-group" role="group">
+      <p ><a class="btn btn-secondary" [routerLink]="['/nosotrosConsulta']" role="button">Comprar &raquo;</a></p>
+      <p ><a class="btn btn-secondary" [routerLink]="['/nosotrosConsulta']" role="button">Agregar &raquo;</a></p>
+      </div>
+    </div>
+    </div>
+  </div>
+  </div>
+  </a>
   <hr>
 
 </div> <!-- /container -->

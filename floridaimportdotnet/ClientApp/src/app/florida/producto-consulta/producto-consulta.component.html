@@ -24,11 +24,11 @@
     
     <th scope="col">Nombre </th>
     
-    <th scope="col">Descripcion</th>
-    
     <th scope="col">Cantidad</th>
     
     <th scope="col">Precio</th>
+    
+    <th scope="col">Tipo de producto</th>
 
     <th scope="col">Proveedor</th>
     
@@ -38,7 +38,7 @@
     
     <tbody>
     
-    <tr *ngFor="let producto of productos; index as i ">
+    <tr *ngFor="let producto of productos|filtroProducto:searchText; index as i ">
     
     <th scope="row">{{ i + 1 }}</th>
     
@@ -46,13 +46,15 @@
     
     <td>{{ producto.nombre }}</td>
     
-    <td>{{ producto.decripcion }}</td>
-    
     <td>{{ producto.cantidad }}</td>
     
-    <td>{{ producto.precio }}</td>
+    <td>{{ producto.precio | currency: ' COP ' :true:'1.1-2'}}</td>
+
+    <td>{{ producto.tipo }}</td>
 
     <td>{{ producto.proveedor }}</td>
+
+    <td> <a routerLink='home/productoEditar/{{producto.codigo}}'>  ver </a></td>
 
     </tr>
     

@@ -22,9 +22,16 @@ html {
   font-size:13px;
 }
 
-.p{
+.pInput{
   margin-left: 10%;
+}
+
+.pButton{
   margin-right: 10%;
+}
+
+.pInAdmin{
+  margin-left: 30%;
 }
 
 .margen{

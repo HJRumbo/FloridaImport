@@ -13,7 +13,7 @@
     
     <label>Nombre</label>
     
-    <input type="text" name="nombre" formControlName="nombre" class="form-control border border-success" 
+    <input autocomplete="off" type="text" name="nombre" formControlName="nombre" class="form-control border border-success" 
     placeholder="Nombre" [ngClass]="{ 'is-invalid': control.nombre.errors && formGroup.get('nombre').touched}"
   
     />
@@ -52,7 +52,7 @@
       <div *ngIf="control.cantidad.errors" class="invalid-feedback">
     
           <div *ngIf="control.cantidad.errors.required">Se require la cantidad comprada</div>
-          <div *ngIf="control.cantidad.errors.minLength">La cantidad del producto debe ser mayor a cero</div>
+          <div *ngIf="control.cantidad.errors.minlength">La cantidad del producto debe ser mayor a cero</div>
                     
         </div>
       
@@ -68,12 +68,36 @@
           <div *ngIf="control.precio.errors" class="invalid-feedback">
   
             <div *ngIf="control.precio.errors.required">Se require el precio del producto</div>
-            <div *ngIf="control.precio.errors.minLengthl">El precio debe ser mayor de 100 pesos</div>
+            <div *ngIf="control.precio.errors.minlength">El precio debe ser mayor de 100 pesos</div>
           </div>
      </div>
   </div>
   
-     <div class="form-group">
+  <div class="row">
+    <div class="form-group col">
+  
+      <label>Tipo de producto</label>
+      
+      <select name="tipo" class="form-control border border-success" formControlName="tipo"
+      [ngClass]="{ 'is-invalid': control.tipo.errors && formGroup.get('tipo').touched}">
+    
+        <option value="Fruta">Fruta</option>
+    
+        <option value="Verdura">Verdura</option>
+
+        <option value="Hortaliza">Hortaliza</option>
+    
+        <div *ngIf="control.tipo.errors" class="invalid-feedback">
+      
+          <div *ngIf="control.tipo.errors.required">Se require el tipo de producto.</div>
+          
+        </div>
+    
+      </select>
+      
+      </div>
+ 
+     <div class="form-group col">
     
       <label>Proveedor</label>
       
@@ -87,6 +111,7 @@
         </div>
       
    </div>
+  </div>
   
     <div class="text-center">
         

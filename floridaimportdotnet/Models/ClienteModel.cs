@@ -17,7 +17,7 @@ namespace floridaimportdotnet.Models
         public string Nombre {get;set;}
         [Required(ErrorMessage = "El apellido es requerido")]
         public string Apellido {get;set;}
-        [Required(ErrorMessage = "El apellido es requerido (Natural o Juridica)")]
+        [Required(ErrorMessage = "El tipo de cliente es requerido (Natural o Juridica)")]
         [TipoPersonaValidacion(ErrorMessage= "El tipo de cliente debe ser Juridica o Natural")]
         public string TipoPersona {get;set;}
         [EmailAddress(ErrorMessage = "Ingrese un correo electronico valido.")]

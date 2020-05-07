@@ -25,7 +25,14 @@ import { ProductoConsultaComponent } from './florida/producto-consulta/producto-
 import { ProductoRegistroComponent } from './florida/producto-registro/producto-registro.component';
 import { AlertModalComponent } from './@base/alert-modal/alert-modal.component';
 import { ProductoService } from './services/producto.service';
+import { PaisService } from './services/pais.service';
 import { PersonaPerfilComponent } from './florida/persona-perfil/persona-perfil.component';
+import { AgregarUbicacionComponent } from './florida/agregar-ubicacion/agregar-ubicacion.component';
+import { PaisRegistroComponent } from './florida/pais-registro/pais-registro.component';
+import { PaisConsultaComponent } from './florida/pais-consulta/pais-consulta.component';
+import { FiltroProductoPipe } from './pipe/filtro-producto.pipe';
+import { ClienteEliminarComponent } from './florida/cliente-eliminar/cliente-eliminar.component';
+import { ProductoEditarComponent } from './florida/producto-editar/producto-editar.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +53,13 @@ import { PersonaPerfilComponent } from './florida/persona-perfil/persona-perfil.
     ProductoConsultaComponent,
     ProductoRegistroComponent,
     AlertModalComponent,
-    PersonaPerfilComponent
+    PersonaPerfilComponent,
+    AgregarUbicacionComponent,
+    PaisRegistroComponent,
+    PaisConsultaComponent,
+    FiltroProductoPipe,
+    ClienteEliminarComponent,
+    ProductoEditarComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -62,7 +75,7 @@ import { PersonaPerfilComponent } from './florida/persona-perfil/persona-perfil.
     NgbModule
   ],
   entryComponents:[AlertModalComponent],
-  providers: [ClienteService, ProductoService],
+  providers: [ClienteService, ProductoService, PaisService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

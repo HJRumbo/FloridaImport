@@ -102,7 +102,7 @@
     <div class="input-group">
     <input type="{{tipo}}" name="contrasena" formControlName="contrasena" class="form-control border border-success col" 
     placeholder="Contraseña" [ngClass]="{ 'is-invalid': control.contrasena.errors && formGroup.get('contrasena').touched}"/>
-    <div class="input-group-btn">
+    <div class="input-group-append">
     <button class="btn btn-white border border-success" width="1em" height="1.5em" (click)="ver()">
       <div *ngIf="verCon==false">
       <svg class="bi bi-eye-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -118,12 +118,11 @@
         </svg>
       </div>
     </button>
-    <div *ngIf="control.contrasena.errors" class="invalid-feedback">
-
-      <div *ngIf="control.contrasena.errors.required">Se require la contraseña</div>
-      <div *ngIf="control.contrasena.errors.minLength">La contraseña debe contener minimo 8 caracteres</div>
-      <div *ngIf="control.contrasena.errors.maxLength">La contraseña debe contener maximo 20 caracteres</div>
     </div>
+    <div *ngIf="control.contrasena.errors" class="invalid-feedback">
+      <div *ngIf="control.contrasena.errors.required">Se require la contraseña</div>
+      <div *ngIf="control.contrasena.errors.minlength">La contraseña debe contener minimo 8 caracteres</div>
+      <div *ngIf="control.contrasena.errors.maxlength">La contraseña debe contener maximo 20 caracteres</div>
     </div>
     </div>
     

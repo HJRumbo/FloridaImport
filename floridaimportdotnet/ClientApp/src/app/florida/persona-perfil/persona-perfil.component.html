@@ -47,14 +47,14 @@
           </div>
           <div *ngIf="pais==null && isEnabled==true">
             <div class="text-center">
-              <button class="btn btn-primary mr-1">Agregar ubicacion</button>
-              <button class="btn btn-primary mr-1" (click)="habilitarBoton()">Editar perfil</button>
+              <button class="btn btn-success mr-1" (click)="irAUbicacion()">Agregar ubicacion</button>
+              <button class="btn btn-success mr-1" (click)="habilitarBoton()">Editar perfil</button>
             </div>
           </div>
           <div *ngIf="isEnabled!=true">
             <div class="text-center">
-              <button class="btn btn-primary mr-1" (click)="update()">Editar</button>
-              <button class="btn btn-primary mr-1" (click)="cancel()">Cancelar</button>
+              <button class="btn btn-success mr-1" (click)="update()">Guardar cambios</button>
+              <button class="btn btn-secondary mr-1" (click)="cancel()">Cancelar</button>
             </div>
           </div>
           </form>

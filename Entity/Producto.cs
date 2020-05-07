@@ -8,5 +8,6 @@ namespace Entity
         public int Cantidad {get;set;}
         public decimal Precio {get;set;}
         public string Proveedor {get;set;}
+        public string Tipo {get;set;}
     }
 }

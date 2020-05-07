@@ -40,7 +40,7 @@ namespace Logica
             return productos;
         }
 
-        public Producto BuscarxId(decimal codigo)
+        public Producto BuscarxCodigo(decimal codigo)
         {
             _conexion.Open();
             Producto producto = _repositorio.BuscarxCodigo(codigo);
@@ -87,7 +87,7 @@ namespace Logica
                 }
                 else
                 {
-                    return ($"Lo sentimos, {productoNuevo.Codigo} no se encuentra registrada.");
+                    return ($"Lo sentimos, {productoNuevo.Nombre} no se encuentra registrada.");
                 }
             }
             catch (Exception e)

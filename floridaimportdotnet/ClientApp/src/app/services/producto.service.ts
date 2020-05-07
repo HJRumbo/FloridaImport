@@ -63,12 +63,30 @@ export class ProductoService {
   
     }
   
-    getCorreo(codigo: number): Observable<Producto> {
+    getCodigo(codigo: number): Observable<Producto> {
       const url = `${this.baseUrl + 'api/Producto'}/${codigo}`;
         return this.http.get<Producto>(url, httpOptions)
         .pipe(
           tap(_ => this.handleErrorService.log('Consulta')),
           catchError(this.handleErrorService.handleError<Producto>('Buscar Producto', null))
         );
+    }
+
+    put(producto: Producto): Observable<any> {
+      const url = `${this.baseUrl}api/Producto/${producto.codigo}`;
+      return this.http.put(url, producto, httpOptions)
+      .pipe(
+        tap(_ => this.handleErrorService.log('Informacion del producto modificada correctamente')),
+        catchError(this.handleErrorService.handleError<any>('Editar Producto'))
+      );
+    }
+
+    delete(producto: Producto| string): Observable<string> {
+      const codigo = typeof producto === 'string' ? producto : producto.codigo;
+      return this.http.delete<string>(this.baseUrl + 'api/Producto/'+ codigo)
+      .pipe(
+        tap(_ => this.handleErrorService.log('datos enviados')),
+        catchError(this.handleErrorService.handleError<string>('Elimiar producto', null))
+      );
     }
 }

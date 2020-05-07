@@ -1,0 +1,92 @@
+<div class="container">
+
+    <div class="row">
+    
+    <div class="col-md-6 offset-md-3">
+    
+    <h2 class="text-success" id="PaddingText">Registro de Clientes</h2>
+    
+    <form id="Padding">
+    
+    <div class="row">
+    <div class="form-group col">
+    
+    <label>Pais</label>
+    
+    <select name="tipoPersona" class="form-control border border-success" formControlName="tipoPersona">
+        
+      <option value="Paices" *ngFor="let pais of paices" selected>
+          {{pais.nombre}}
+        </option>
+  
+    </select>
+    
+    </div>
+    
+    <div class="form-group col">
+    
+      <label>Ciudad</label>
+  
+      <input type="text" name="apellido" formControlName="apellido" class="form-control border border-success" 
+      placeholder="Apellido" />
+    
+    </div>
+  
+  </div>
+    <div class="row">
+    <div class="form-group col">
+    
+      <label>Direccion</label>
+      
+      <input type="text" name="identificacion" formControlName="identificacion" class="form-control border border-success" 
+      placeholder="CC"/>
+      
+      </div>
+    
+    <div class="form-group col">
+    
+    <label>Barrio</label>
+    
+    
+    
+    </div>
+  </div>
+    
+    <div class="form-group">
+    
+        <label>Codigo postal</label>
+        
+        <input type="email" name="correo" formControlName="correo" class="form-control border border-success" 
+        placeholder="email@example.com"/>
+        
+     </div>
+  
+     <div class="form-group">
+    
+      <label>Telefono</label>
+      <div class="input-group">
+      <input type="text" name="contrasena" formControlName="contrasena" class="form-control border border-success col" 
+      placeholder="Contraseña" />
+      </div>
+      
+   </div>
+  
+    <div class="text-center">
+        
+    <button class="btn btn-success mr-1">Registrar</button>
+    
+    <button class="btn btn-secondary" type="reset">Cancel</button>
+    
+    </div>
+    
+    </form>
+    
+    </div>
+    
+    </div>
+    
+    </div>
+  
+    <footer class="container">
+      <p>&copy; Company 2017-2019</p>
+    </footer>

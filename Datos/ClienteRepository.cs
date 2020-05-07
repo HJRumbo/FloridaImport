@@ -94,13 +94,21 @@ namespace Datos
         {
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = "update cliente set nombre=@Nombre, Apellido=@Apellido, TipoPersona=@TipoPersona, Correo=@Correo, Contrasena=@Contrasena where Identificacion=@Identificacion";              
+                command.CommandText = @"update cliente set nombre=@Nombre, Apellido=@Apellido, TipoPersona=@TipoPersona, 
+                Correo=@Correo, Contrasena=@Contrasena, Pais=@Pais, Ciudad=@Ciudad, Direccion=@Direccion, Barrio=@Barrio,
+                CodigoPostal=@CodigoPostal, Telefono=@Telefono where Identificacion=@Identificacion";              
                 command.Parameters.AddWithValue("@Identificacion", cliente.Identificacion);
                 command.Parameters.AddWithValue("@Nombre", cliente.Nombre);
                 command.Parameters.AddWithValue("@Apellido", cliente.Apellido);
                 command.Parameters.AddWithValue("@TipoPersona", cliente.TipoPersona);
                 command.Parameters.AddWithValue("@Correo", cliente.Correo);
                 command.Parameters.AddWithValue("@Contrasena", cliente.Contrasena);
+                command.Parameters.AddWithValue("@Pais", cliente.Pais);
+                command.Parameters.AddWithValue("@Ciudad", cliente.Ciudad);
+                command.Parameters.AddWithValue("@Direccion", cliente.Direccion);
+                command.Parameters.AddWithValue("@Barrio", cliente.Barrio);
+                command.Parameters.AddWithValue("@CodigoPostal", cliente.CodigoPostal);
+                command.Parameters.AddWithValue("@Telefono", cliente.Telefono);
                 command.ExecuteNonQuery();
             }
         }
