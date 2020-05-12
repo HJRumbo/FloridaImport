@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Proveedor } from '../models/proveedor';
+import { ProveedorService } from 'src/app/services/proveedor.service';
 
 @Component({
   selector: 'app-proveedor-consulta',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProveedorConsultaComponent implements OnInit {
 
-  constructor() { }
+  proveedores : Proveedor[];
+  searchText:string;
+  constructor(private proveedorServicio: ProveedorService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.get();
   }
+
+  get(){
+
+    this.proveedorServicio.get().subscribe(result => {
+      this.proveedores = result;
+    })
+}
 
 }

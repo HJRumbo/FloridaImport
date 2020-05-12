@@ -38,18 +38,21 @@ export class PersonaPerfilComponent implements OnInit {
   }
 
   cancel(){
+    this.get();
     this.isEnabled = true;
   }
 
   update() {
+    
     this.clienteServicio.put(this.cliente).subscribe(c => {
       this.isEnabled = true;
       const messageBox = this.modalService.open(AlertModalComponent)
 
         messageBox.componentInstance.title = "Resultado de edicion de datos.";
         messageBox.componentInstance.message = 'Los datos fueron modificados correctamente.';
-
+        
     });
+    
   }
 
   irAUbicacion(){

@@ -13,7 +13,10 @@ export class HomeComponent implements OnInit{
   rol: string;
   nombre: string
   productos : Producto[];
-  frutas: Producto[];
+  frutas = new Array<Producto>();
+  verduras = new Array<Producto>();
+  hortalizas = new Array<Producto>();
+  acu = 0;
   searchText:string;
   constructor(private productoServicio: ProductoService) { }
 
@@ -27,15 +30,28 @@ export class HomeComponent implements OnInit{
 
     this.productoServicio.get().subscribe(result => {
       this.productos = result;
+      this.productosTipo();
     })
   }
 
   productosTipo(){
   this.productos.forEach(element => {
-    if(element.tipo=="Fruta"){
+    if(element.tipo==="Fruta"){
       this.frutas.push(element);
+    }else{
+      if(element.tipo==="Verdura"){
+        this.verduras.push(element);
+      }else{
+        this.hortalizas.push(element);
+      }
     }
   });
+  
   }
+
+  agregar(){
+    this.acu = this.acu + 1;
+  }
+
 }
 

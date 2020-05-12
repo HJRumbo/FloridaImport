@@ -17,7 +17,7 @@ export class PaisRegistroComponent implements OnInit {
   formGroup: FormGroup;
   pais: Pais;
   ciudad: Ciudad;
-  ciudades: Ciudad[];
+  ciudades = new Array<Ciudad>();
   constructor(private paisServicio: PaisService, private formBuilder: FormBuilder, 
     private router: Router, private modalService: NgbModal) { }
 
@@ -28,11 +28,10 @@ export class PaisRegistroComponent implements OnInit {
   private buildForm(){
 
     this.pais = new Pais();
-    this.pais.codigo=0;
     this.pais.nombre="";
     this.formGroup = this.formBuilder.group({
-      nombrePais: [this.pais.nombre, Validators.required],
-      nombreCiudad: [``, Validators.required]
+      nombre: ['', Validators.required],
+      nombreCiudad: ['', Validators.required]
     });
   }
 
@@ -45,24 +44,32 @@ export class PaisRegistroComponent implements OnInit {
     if(this.formGroup.invalid){
       return;
     }
-    this.post();
+    this.addCiudad();
   }
 
   post(){
+    this.pais.nombre = this.formGroup.get('nombre').value;
+    this.pais.ciudades;
+    this.paisServicio.post(this.pais).subscribe(p => {
+      if (p != null) {
+        
+        this.pais = p;
 
-  }
+      }
+    });
+  }  
 
   addCiudad(){
     this.pais.ciudades;
     this.ciudad = new Ciudad();
     this.ciudad.nombre = this.formGroup.get('nombreCiudad').value;
-    this.ciudad.codigo=1;
-    this.ciudad.codPais=1;
-    this.ciudades.push(this.ciudad);
-
-    this.ciudades.forEach(element => {
-      alert("Entro: "+element.nombre);
-    });
+    this.pais.ciudades.push(this.ciudad);
+    
   }
 
+  cancel(){
+    this.pais.ciudades.forEach(element => {
+      this.pais.ciudades.shift();
+    });
+  }
 }

@@ -200,7 +200,7 @@
           <li ngbDropdown class="nav-item">
             <a href (click)="false" class="nav-link text-white letra" ngbDropdownToggle>Categorias</a>
             <div ngbDropdownMenu class="border border-success">
-                <a class="dropdown-item text-success"  [routerLink]="['/personaPerfil']">Frutas</a>
+                <a class="dropdown-item text-success"  [routerLink]="['/']">Frutas</a>
                 <a class="dropdown-item text-success" >Verduras</a>
                 <a class="dropdown-item text-success" >Hortalizas</a>
             </div>
@@ -262,14 +262,17 @@
         [ngClass]="{ show: isExpanded }">
         <li class="nav-item" [routerLinkActive]="['link-active']">
           <a class="nav-link text-white" href="#">
-            <span class="glyphicon glyphicon-shopping-cart">&#xe116;</span>
+            <img src="../../assets/icons8-carrito-de-compras-64.png" width="30px" height="30px"/>
+            {{num}}
           </a>
         </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-white letra" [routerLink]="['/clienteRegistro']"
-              >Crea tu cuenta</a
-            >
-          </li>
+        <li ngbDropdown class="nav-item">
+          <a href (click)="false" class="nav-link text-white letra" ngbDropdownToggle>Crea tu cuenta</a>
+          <div ngbDropdownMenu class="border border-success">
+              <a class="dropdown-item text-success"  [routerLink]="['/clienteRegistro']">Soy Cliente</a>
+              <a class="dropdown-item text-success" [routerLink]="['/proveedorRegistro']">Soy Proveedor</a>
+          </div>
+        </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-white letra" [routerLink]="['/ingreso']"
               >Ingresa</a

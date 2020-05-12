@@ -14,6 +14,7 @@ export class ProductoRegistroComponent implements OnInit {
 
   formGroup: FormGroup;
   producto:  Producto;
+  url: any;
   constructor(private productoService: ProductoService, private formBuilder: FormBuilder, 
   private modalService: NgbModal) { }
 
@@ -63,5 +64,17 @@ export class ProductoRegistroComponent implements OnInit {
       }
     });
   }
+
+  onSelectFile(event) { // called each time file input changes
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        this.url = event.target.result;
+      }
+    }
+}
 
 }

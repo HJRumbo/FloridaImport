@@ -30,7 +30,6 @@ namespace floridaimportdotnet.Controllers
             var productos = _productoService.ConsultarTodos().Select(p=> new ProductoViewModel(p));
             return productos;
         }
-
         
         [HttpPost]
         public ActionResult<ProductoViewModel> Post(ProductoInputModel productoInput)

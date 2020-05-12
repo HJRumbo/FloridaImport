@@ -1,1 +1,52 @@
-<p>proveedor-consulta works!</p>
+<h2 class="text-success paddingText">Consultar proveedores registrados.</h2>
+
+<div class="row paddingText">
+
+    <div class="col-6">
+    
+    <input [(ngModel)]="searchText" type="text" class="form-control" placeholder="Type to filter">
+    
+    </div>
+    
+    </div>
+    
+    <hr>
+    
+    <table class="table table-striped" *ngIf='proveedores && proveedores.length'>
+    
+    <thead>
+    
+    <tr>
+    
+    <th scope="col">#</th>
+    
+    <th scope="col">identificación / NIT</th>
+    
+    <th scope="col">Nombre / Razon social</th>
+    
+    <th scope="col">Correo</th>
+    
+    </tr>
+    
+    </thead>
+    
+    <tbody>
+    
+    <tr *ngFor="let proveedor of proveedores|filtroProveedor:searchText; index as i ">
+    
+    <th scope="row">{{ i + 1 }}</th>
+    
+    <td>{{ proveedor.identificacion }} </td>
+    
+    <td>{{ proveedor.nombre }}</td>
+    
+    <td>{{ proveedor.correo }}</td>
+
+    <td> <a routerLink=''>  ver </a></td>
+
+    </tr>
+    
+    </tbody>
+    
+    </table>
+

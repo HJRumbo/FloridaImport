@@ -32,14 +32,14 @@ namespace floridaimportdotnet.Controllers
             return clientes;
         }
 
-       [HttpGet("{identificacion}")]
+       /*[HttpGet("{identificacion}")]
         public ActionResult<ClienteViewModel> GetId(string identificacion)
         {
             var cliente = _clienteService.BuscarxIdentificacion(identificacion);
             if (cliente == null) return NotFound();
             var clienteViewModel = new ClienteViewModel(cliente);
             return clienteViewModel;
-        }
+        }*/
         
         [HttpPost]
         public ActionResult<ClienteViewModel> Post(ClienteInputModel clienteInput)

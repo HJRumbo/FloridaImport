@@ -41,6 +41,11 @@
     </div>
   
   </div>
+  <div class="form-group">
+    <Label>Imagen</Label>
+    <br>
+    <input type="file" (change)="onSelectFile($event)"/>
+  </div>
     <div class="row">
     <div class="form-group col">
     
@@ -123,6 +128,12 @@
     
     </form>
     
+    </div>
+
+    <div class="col card border border-success cardImg">
+      <label>Imagen seleccionada:</label>
+      <br>
+      <img [src]="url" height="100">
     </div>
     
     </div>

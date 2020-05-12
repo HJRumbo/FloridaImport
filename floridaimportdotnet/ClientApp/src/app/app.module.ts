@@ -33,6 +33,8 @@ import { PaisConsultaComponent } from './florida/pais-consulta/pais-consulta.com
 import { FiltroProductoPipe } from './pipe/filtro-producto.pipe';
 import { ClienteEliminarComponent } from './florida/cliente-eliminar/cliente-eliminar.component';
 import { ProductoEditarComponent } from './florida/producto-editar/producto-editar.component';
+import { ProveedorService } from './services/proveedor.service';
+import { FiltroProveedorPipe } from './pipe/filtro-proveedor.pipe';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,8 @@ import { ProductoEditarComponent } from './florida/producto-editar/producto-edit
     PaisConsultaComponent,
     FiltroProductoPipe,
     ClienteEliminarComponent,
-    ProductoEditarComponent
+    ProductoEditarComponent,
+    FiltroProveedorPipe
   ],
   imports: [
     ReactiveFormsModule,
@@ -75,7 +78,7 @@ import { ProductoEditarComponent } from './florida/producto-editar/producto-edit
     NgbModule
   ],
   entryComponents:[AlertModalComponent],
-  providers: [ClienteService, ProductoService, PaisService],
+  providers: [ClienteService, ProductoService, PaisService, ProveedorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
