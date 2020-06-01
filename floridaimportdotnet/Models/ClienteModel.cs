@@ -42,7 +42,21 @@ namespace floridaimportdotnet.Models
             TipoPersona = cliente.TipoPersona;
             Correo = cliente.Correo;
             Contrasena = cliente.Contrasena;
+            Pais = cliente.Pais;
+            Ciudad = cliente.Ciudad;
+            Direccion = cliente.Direccion;
+            Barrio = cliente.Barrio;
+            CodigoPostal = cliente.CodigoPostal;
+            Telefono = cliente.Telefono;
+
         }
+
+        public string Pais{get;set;}
+        public string Ciudad {get;set;}
+        public string Direccion {get;set;}
+        public string Barrio {get;set;}
+        public string CodigoPostal {get;set;}
+        public string Telefono {get;set;}
     }
 
     public class TipoPersonaValidacion : ValidationAttribute

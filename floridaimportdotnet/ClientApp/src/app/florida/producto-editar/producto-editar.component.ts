@@ -69,7 +69,10 @@ export class ProductoEditarComponent implements OnInit {
 
   delete() {
     this.productoService.delete(this.producto.codigo.toString()).subscribe(p => {
-      alert(p);
+      const messageBox = this.modalService.open(AlertModalComponent)
+        messageBox.componentInstance.title = "Resultado de edicion de datos.";
+        messageBox.componentInstance.message = 'Los datos fueron eliminados correctamente.';
+
     });
   }
 

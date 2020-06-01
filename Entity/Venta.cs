@@ -9,6 +9,6 @@ namespace Entity
         public DateTime FechaVenta{get;set;}
         public decimal Total{get;set;}
         public string IdCliente{get;set;}
-        public List<Detalles> ListaDetalles;
+        public List<Detalle> ListaDetalles;
     }
 }

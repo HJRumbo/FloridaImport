@@ -27,14 +27,14 @@
     
     <div class="form-group col">
     
-      <label>Descripcion</label>
+      <label>Descripción</label>
   
       <textarea type="text" name="descripcion" formControlName="descripcion" class="form-control border border-success" 
-      placeholder="Descripcion..." [ngClass]="{ 'is-invalid': control.descripcion.errors && formGroup.get('descripcion').touched}"></textarea>
+      placeholder="Descripción..." [ngClass]="{ 'is-invalid': control.descripcion.errors && formGroup.get('descripcion').touched}"></textarea>
   
       <div *ngIf="control.descripcion.errors" class="invalid-feedback">
   
-        <div *ngIf="control.descripcion.errors.required">Se require una descripcion</div>
+        <div *ngIf="control.descripcion.errors.required">Se require una descripción</div>
         
       </div>
     
@@ -42,7 +42,7 @@
   
   </div>
   <div class="form-group">
-    <Label>Imagen</Label>
+    <Label>Imágen</Label>
     <br>
     <input type="file" (change)="onSelectFile($event)"/>
   </div>
@@ -131,7 +131,7 @@
     </div>
 
     <div class="col card border border-success cardImg">
-      <label>Imagen seleccionada:</label>
+      <label>Imágen seleccionada:</label>
       <br>
       <img [src]="url" height="100">
     </div>

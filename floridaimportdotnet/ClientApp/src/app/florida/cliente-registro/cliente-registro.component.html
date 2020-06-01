@@ -44,14 +44,14 @@
   <div class="row">
   <div class="form-group col">
   
-    <label>Identificacion</label>
+    <label>Identificación</label>
     
     <input type="text" name="identificacion" formControlName="identificacion" class="form-control border border-success" 
     placeholder="CC" [ngClass]="{ 'is-invalid': control.identificacion.errors && formGroup.get('identificacion').touched}"/>
   
     <div *ngIf="control.identificacion.errors" class="invalid-feedback">
   
-        <div *ngIf="control.identificacion.errors.required">Se require identificacion</div>
+        <div *ngIf="control.identificacion.errors.required">Se require identificación</div>
         
       </div>
     
@@ -66,7 +66,7 @@
 
     <option value="Natural" selected>Natural</option>
 
-    <option value="Juridica">Juridica</option>
+    <option value="Juridica">Jurídica</option>
 
     <div *ngIf="control.tipoPersona.errors" class="invalid-feedback">
   
@@ -90,7 +90,7 @@
 
           <div *ngIf="control.correo.errors.required">Se require el correo</div>
           <div *ngIf="control.correo.errors.email">{{control.correo.value}} No corresponde a un correo electronico. Por favor, 
-            asegurese de digitar bien su correo.</div>
+            asegúrese de digitar bien su correo.</div>
 
         </div>
       
@@ -122,8 +122,8 @@
     </div>
     <div *ngIf="control.contrasena.errors" class="invalid-feedback">
       <div *ngIf="control.contrasena.errors.required">Se require la contraseña</div>
-      <div *ngIf="control.contrasena.errors.minlength">La contraseña debe contener minimo 8 caracteres</div>
-      <div *ngIf="control.contrasena.errors.maxlength">La contraseña debe contener maximo 20 caracteres</div>
+      <div *ngIf="control.contrasena.errors.minlength">La contraseña debe contener mínimo 8 caracteres</div>
+      <div *ngIf="control.contrasena.errors.maxlength">La contraseña debe contener máximo 20 caracteres</div>
     </div>
     </div>
     

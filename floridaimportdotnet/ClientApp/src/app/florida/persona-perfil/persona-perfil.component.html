@@ -16,7 +16,7 @@
           </h2>
           <form >
             <div class="form-group">
-              <label>Identificacion: &nbsp;&nbsp;&nbsp;&nbsp;</label>
+              <label>Identificación: &nbsp;&nbsp;&nbsp;&nbsp;</label>
               <label>{{ cliente.identificacion}}</label>
             </div>
           <div class="row"> 
@@ -36,7 +36,7 @@
             
                 <option value="Natural" >Natural</option>
             
-                <option value="Juridica">Juridica</option>
+                <option value="Juridica">Jurídica</option>
             
               </select>
             </div>
@@ -45,9 +45,9 @@
               <input type="email" name="correo" [(ngModel)]="cliente.correo" class="form-control" disabled/>
             </div>
           </div>
-          <div *ngIf="pais==null && isEnabled==true">
+          <div *ngIf="isEnabled==true">
             <div class="text-center">
-              <a class="btn btn-success mr-1" role="button" [routerLink]="['/agregarUbicacion']">Agregar ubicacion</a>
+              <a class="btn btn-success mr-1" role="button" routerLink='/agregarUbicacion/{{cliente.correo}}'>Agregar ubicación</a>
               <button class="btn btn-success mr-1" (click)="habilitarBoton()">Editar perfil</button>
             </div>
           </div>

@@ -31,6 +31,7 @@ export class NavMenuComponent implements OnInit{
   salir(){
     sessionStorage.removeItem('User');
     sessionStorage.removeItem('Nom');
+    sessionStorage.removeItem('Correo');
     window.location.href="https://localhost:5001";
   }
 }

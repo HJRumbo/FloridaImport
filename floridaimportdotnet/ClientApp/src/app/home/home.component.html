@@ -30,7 +30,7 @@
     </div>
     <div class="carousel-caption">
       <h1>IMPORTACIONES Y EXPORTACIONES.</h1>
-      <p>Comercializamos nuestras frutas por toda la region, para que puedas disfrutarlas.</p>
+      <p>Comercializamos nuestras frutas por toda la región, para que puedas disfrutarlas.</p>
     </div>
   </ng-template>
   <ng-template ngbSlide>
@@ -38,8 +38,8 @@
       <img src="./../../assets/EntregaDomicilio.png" alt="Random third slide" class="imagen">
     </div>
     <div class="carousel-caption text-danger">
-      <h1>ESPERALAS EN CASA.</h1>
-      <p>Pidelas YA y recibelas en tu domicilio.</p>
+      <h1>ESPÉRALAS EN CASA.</h1>
+      <p>Pídelas YA y recíbelas en tu domicilio.</p>
     </div>
   </ng-template>
 </ngb-carousel>
@@ -59,12 +59,23 @@
       <h3 >{{fruta.nombre}}</h3>
       <p>{{fruta.descripcion}}</p>
       <p>{{fruta.precio | currency: ' COP ' :true:'1.1-2'}}</p>
-      <div class="btn-group" role="group">
-        <p><a type="button" class="btn btn-secondary" [routerLink]="['/nosotrosConsulta']" role="button">Comprar &raquo;</a></p>
-        <p><a type="button" class="btn btn-secondary" [routerLink]="['/nosotrosConsulta']" role="button">Agregar &raquo;</a></p>
+        <div *ngIf="add==false || codigo != fruta.codigo">
+        <div class="btn-group" role="group">
+        <p><a type="button" class="btn btn-secondary" [routerLink]="['/frutasConsulta']" role="button">Comprar &raquo;</a></p>
+        <p><button type="button" class="btn btn-secondary" role="button" (click)="addCantidad(fruta.codigo)">Agregar &raquo;</button></p>
         </div>
+        </div>
+        <div *ngIf="add==true && codigo == fruta.codigo">
+        <p><button type="button" class="btn btn-secondary" role="button" (click)="cancel()">Cancel &raquo;</button></p>
+       </div>
     </div>
   </div>
+  <br>
+  <div class="col-sm-12 d-flex justify-content-center">
+    <a class="text-success text-center" [routerLink]="['/frutasConsulta']" ><h5>Ver más Frutas &raquo;</h5></a>
+  </div>
+  <hr style="color: black;"/>
+  <br>
   <h2 class="Padding text-success" >Verduras</h2>
   <hr style="color: black;"/>
   <div class="row">
@@ -77,12 +88,38 @@
       <h3>{{verdura.nombre}}</h3>
       <p>{{verdura.descripcion}}</p>
       <p>{{verdura.precio | currency: ' COP ' :true:'1.1-2'}}</p>
-      <div class="btn-group" role="group">
-        <p ><a class="btn btn-secondary" [routerLink]="['/nosotrosConsulta']" role="button">Comprar &raquo;</a></p>
-        <p ><a class="btn btn-secondary" [routerLink]="['/nosotrosConsulta']" role="button">Agregar &raquo;</a></p>
+      <div class="row">
+      <div class="input-group col " padding-left = "40px">
+        <div class="input-group-append" >
+          <button class="btn btn-danger border border-secondary" width="1em" height="1.5em" (click)="menos(verdura.codigo)" [disabled]="mIsEnable">
+            <svg class="bi bi-dash" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M3.5 8a.5.5 0 01.5-.5h8a.5.5 0 010 1H4a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
+            </svg>
+          </button>
         </div>
+        <input type="text" name="cantidad" [(ngModel)]="mensaje" class="form-control " disabled/>
+        <div class="input-group-append">
+        <button class="btn btn-success border border-secondary" width="1em" height="1.5em" (click)="mas(verdura.codigo)" >
+          <svg class="bi bi-plus" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M8 3.5a.5.5 0 01.5.5v4a.5.5 0 01-.5.5H4a.5.5 0 010-1h3.5V4a.5.5 0 01.5-.5z" clip-rule="evenodd"/>
+            <path fill-rule="evenodd" d="M7.5 8a.5.5 0 01.5-.5h4a.5.5 0 010 1H8.5V12a.5.5 0 01-1 0V8z" clip-rule="evenodd"/>
+          </svg>
+        </button>
+        </div>
+      </div>
+      <div class="col">
+        <button class="btn btn-secondary " role="button" (click)="agregar()" padding-rigth = "40px">Agregar &raquo; 
+      </button>
+      </div>
+    </div>
     </div>
   </div>
+  <br>
+  <div class="col-sm-12 d-flex justify-content-center">
+    <a class="text-success text-center" [routerLink]="['/verdurasConsulta']" ><h5>Ver más Verduras &raquo;</h5></a>
+  </div>
+  <hr style="color: black;"/>
+  <br>
   <h2 class="Padding text-success">Hortalizas</h2>
   <hr style="color: black;"/>
   <div class="row">
@@ -102,6 +139,10 @@
     </p>
       </div>
     </div>
+  </div>
+  <br>
+  <div class="col-sm-12 d-flex justify-content-center">
+    <a class="text-success text-center" [routerLink]="['/hortalizasConsulta']" ><h5>Ver más Hortalizas &raquo;</h5></a>
   </div>
   </a>
   <hr>

@@ -11,7 +11,7 @@
     <div class="row">
     <div class="form-group col">
     
-    <label>Nombre / Razon social</label>
+    <label>Nombre / Razón social</label>
     
     <input type="text" name="nombre" formControlName="nombre" class="form-control border border-success" 
     placeholder="Nombre" [ngClass]="{ 'is-invalid': control.nombre.errors && formGroup.get('nombre').touched}"
@@ -27,14 +27,14 @@
     
     <div class="form-group col">
     
-        <label>Identificacion / NIT</label>
+        <label>Identificación / NIT</label>
         
         <input type="text" name="identificacion" formControlName="identificacion" class="form-control border border-success" 
-        placeholder="Identificacion / NIT" [ngClass]="{ 'is-invalid': control.identificacion.errors && formGroup.get('identificacion').touched}"/>
+        placeholder="Identificación / NIT" [ngClass]="{ 'is-invalid': control.identificacion.errors && formGroup.get('identificacion').touched}"/>
       
         <div *ngIf="control.identificacion.errors" class="invalid-feedback">
       
-            <div *ngIf="control.identificacion.errors.required">Se require identificacion</div>
+            <div *ngIf="control.identificacion.errors.required">Se require identificación</div>
             
           </div>
         
@@ -45,14 +45,14 @@
     
         <div class="form-group col">
     
-            <label>Descripcion</label>
+            <label>Descripción</label>
         
             <textarea type="text" name="descripcion" formControlName="descripcion" class="form-control border border-success" 
-            placeholder="Descripcion..." [ngClass]="{ 'is-invalid': control.descripcion.errors && formGroup.get('descripcion').touched}"></textarea>
+            placeholder="Descripción..." [ngClass]="{ 'is-invalid': control.descripcion.errors && formGroup.get('descripcion').touched}"></textarea>
         
             <div *ngIf="control.descripcion.errors" class="invalid-feedback">
         
-              <div *ngIf="control.descripcion.errors.required">Se require la descripcion</div>
+              <div *ngIf="control.descripcion.errors.required">Se require la descripción</div>
               
             </div>
           
@@ -69,8 +69,8 @@
           <div *ngIf="control.correo.errors" class="invalid-feedback">
   
             <div *ngIf="control.correo.errors.required">Se require el correo</div>
-            <div *ngIf="control.correo.errors.email">{{control.correo.value}} No corresponde a un correo electronico. Por favor, 
-              asegurese de digitar bien su correo.</div>
+            <div *ngIf="control.correo.errors.email">{{control.correo.value}} No corresponde a un correo electrónico. Por favor, 
+              asegúrese de digitar bien su correo.</div>
   
           </div>
         
@@ -102,8 +102,8 @@
       </div>
       <div *ngIf="control.contrasena.errors" class="invalid-feedback">
         <div *ngIf="control.contrasena.errors.required">Se require la contraseña</div>
-        <div *ngIf="control.contrasena.errors.minlength">La contraseña debe contener minimo 8 caracteres</div>
-        <div *ngIf="control.contrasena.errors.maxlength">La contraseña debe contener maximo 20 caracteres</div>
+        <div *ngIf="control.contrasena.errors.minlength">La contraseña debe contener mínimo 8 caracteres</div>
+        <div *ngIf="control.contrasena.errors.maxlength">La contraseña debe contener máximo 20 caracteres</div>
       </div>
       </div>
       

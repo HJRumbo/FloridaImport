@@ -58,10 +58,10 @@ namespace floridaimportdotnet.Controllers
             return Ok(response.Cliente);
         }
 
-        [HttpDelete("{identificacion}")]
-        public ActionResult<string> Delete(string identificacion)
+        [HttpDelete("{correo}")]
+        public ActionResult<string> Delete(string correo)
         {
-            string mensaje = _clienteService.Eliminar(identificacion);
+            string mensaje = _clienteService.Eliminar(correo);
             return Ok(mensaje);
         }
 

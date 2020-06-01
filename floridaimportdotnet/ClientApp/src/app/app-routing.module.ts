@@ -7,9 +7,13 @@ import { AdministradorVistaComponent } from './florida/administrador-vista/admin
 import { ProductoRegistroComponent } from './florida/producto-registro/producto-registro.component';
 import { ProductoConsultaComponent } from './florida/producto-consulta/producto-consulta.component';
 import { ProductoEditarComponent } from './florida/producto-editar/producto-editar.component';
+import { VerdurasConsultaComponent } from './florida/verduras-consulta/verduras-consulta.component';
+import { FrutasConsultaComponent } from './florida/frutas-consulta/frutas-consulta.component';
+import { HortalizasConsultaComponent } from './florida/hortalizas-consulta/hortalizas-consulta.component';
 import { PersonaPerfilComponent } from './florida/persona-perfil/persona-perfil.component';
 import { FormularioContactoComponent } from './florida/formulario-contacto/formulario-contacto.component';
 import { NosotrosConsultaComponent } from './florida/nosotros-consulta/nosotros-consulta.component';
+import { PedidoRegistroComponent } from './florida/pedido-registro/pedido-registro.component';
 import { HomeComponent } from './home/home.component';
 import { IngresoComponent } from './florida/ingreso/ingreso.component';
 import { AgregarUbicacionComponent } from './florida/agregar-ubicacion/agregar-ubicacion.component';
@@ -29,7 +33,7 @@ const routes: Routes = [
     component: ClienteRegistroComponent
   },
   {
-    path: 'clienteEliminar',
+    path: 'clienteEliminar/:identificacion',
     component: ClienteEliminarComponent
   },
   {
@@ -53,8 +57,20 @@ const routes: Routes = [
     component: ProductoRegistroComponent
   },
   {
-    path: 'productoEditar',
+    path: 'productoEditar/:codigo',
     component: ProductoEditarComponent
+  },
+  {
+    path: 'verdurasConsulta',
+    component: VerdurasConsultaComponent
+  },
+  {
+    path: 'frutasConsulta',
+    component: FrutasConsultaComponent
+  },
+  {
+    path: 'hortalizasConsulta',
+    component: HortalizasConsultaComponent
   },
   {
     path: 'personaPerfil',
@@ -77,7 +93,7 @@ const routes: Routes = [
     component: IngresoComponent
   },
   {
-    path: 'agregarUbicacion',
+    path: 'agregarUbicacion/:correo',
     component: AgregarUbicacionComponent
   },
   {
@@ -87,6 +103,10 @@ const routes: Routes = [
   {
     path: 'paisRegistro',
     component: PaisRegistroComponent
+  },
+  {
+    path: 'pedidoRegistro',
+    component: PedidoRegistroComponent
   }
 ]
 

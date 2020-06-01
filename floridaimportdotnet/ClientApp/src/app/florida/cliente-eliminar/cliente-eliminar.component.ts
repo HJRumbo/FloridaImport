@@ -17,11 +17,10 @@ export class ClienteEliminarComponent implements OnInit {
 
   ngOnInit(): void {
     this.cliente = new Cliente();
-    const id = this.rutaActiva.snapshot.params.identificacion;
-    /*this.clienteService.getId(id).subscribe(c => {
+    const correo = this.rutaActiva.snapshot.params.identificacion;
+    this.clienteService.getCorreo(correo).subscribe(c => {
       this.cliente = c;
-      this.cliente != null ? alert('Se Consulta al cliente') : alert('Error al Consultar');
-    });*/
+    });
   }
 
   confDelete(){
@@ -29,7 +28,7 @@ export class ClienteEliminarComponent implements OnInit {
   }
   
   delete() {
-    this.clienteService.delete(this.cliente.identificacion).subscribe(c => {
+    this.clienteService.delete(this.cliente.correo).subscribe(c => {
       const messageBox = this.modalService.open(AlertModalComponent)
 
         messageBox.componentInstance.title = "Resultado de eliminacion de datos.";

@@ -6,4 +6,5 @@ export class Producto {
     precio: number;
     proveedor: string;
     tipo: string;
+    imagen: any;
 }

@@ -8,76 +8,128 @@ namespace Datos
 {
     public class PedidoRepository
     {
-        /*private readonly SqlConnection _connection;
-        private readonly List<Pedido> _pedidos = new List<Pedido>();
-        public ProductoRepository(ConnectionManager connection)
+        private readonly SqlConnection _connection;
+        private readonly List<Detalle> _detalles = new List<Detalle>();
+        public PedidoRepository(ConnectionManager connection)
         {
             _connection = connection._conexion;
         }
+        
         public void Guardar(Pedido pedido)
         {
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = @"Insert Into Pedido (Codigo,Nombre,
-                Descripcion, Cantidad, Precio,Proveedor, Tipo) 
-                values (NEXT VALUE FOR CodigoSequence,@Nombre,@Descripcion,
-                @Cantidad,@Precio, @Proveedor, @Tipo)";
-                command.Parameters.AddWithValue("@Nombre", producto.Nombre);
-                command.Parameters.AddWithValue("@Descripcion", producto.Descripcion);
-                command.Parameters.AddWithValue("@Cantidad", producto.Cantidad);
-                command.Parameters.AddWithValue("@Precio", producto.Precio);
-                command.Parameters.AddWithValue("@Proveedor", producto.Proveedor);
-                command.Parameters.AddWithValue("@Tipo", producto.Tipo);
+                command.CommandText = @"Insert Into Pedido (CodigoPedido,FechaPedido,TotalPedido,IdCliente,Estado) 
+                values (NEXT VALUE FOR CodPedidoSequence,@FechaPedido,@TotalPedido,@IdCliente,@Estado)";
+                command.Parameters.AddWithValue("@FechaPedido", pedido.FechaPedido);
+                command.Parameters.AddWithValue("@TotalPedido", pedido.TotalPedido);
+                command.Parameters.AddWithValue("@IdCliente", pedido.IdCliente);
+                command.Parameters.AddWithValue("@Estado", pedido.Estado);
                 var filas = command.ExecuteNonQuery();
+                GuardarDetalles(pedido.Detalles);
+                
+            }
+        }
+
+        public void GuardarDetalles(List<Detalle> detalles)
+        {
+            foreach (var item in detalles)
+            {
+                using (var command = _connection.CreateCommand())
+                {
+                    
+                    command.CommandText = @"Insert Into Detalle (CodigoDetalle,CodigoProducto,CantidadProducto, TotalDetalle, CodigoPedido) values 
+                    (NEXT VALUE FOR CodDetaSequence,@CodigoProducto,@CantidadProducto, @TotalDetalle, (SELECT CAST(current_value AS int) FROM sys.sequences 
+                    WHERE name = 'CodPedidoSequence'))";
+                    command.Parameters.AddWithValue("@CodigoProducto", item.CodigoProducto);
+                    command.Parameters.AddWithValue("@CantidadProducto", item.CantidadProducto);
+                    command.Parameters.AddWithValue("@TotalDetalle", item.TotalDetalle);
+                    var filas = command.ExecuteNonQuery();
+                    
+                }
             }
         }
        
-        public List<Producto> ConsultarTodos()
+        public Pedido BuscarxCodigo(decimal codigo)
         {
             SqlDataReader dataReader;
-            List<Producto> productos = new List<Producto>();
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = "Select * from producto";
+                command.CommandText = "select * from pedido where CodigoPedido=@codigo";
+                command.Parameters.AddWithValue("@Codigo", codigo);
+                dataReader = command.ExecuteReader();
+                dataReader.Read();
+                return DataReaderMapToPedido(dataReader);
+            }
+        }
+
+        public List<Pedido> ConsultarTodos()
+        {
+            SqlDataReader dataReader;
+            List<Pedido> pedidos = new List<Pedido>();
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "Select * from pedido";
                 dataReader = command.ExecuteReader();
                 if (dataReader.HasRows)
                 {
                     while (dataReader.Read())
                     {
-                        Producto producto = DataReaderMapToProduct(dataReader);
-                        productos.Add(producto);
+                        Pedido pedido = DataReaderMapToPedido(dataReader);
+                        pedidos.Add(pedido);
                     }
                 }
             }
-            return productos;
-        }
-       
-        private Producto DataReaderMapToProduct(SqlDataReader dataReader)
-        {
-            if(!dataReader.HasRows) return null;
-            Producto producto = new Producto();
-            producto.Codigo = Convert.ToDecimal(dataReader["Codigo"]);
-            producto.Nombre = (string)dataReader["Nombre"];
-            producto.Descripcion = (string)dataReader["Descripcion"];
-            producto.Cantidad = (int)dataReader["Cantidad"];
-            producto.Precio = (decimal)dataReader["Precio"];
-            producto.Proveedor = (string)dataReader["Proveedor"];
-            producto.Tipo = (string)dataReader["Tipo"];
-            return producto;
+            return pedidos;
         }
 
-        public Producto BuscarxCodigo(decimal codigo)
+        private Pedido DataReaderMapToPedido(SqlDataReader dataReader)
+        {
+            if(!dataReader.HasRows) return null;
+            Pedido pedido = new Pedido();
+            pedido.CodigoPedido = Convert.ToDecimal(dataReader["CodigoPedido"]);
+            pedido.FechaPedido = Convert.ToDateTime(dataReader["FechaPedido"]);
+            pedido.TotalPedido = Convert.ToDecimal(dataReader["TotalPedido"]);
+            pedido.IdCliente = (string)dataReader["IdCliente"];
+            pedido.Estado = (string)dataReader["Estado"];
+            pedido.Detalles = ConsultarDetalles(pedido.CodigoPedido);
+            return pedido;
+        }
+
+        public List<Detalle> ConsultarDetalles(decimal codigoPedido)
         {
             SqlDataReader dataReader;
+            List<Detalle> detalles = new List<Detalle>();
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = "select * from producto where codigo=@codigo";
-                command.Parameters.AddWithValue("@codigo", codigo);
+                command.CommandText = "Select * from detalle where codigoPedido=@codigoPedido";
+                command.Parameters.AddWithValue("@codigoPedido", codigoPedido);
                 dataReader = command.ExecuteReader();
-                dataReader.Read();
-                return DataReaderMapToProduct(dataReader);
+                if (dataReader.HasRows)
+                {
+                    while (dataReader.Read())
+                    {
+                        Detalle detalle = DataReaderMapToDeta(dataReader);
+                        detalles.Add(detalle);
+                    }
+                }
             }
+            return detalles;
         }
+
+        private Detalle DataReaderMapToDeta(SqlDataReader dataReader)
+        {
+            if(!dataReader.HasRows) return null;
+            Detalle detalle = new Detalle();
+            detalle.CodigoDetalle = Convert.ToDecimal(dataReader["CodigoDetalle"]);
+            detalle.CodigoProducto = Convert.ToDecimal(dataReader["CodigoProducto"]);
+            detalle.CantidadProducto = Convert.ToInt32(dataReader["CantidadProducto"]);
+            detalle.CodigoPedido = Convert.ToDecimal(dataReader["CodigoPedido"]);
+            detalle.TotalDetalle = Convert.ToDecimal(dataReader["TotalDetalle"]);
+            return detalle;
+        }
+
+        /*
 
         public void Modificar( Producto producto)
         {

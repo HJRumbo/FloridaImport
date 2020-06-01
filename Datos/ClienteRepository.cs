@@ -53,6 +53,7 @@ namespace Datos
        
         private Cliente DataReaderMapToClient(SqlDataReader dataReader)
         {
+
             if(!dataReader.HasRows) return null;
             Cliente cliente = new Cliente();
             cliente.Identificacion = (string)dataReader["Identificacion"];
@@ -61,6 +62,17 @@ namespace Datos
             cliente.TipoPersona = (string)dataReader["TipoPersona"];
             cliente.Correo = (string)dataReader["Correo"];
             cliente.Contrasena = (string)dataReader["Contrasena"];
+
+            if(dataReader["Pais"] != System.DBNull.Value){
+
+                cliente.Pais = (string)dataReader["Pais"];
+                cliente.Ciudad = (string)dataReader["Ciudad"];
+                cliente.Direccion = (string)dataReader["Direccion"];
+                cliente.Barrio = (string)dataReader["Barrio"];
+                cliente.Telefono = (string)dataReader["Telefono"];
+                cliente.CodigoPostal = (string)dataReader["CodigoPostal"];
+            }
+            
             return cliente;
         }
 
@@ -94,16 +106,39 @@ namespace Datos
         {
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = @"update cliente set Nombre=@Nombre, Apellido=@Apellido, TipoPersona=@TipoPersona, 
-                Correo=@Correo, Contrasena=@Contrasena where Identificacion=@Identificacion";              
-                command.Parameters.AddWithValue("@Identificacion", cliente.Identificacion);
-                command.Parameters.AddWithValue("@Nombre", cliente.Nombre);
-                command.Parameters.AddWithValue("@Apellido", cliente.Apellido);
-                command.Parameters.AddWithValue("@TipoPersona", cliente.TipoPersona);
-                command.Parameters.AddWithValue("@Correo", cliente.Correo);
-                command.Parameters.AddWithValue("@Contrasena", cliente.Contrasena);
-                
-                command.ExecuteNonQuery();
+                if(cliente.Pais==null){
+                    
+                    command.CommandText = @"update cliente set Nombre=@Nombre, Apellido=@Apellido, TipoPersona=@TipoPersona, 
+                    Correo=@Correo, Contrasena=@Contrasena where Identificacion=@Identificacion";              
+                    command.Parameters.AddWithValue("@Identificacion", cliente.Identificacion);
+                    command.Parameters.AddWithValue("@Nombre", cliente.Nombre);
+                    command.Parameters.AddWithValue("@Apellido", cliente.Apellido);
+                    command.Parameters.AddWithValue("@TipoPersona", cliente.TipoPersona);
+                    command.Parameters.AddWithValue("@Correo", cliente.Correo);
+                    command.Parameters.AddWithValue("@Contrasena", cliente.Contrasena);
+                    
+                    command.ExecuteNonQuery();
+
+                }else{
+
+                    command.CommandText = @"update cliente set Nombre=@Nombre, Apellido=@Apellido, TipoPersona=@TipoPersona, 
+                    Correo=@Correo, Contrasena=@Contrasena, Pais=@Pais, Ciudad=@Ciudad, Barrio=@Barrio, Direccion=@Direccion,
+                    CodigoPostal=@CodigoPostal, Telefono=@Telefono where Identificacion=@Identificacion";              
+                    command.Parameters.AddWithValue("@Identificacion", cliente.Identificacion);
+                    command.Parameters.AddWithValue("@Nombre", cliente.Nombre);
+                    command.Parameters.AddWithValue("@Apellido", cliente.Apellido);
+                    command.Parameters.AddWithValue("@TipoPersona", cliente.TipoPersona);
+                    command.Parameters.AddWithValue("@Correo", cliente.Correo);
+                    command.Parameters.AddWithValue("@Contrasena", cliente.Contrasena);
+                    command.Parameters.AddWithValue("@Pais", cliente.Pais);
+                    command.Parameters.AddWithValue("@Ciudad", cliente.Ciudad);
+                    command.Parameters.AddWithValue("@Direccion", cliente.Direccion);
+                    command.Parameters.AddWithValue("@Barrio", cliente.Barrio);
+                    command.Parameters.AddWithValue("@CodigoPostal", cliente.CodigoPostal);
+                    command.Parameters.AddWithValue("@Telefono", cliente.Telefono);
+                    
+                    command.ExecuteNonQuery();
+                }
             }
         }
 
@@ -111,8 +146,8 @@ namespace Datos
         {
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = "Delete from cliente where Identificacion=@Identificacion";
-                command.Parameters.AddWithValue("@Identificacion", cliente.Identificacion);
+                command.CommandText = "Delete from cliente where Correo=@Correo";
+                command.Parameters.AddWithValue("@Correo", cliente.Correo);
                 command.ExecuteNonQuery();
             }
         }

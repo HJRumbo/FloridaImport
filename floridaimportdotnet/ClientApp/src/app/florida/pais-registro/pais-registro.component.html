@@ -5,7 +5,7 @@
     <div class="col-md-4 offset-md-3 border-success padding justify-content-center" >
     
       <div class="header">
-        <h2 class="text-success title" >Registro de paices</h2>
+        <h2 class="text-success title" >Registro de países</h2>
       </div>
     <form [formGroup]="formGroup" id="Padding">
     
@@ -16,7 +16,7 @@
   
         <div *ngIf="control.nombre.errors" class="invalid-feedback">
   
-          <div *ngIf="control.nombre.errors.required">Se require el nombre del pais</div>
+          <div *ngIf="control.nombre.errors.required">Se require el nombre del país</div>
   
         </div>
      </div>
@@ -35,7 +35,7 @@
             </button>
         </div>
         <div *ngIf="control.nombreCiudad.errors" class="invalid-feedback">
-          <div *ngIf="control.nombreCiudad.errors.required">Minimo una ciudad es requerida.</div>
+          <div *ngIf="control.nombreCiudad.errors.required">Mínimo una ciudad es requerida.</div>
         </div>
     </div>
    </div>

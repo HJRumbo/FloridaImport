@@ -4,6 +4,10 @@ import { Pais } from '../models/pais';
 import { Ciudad } from '../models/ciudad';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Cliente } from '../models/cliente';
+import { ClienteService } from 'src/app/services/cliente.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AlertModalComponent } from 'src/app/@base/alert-modal/alert-modal.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-agregar-ubicacion',
@@ -13,16 +17,24 @@ import { Cliente } from '../models/cliente';
 export class AgregarUbicacionComponent implements OnInit {
 
   paises: Pais[];
-  ciudades = new Array<Ciudad>();
+  ciudades: Ciudad[];
   formGroup: FormGroup;
   cliente: Cliente;
+  clienteUbicacion: Cliente;
   ciudad: Ciudad;
-  constructor(private paisServicio: PaisService, private formBuilder: FormBuilder) { }
+  constructor(private paisServicio: PaisService, private formBuilder: FormBuilder, private clienteServicio: ClienteService, private modalService: NgbModal, private rutaActiva: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.buildForm();
     this.get();
     
+    this.cliente = new Cliente();
+
+    const correo = this.rutaActiva.snapshot.params.correo;
+    this.clienteServicio.getCorreo(correo).subscribe(c => {
+      this.cliente = c;
+      this.clienteUbicacion = c;
+    });
   }
 
   private buildForm(){
@@ -35,12 +47,12 @@ export class AgregarUbicacionComponent implements OnInit {
     this.cliente.telefono = '';
 
     this.formGroup = this.formBuilder.group({
-      pais: [this.cliente.pais, Validators.required],
-      ciudad: [this.cliente.ciudad, Validators.required],
-      direccion: [this.cliente.direccion, Validators.required],
-      barrio: [this.cliente.barrio, Validators.required],
-      codigoPostal: [this.cliente.codigoPostal, [Validators.required, Validators.email]],
-      telefono: [this.cliente.telefono, [Validators.required, Validators.minLength(8), Validators.maxLength(20)]]
+      pais: ['', Validators.required],
+      ciudad: ['', Validators.required],
+      direccion: ['', Validators.required],
+      barrio: ['', Validators.required],
+      codigoPostal: ['', Validators.required],
+      telefono: ['', Validators.required]
     });
   }
 
@@ -54,20 +66,44 @@ export class AgregarUbicacionComponent implements OnInit {
     this.paisServicio.get().subscribe(result => {
       this.paises = result;
     })
-    this.getCiudades(this.paises);
   }
 
-  getCiudades(countries: Pais[]){
-    this.ciudad = new Ciudad();
-    countries.forEach(element => {
+  getCiudades(){
+
+    this.paises.forEach(element => {
       if(element.nombre===this.formGroup.get('pais').value){
-        element.ciudades.forEach(ciu => {
-          this.ciudad.nombre = ciu.nombre;
-          
-        });
-        this.ciudades.push(this.ciudad);
+          this.ciudades = element.ciudades;
       }
     });
+  }
+
+  onSubmit(){
+    if(this.formGroup.invalid){
+      return;
+    }
+    this.addUbicacion();
+  }
+
+  addUbicacion() {
+    
+    this.clienteUbicacion.pais = this.formGroup.get('pais').value;
+    this.clienteUbicacion.ciudad = this.formGroup.get('ciudad').value;
+    this.clienteUbicacion.direccion = this.formGroup.get('direccion').value;
+    this.clienteUbicacion.barrio = this.formGroup.get('barrio').value;
+    this.clienteUbicacion.codigoPostal = this.formGroup.get('codigoPostal').value;
+    this.clienteUbicacion.telefono = this.formGroup.get('telefono').value;
+
+
+    this.clienteServicio.put(this.clienteUbicacion).subscribe(c => {
+  
+        const messageBox = this.modalService.open(AlertModalComponent)
+
+        messageBox.componentInstance.title = "Resultado de agregación de ubicación.";
+        messageBox.componentInstance.message = 'Los datos fueron modificados correctamente.';
+      
+        
+    });
+    
   }
   
 }

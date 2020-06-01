@@ -6,7 +6,7 @@
     
     <h2 class="text-success" id="PaddingText">Datos del Producto</h2>
     
-    <form [formGroup]="formGroup" id="Padding">
+    <form id="Padding">
     <div class="form-group">
         <label>Codigo: &nbsp;&nbsp;&nbsp;&nbsp;</label>
         <label>{{producto.codigo}}</label>
@@ -18,30 +18,14 @@
     
     <label>Nombre</label>
     
-    <input autocomplete="off" type="text" name="nombre" formControlName="nombre" class="form-control border border-success" 
-    placeholder="Nombre" [ngClass]="{ 'is-invalid': control.nombre.errors && formGroup.get('nombre').touched}"
-  
-    />
-    
-    <div *ngIf="control.nombre.errors" class="invalid-feedback">
-  
-      <div *ngIf="control.nombre.errors.required">Se require el nombre</div>
-      
-    </div>
+    <input type="text" name="nombre" [(ngModel)]="producto.nombre" class="form-control" />
     </div>
     
     <div class="form-group col">
     
       <label>Descripcion</label>
   
-      <textarea type="text" name="descripcion" formControlName="descripcion" class="form-control border border-success" 
-      placeholder="Descripcion..." [ngClass]="{ 'is-invalid': control.descripcion.errors && formGroup.get('descripcion').touched}"></textarea>
-  
-      <div *ngIf="control.descripcion.errors" class="invalid-feedback">
-  
-        <div *ngIf="control.descripcion.errors.required">Se require una descripcion</div>
-        
-      </div>
+      <textarea type="text" name="descripcion" [(ngModel)]="producto.descripcion" class="form-control"></textarea>
     
     </div>
   
@@ -51,30 +35,14 @@
     
       <label>Cantidad</label>
       
-      <input type="number" name="cantidad" formControlName="cantidad" class="form-control border border-success" 
-      placeholder="Cantidad" [ngClass]="{ 'is-invalid': control.cantidad.errors && formGroup.get('cantidad').touched}"/>
-    
-      <div *ngIf="control.cantidad.errors" class="invalid-feedback">
-    
-          <div *ngIf="control.cantidad.errors.required">Se require la cantidad comprada</div>
-          <div *ngIf="control.cantidad.errors.minlength">La cantidad del producto debe ser mayor a cero</div>
-                    
-        </div>
-      
-      </div>
+      <input type="number" name="cantidad" [(ngModel)]="producto.cantidad" class="form-control" />
+    </div>
     
       <div class="form-group">
     
         <label>Precio</label>
         
-        <input type="number" name="precio" formControlName="precio" class="form-control border border-success" 
-        placeholder="Precio" [ngClass]="{ 'is-invalid': control.precio.errors && formGroup.get('precio').touched}"/>
-  
-          <div *ngIf="control.precio.errors" class="invalid-feedback">
-  
-            <div *ngIf="control.precio.errors.required">Se require el precio del producto</div>
-            <div *ngIf="control.precio.errors.minlength">El precio debe ser mayor de 100 pesos</div>
-          </div>
+        <input type="number" name="precio" [(ngModel)]="producto.precio" class="form-control" />
      </div>
   </div>
   
@@ -83,43 +51,21 @@
   
       <label>Tipo de producto</label>
       
-      <select name="tipo" class="form-control border border-success" formControlName="tipo"
-      [ngClass]="{ 'is-invalid': control.tipo.errors && formGroup.get('tipo').touched}">
-    
-        <option value="Fruta">Fruta</option>
-    
-        <option value="Verdura">Verdura</option>
-
-        <option value="Hortaliza">Hortaliza</option>
-    
-        <div *ngIf="control.tipo.errors" class="invalid-feedback">
+      <input type="text" name="tipo" [(ngModel)]="producto.tipo" class="form-control" />
       
-          <div *ngIf="control.tipo.errors.required">Se require el tipo de producto.</div>
-          
-        </div>
-    
-      </select>
-      
-      </div>
+    </div>
  
      <div class="form-group col">
     
       <label>Proveedor</label>
       
-      <input type="text" name="proveedor" formControlName="proveedor" class="form-control border border-success" 
-      placeholder="Proveedor" [ngClass]="{ 'is-invalid': control.proveedor.errors && formGroup.get('proveedor').touched}"/>
-  
-        <div *ngIf="control.proveedor.errors" class="invalid-feedback">
-  
-          <div *ngIf="control.proveedor.errors.required">Se require el proveedor</div>
-          
-        </div>
+      <input type="text" name="proveedor" [(ngModel)]="producto.proveedor" class="form-control" />
       
    </div>
   </div>
   
     <div class="text-center">
-        <button class="btn btn-primary mr-1" (click)="onSubmit()"  [disabled]="formGroup.invalid">Actualizar</button>
+        <button class="btn btn-primary mr-1" (click)="update()" >Actualizar</button>
         <button class="btn btn-primary mr-1" (click)="delete()">Eliminar</button>
         <button class="btn btn-secondary" type="reset">Cancel</button>
     </div>

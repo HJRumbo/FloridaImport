@@ -35,6 +35,14 @@ import { ClienteEliminarComponent } from './florida/cliente-eliminar/cliente-eli
 import { ProductoEditarComponent } from './florida/producto-editar/producto-editar.component';
 import { ProveedorService } from './services/proveedor.service';
 import { FiltroProveedorPipe } from './pipe/filtro-proveedor.pipe';
+import { FrutasConsultaComponent } from './florida/frutas-consulta/frutas-consulta.component';
+import { VerdurasConsultaComponent } from './florida/verduras-consulta/verduras-consulta.component';
+import { HortalizasConsultaComponent } from './florida/hortalizas-consulta/hortalizas-consulta.component';
+import { PedidoRegistroComponent } from './florida/pedido-registro/pedido-registro.component';
+import { ReistroPagoComponent } from './florida/reistro-pago/reistro-pago.component';
+import { ConsultaPagoComponent } from './florida/consulta-pago/consulta-pago.component';
+import { ModificarUbicacionComponent } from './florida/modificar-ubicacion/modificar-ubicacion.component';
+import { PedidoService } from './services/pedido.service'
 
 @NgModule({
   declarations: [
@@ -62,7 +70,14 @@ import { FiltroProveedorPipe } from './pipe/filtro-proveedor.pipe';
     FiltroProductoPipe,
     ClienteEliminarComponent,
     ProductoEditarComponent,
-    FiltroProveedorPipe
+    FiltroProveedorPipe,
+    FrutasConsultaComponent,
+    VerdurasConsultaComponent,
+    HortalizasConsultaComponent,
+    PedidoRegistroComponent,
+    ReistroPagoComponent,
+    ConsultaPagoComponent,
+    ModificarUbicacionComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -78,7 +93,7 @@ import { FiltroProveedorPipe } from './pipe/filtro-proveedor.pipe';
     NgbModule
   ],
   entryComponents:[AlertModalComponent],
-  providers: [ClienteService, ProductoService, PaisService, ProveedorService],
+  providers: [ClienteService, ProductoService, PaisService, ProveedorService, PedidoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
