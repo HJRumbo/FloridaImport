@@ -7,6 +7,7 @@ namespace Entity
         public int CantidadProducto{get;set;}
         public decimal CodigoPedido{get;set;}
         public decimal TotalDetalle{get;set;}
-        
+        public string NombreProducto{get;set;}
+        public decimal PrecioProducto{get;set;}
     }
 }

@@ -49,6 +49,32 @@ namespace Logica
             _conexion.Close();
             return pedidos;
         }
+
+        public string Modificar(Pedido pedidoNuevo)
+        {
+            try
+            {
+                _conexion.Open();
+                var pedidoViejo = _repositorio.BuscarxCodigo(pedidoNuevo.CodigoPedido);
+                if (pedidoViejo != null)
+                {
+                    _repositorio.Modificar(pedidoNuevo);
+                    _conexion.Close();
+                    return ($"El pedido se ha modificado satisfactoriamente.");
+                }
+                else
+                {
+                    return ($"Lo sentimos, el pedido no se encuentra registrado.");
+                }
+            }
+            catch (Exception e)
+            {
+
+                return $"Error de la Aplicación: {e.Message}";
+            }
+            finally { _conexion.Close(); }
+
+        }
     }
 
     public class GuardarPedidoResponse 

@@ -16,5 +16,6 @@ namespace Entity
         public string Barrio {get;set;}
         public string CodigoPostal {get;set;}
         public string Telefono {get;set;}
+        public string Rol {get;set;}
     }
 }

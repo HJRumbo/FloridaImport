@@ -5,4 +5,6 @@ export class Detalle {
     codigoPedido: number;
     cantidadProducto: number;
     totalDetalle: number;
+    nombreProducto: string;
+    precioProducto: number;
 }

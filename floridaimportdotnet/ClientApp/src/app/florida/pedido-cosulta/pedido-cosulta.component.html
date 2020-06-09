@@ -1,0 +1,192 @@
+<div *ngIf="rol=='Admin'; else noAdmin">
+
+    <h2 class="text-success paddingText">Pedidos.</h2>
+    
+    <div class="row paddingText">
+
+        <div class="col-6">
+        
+        <input [(ngModel)]="searchText" type="text" class="form-control" placeholder="Type to filter">
+        
+        </div>
+        
+    </div>
+
+    <br>
+        
+    <hr>
+    
+    <table class="table table-striped" *ngIf='pedidos && pedidos.length'>
+    
+    <thead>
+    
+    <tr>
+    
+    <th scope="col">#</th>
+    
+    <th scope="col">Código</th>
+    
+    <th scope="col">Fecha</th>
+
+    <th scope="col">Hora</th>
+    
+    <th scope="col">Total</th>
+
+    <th scope="col">Id Cliente</th>
+    
+    <th scope="col">Estado</th>
+
+    </tr>
+    
+    </thead>
+    
+    <tbody>
+    
+    <tr *ngFor="let pedido of pedidos|filtroPedido:searchText; index as i ">
+    
+    <th scope="row">{{ i + 1 }}</th>
+    
+    <td>{{ pedido.codigoPedido }} </td>
+    
+    <td>{{ pedido.fechaPedido }}</td>
+
+    <td>{{ pedido.horaPedido }}</td>
+    
+    <td>{{ pedido.totalPedido }}</td>
+
+    <td>{{ pedido.idCliente }}</td>
+    
+    <div *ngIf="cambEsta!=true && nocamb==true">
+    <td>{{ pedido.estado }} &nbsp;&nbsp;
+        <button (click)="cambEstado(pedido.codigoPedido)">
+        <svg class="bi bi-arrow-repeat" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M2.854 7.146a.5.5 0 0 0-.708 0l-2 2a.5.5 0 1 0 .708.708L2.5 8.207l1.646 1.647a.5.5 0 0 0 .708-.708l-2-2zm13-1a.5.5 0 0 0-.708 0L13.5 7.793l-1.646-1.647a.5.5 0 0 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0 0-.708z"/>
+            <path fill-rule="evenodd" d="M8 3a4.995 4.995 0 0 0-4.192 2.273.5.5 0 0 1-.837-.546A6 6 0 0 1 14 8a.5.5 0 0 1-1.001 0 5 5 0 0 0-5-5zM2.5 7.5A.5.5 0 0 1 3 8a5 5 0 0 0 9.192 2.727.5.5 0 1 1 .837.546A6 6 0 0 1 2 8a.5.5 0 0 1 .501-.5z"/>
+          </svg>
+        </button>
+    </td>
+    </div>
+    <div *ngIf="cambEsta==true && nocamb==true && pedido.codigoPedido!=codigoPe">
+        <td>{{ pedido.estado }} &nbsp;&nbsp;
+            <button (click)="cambEstado(pedido.codigoPedido)">
+            <svg class="bi bi-arrow-repeat" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M2.854 7.146a.5.5 0 0 0-.708 0l-2 2a.5.5 0 1 0 .708.708L2.5 8.207l1.646 1.647a.5.5 0 0 0 .708-.708l-2-2zm13-1a.5.5 0 0 0-.708 0L13.5 7.793l-1.646-1.647a.5.5 0 0 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0 0-.708z"/>
+                <path fill-rule="evenodd" d="M8 3a4.995 4.995 0 0 0-4.192 2.273.5.5 0 0 1-.837-.546A6 6 0 0 1 14 8a.5.5 0 0 1-1.001 0 5 5 0 0 0-5-5zM2.5 7.5A.5.5 0 0 1 3 8a5 5 0 0 0 9.192 2.727.5.5 0 1 1 .837.546A6 6 0 0 1 2 8a.5.5 0 0 1 .501-.5z"/>
+              </svg>
+            </button>
+        </td>
+        </div>
+    <div *ngIf="cambEsta==true && codigoPe == pedido.codigoPedido">
+        <td><select name="estado" [(ngModel)]="select" (change)="changeSelect()">
+
+              <option value="Recibido" required>Recibido</option>
+              <option value="En bodega" >En bodega</option>
+              <option value="En País" >En País</option>
+              <option value="En ciudad" >En ciudad</option>
+              <option value="En camino" >En camino</option>
+              <option value="Entregado" >Entregado</option>
+          
+            </select> &nbsp;&nbsp;
+            <button (click)="cancel()">
+                <svg class="bi bi-x" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/>
+                    <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"/>
+                </svg>
+            </button>
+        </td>
+        <td><button (click)="modEstado(pedido.codigoPedido)">
+            <svg class="bi bi-pencil-square" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+              </svg>
+        </button></td>
+        </div>
+
+    <td> <a routerLink='/detallesConsulta/{{pedido.codigoPedido}}'>  ver detalles</a></td>
+
+    </tr>
+    
+    </tbody>
+    
+    </table>
+
+</div>
+
+<ng-template #noAdmin>
+<div *ngIf="correo!=null">
+    
+<h2 class="text-success paddingText">Pedidos.</h2>
+    
+<div class="row paddingText">
+
+    <div class="col-6">
+    
+    <input [(ngModel)]="searchText" type="text" class="form-control" placeholder="Type to filter">
+    
+    </div>
+    
+</div>
+
+    <br>
+    
+    <table class="table table-striped" *ngIf='pedidos && pedidos.length'>
+    
+    <thead>
+    
+    <tr>
+    
+    <th scope="col">#</th>
+    
+    <th scope="col">Código</th>
+    
+    <th scope="col">Fecha</th>
+
+    <th scope="col">Hora</th>
+    
+    <th scope="col">Total</th>
+    
+    <th scope="col">Estado</th>
+    
+    </tr>
+    
+    </thead>
+    
+    <tbody>
+    
+    <tr *ngFor="let pedido of pedidos|filtroPedido:searchText; index as i ">
+    
+    <th scope="row">{{ i + 1 }}</th>
+    
+    <td>{{ pedido.codigoPedido }} </td>
+    
+    <td>{{ pedido.fechaPedido }}</td>
+    
+    <td>{{ pedido.horaPedido }}</td>
+
+    <td>{{ pedido.totalPedido }}</td>
+    
+    <td>{{ pedido.estado }}</td>
+
+    <td> <a routerLink='/detallesConsulta/{{pedido.codigoPedido}}'>  ver detalles</a></td>
+
+    </tr>
+    
+    </tbody>
+    
+    </table>
+</div>
+<div *ngIf="correo==null">
+    <div class="row">
+        <div class="col text-success col-sm-12 d-flex justify-content-center">
+            <h4>Para consultar su histrorial de pedidos, por favor ingrese a su cuenta.</h4>
+        </div>
+        <div class="col col-sm-12 d-flex justify-content-center">
+            <a class="text-success text-center" [routerLink]="['/ingreso']" ><h5>Ingresar &raquo;</h5></a>
+        </div>
+    </div>
+</div>
+</ng-template>
+<hr>
+<footer class="container">
+    <p>&copy; Company 2017-2019</p>
+</footer>

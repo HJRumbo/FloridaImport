@@ -19,9 +19,12 @@ import { IngresoComponent } from './florida/ingreso/ingreso.component';
 import { AgregarUbicacionComponent } from './florida/agregar-ubicacion/agregar-ubicacion.component';
 import { PaisRegistroComponent } from './florida/pais-registro/pais-registro.component';
 import { PaisConsultaComponent } from './florida/pais-consulta/pais-consulta.component';
+import { PedidoCosultaComponent } from './florida/pedido-cosulta/pedido-cosulta.component';
+import { DetallesCosultaComponent } from './florida/detalles-cosulta/detalles-cosulta.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
   {
@@ -67,6 +70,14 @@ const routes: Routes = [
   {
     path: 'frutasConsulta',
     component: FrutasConsultaComponent
+  },
+  {
+    path: 'pedidosConsulta',
+    component: PedidoCosultaComponent
+  },
+  {
+    path: 'detallesConsulta/:codigo',
+    component: DetallesCosultaComponent
   },
   {
     path: 'hortalizasConsulta',

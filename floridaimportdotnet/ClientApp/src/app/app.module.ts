@@ -42,7 +42,12 @@ import { PedidoRegistroComponent } from './florida/pedido-registro/pedido-regist
 import { ReistroPagoComponent } from './florida/reistro-pago/reistro-pago.component';
 import { ConsultaPagoComponent } from './florida/consulta-pago/consulta-pago.component';
 import { ModificarUbicacionComponent } from './florida/modificar-ubicacion/modificar-ubicacion.component';
-import { PedidoService } from './services/pedido.service'
+import { PedidoService } from './services/pedido.service';
+import { PedidoCosultaComponent } from './florida/pedido-cosulta/pedido-cosulta.component';
+import { DetallesCosultaComponent } from './florida/detalles-cosulta/detalles-cosulta.component';
+import { JwtInterceptor } from './services/jwt.interceptor';
+import { PedidoEditarComponent } from './florida/pedido-editar/pedido-editar.component';
+import { FiltroPedidoPipe } from './pipe/filtro-pedido.pipe';
 
 @NgModule({
   declarations: [
@@ -77,7 +82,11 @@ import { PedidoService } from './services/pedido.service'
     PedidoRegistroComponent,
     ReistroPagoComponent,
     ConsultaPagoComponent,
-    ModificarUbicacionComponent
+    ModificarUbicacionComponent,
+    PedidoCosultaComponent,
+    DetallesCosultaComponent,
+    PedidoEditarComponent,
+    FiltroPedidoPipe
   ],
   imports: [
     ReactiveFormsModule,
@@ -93,7 +102,8 @@ import { PedidoService } from './services/pedido.service'
     NgbModule
   ],
   entryComponents:[AlertModalComponent],
-  providers: [ClienteService, ProductoService, PaisService, ProveedorService, PedidoService],
+  providers: [ClienteService, ProductoService, PaisService, ProveedorService, PedidoService, 
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

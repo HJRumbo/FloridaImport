@@ -9,8 +9,8 @@ import { Producto } from '../models/producto';
 })
 export class ProductoConsultaComponent implements OnInit {
 
-  productos : Producto[];
-  searchText:string;
+  productos: Producto[];
+  searchText: string;
   constructor(private productoServicio: ProductoService) { }
 
   ngOnInit() {

@@ -48,6 +48,7 @@ namespace floridaimportdotnet.Models
             Barrio = cliente.Barrio;
             CodigoPostal = cliente.CodigoPostal;
             Telefono = cliente.Telefono;
+            Rol = cliente.Rol;
 
         }
 
@@ -57,6 +58,7 @@ namespace floridaimportdotnet.Models
         public string Barrio {get;set;}
         public string CodigoPostal {get;set;}
         public string Telefono {get;set;}
+        public string Rol {get;set;}
     }
 
     public class TipoPersonaValidacion : ValidationAttribute

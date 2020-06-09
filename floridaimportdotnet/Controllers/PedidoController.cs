@@ -54,6 +54,7 @@ namespace floridaimportdotnet.Controllers
             var pedido = new Pedido
             {
                 FechaPedido = pedidoInput.FechaPedido,
+                HoraPedido = pedidoInput.HoraPedido,
                 IdCliente = pedidoInput.IdCliente,
                 Detalles = MapearDeta(pedidoInput.Detalles)
             };
@@ -71,6 +72,27 @@ namespace floridaimportdotnet.Controllers
             }  
 
             return Listdetalles;
+        }
+
+        [HttpGet("{codigo}")]
+        public ActionResult<PedidoViewModel> GetCorreo(decimal codigo)
+        {
+            var pedido = _pedidoService.BuscarxCodigo(codigo);
+            if (pedido == null) return NotFound();
+            var pedidoViewModel = new PedidoViewModel(pedido);
+            return pedidoViewModel;
+        }
+
+        [HttpPut("{codigo}")]
+        public ActionResult<string> Put(decimal codigo, Pedido pedido)
+        {
+            var ped=_pedidoService.BuscarxCodigo(pedido.CodigoPedido);
+            if(ped==null){
+                return BadRequest("No encontrado");
+            }
+            var mensaje=_pedidoService.Modificar(pedido);
+           return Ok(mensaje);
+
         }
     }
 }

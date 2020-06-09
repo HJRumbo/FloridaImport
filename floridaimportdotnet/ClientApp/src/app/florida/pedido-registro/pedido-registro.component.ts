@@ -23,12 +23,13 @@ export class PedidoRegistroComponent implements OnInit {
   currentYear:Date;
   hora: string;
   list: any;
-  date: string;
+  fecha: string;
   encontrado: boolean;
   pedido: Pedido;
   detalle: Detalle;
   detalles = new Array<Detalle>();
   pagar: boolean;
+  item: number;
   constructor(private clienteServicio: ClienteService, private pedidoService: PedidoService) { }
 
   ngOnInit(): void {
@@ -39,12 +40,10 @@ export class PedidoRegistroComponent implements OnInit {
 
   }
 
-  obtenerFecha(): any{
+  obtenerFecha(){
     
-    this.date = moment(new Date()).format('YYYY/MM/DD');
+    this.fecha = moment(new Date()).format('YYYY/MM/DD');
     this.hora = moment(new Date()).format('hh:mm:ss');
-    var fecha = this.date+" "+this.hora;
-    return fecha; 
   }
 
   agregar(hortaliza: Producto){
@@ -90,7 +89,9 @@ getCorreo(){
 
     this.pedido.idCliente = this.cliente.identificacion;
 
-    this.pedido.fechaPedido = "2019-01-06T17:16:40";
+    this.pedido.fechaPedido = this.fecha;
+
+    this.pedido.horaPedido = this.hora;
 
     this.pedido.detalles = this.datosDetalles();
 
@@ -102,6 +103,8 @@ getCorreo(){
 
       }
     });
+
+    localStorage.removeItem('datos');
   }
 
   datosPedido(): any{
@@ -134,6 +137,7 @@ getCorreo(){
       this.detalle.totalDetalle = element.total;
 
       this.detalles.push(this.detalle);
+      
     });
 
     return this.detalles;
@@ -144,7 +148,6 @@ getCorreo(){
     var lista = JSON.parse(localStorage.getItem('datos'));
     var list = new Array<Producto>();
     localStorage.removeItem('datos');
-
     lista.forEach(element => {
       if(element.codigo!=codigo){
         
@@ -154,6 +157,7 @@ getCorreo(){
     });
 
     this.getListProduct();
+
   }
 
   irAPagar(){
@@ -164,4 +168,6 @@ getCorreo(){
   atras(){
     this.pagar = false;
   }
+
+  
 }

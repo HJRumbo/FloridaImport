@@ -72,7 +72,7 @@ namespace Datos
             using (var command = _connection.CreateCommand())
             {
                 command.CommandText = "select * from producto where codigo=@codigo";
-                command.Parameters.AddWithValue("@codigo", codigo);
+                command.Parameters.AddWithValue("@codigo", codigo.ToString());
                 dataReader = command.ExecuteReader();
                 dataReader.Read();
                 return DataReaderMapToProduct(dataReader);

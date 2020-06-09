@@ -1,0 +1,59 @@
+<h2 class="text-success paddingText">Consultar detalles.</h2>
+
+    <div class="col-6">
+    
+    <input [(ngModel)]="searchText" type="text" class="form-control" placeholder="Type to filter">
+    
+    </div>
+
+    
+    <hr>
+    
+    <table class="table table-striped" *ngIf='list && list.length'>
+    
+    <thead>
+    
+    <tr>
+    
+    <th scope="col">#</th>
+    
+    <th scope="col">Código</th>
+    
+    <th scope="col">Producto</th>
+
+    <th scope="col">Precio</th>
+    
+    <th scope="col">Cantidad</th>
+    
+    <th scope="col">Total</th>
+    
+    </tr>
+    
+    </thead>
+    
+    <tbody>
+    
+    <tr *ngFor="let detalle of list; index as i ">
+    
+    <th scope="row">{{ i + 1 }}</th>
+    
+    <td>{{ detalle.codigoDetalle }} </td>
+
+    <td>{{ detalle.nombreProducto }}</td>
+    
+    <td>{{ detalle.precioProducto }}</td>
+    
+    <td>{{ detalle.cantidadProducto }}</td>
+    
+    <td>{{ detalle.totalDetalle }}</td>
+
+    </tr>
+    
+    </tbody>
+    
+    </table>
+
+    <hr>
+  <footer class="container">
+    <p>&copy; Company 2017-2019</p>
+  </footer>

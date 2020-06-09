@@ -66,6 +66,14 @@ namespace Logica
             return cliente;
         }
 
+        public Cliente Validate(string correo, string contraseña)
+        {
+            _conexion.Open();
+            Cliente cliente = _repositorio.Validate(correo, contraseña);
+            _conexion.Close();
+            return cliente;
+        }
+
         public string Eliminar(string identificacion)
         {
             try

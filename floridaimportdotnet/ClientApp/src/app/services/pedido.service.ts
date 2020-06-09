@@ -64,13 +64,22 @@ get(): Observable<Pedido[]> {
   }
 
 
-  getCorreo(correo: string): Observable<Pedido> {
-    const url = `${this.baseUrl + 'api/Cliente'}/${correo}`;
+  getCodigo(codigo: number): Observable<Pedido> {
+    const url = `${this.baseUrl + 'api/Pedido'}/${codigo}`;
       return this.http.get<Pedido>(url, httpOptions)
       .pipe(
         tap(_ => this.handleErrorService.log('Consulta')),
         catchError(this.handleErrorService.handleError<Pedido>('Buscar Pedido', null))
       );
+  }
+
+  put(pedido: Pedido): Observable<any> {
+    const url = `${this.baseUrl}api/Pedido/${pedido.codigoPedido}`;
+    return this.http.put(url, pedido, httpOptions)
+    .pipe(
+      tap(_ => this.handleErrorService.log('Informacion del pedido modificada correctamente')),
+      catchError(this.handleErrorService.handleError<any>('Editar Pedido'))
+    );
   }
 
 }

@@ -12,6 +12,7 @@ export class VerdurasConsultaComponent implements OnInit {
   verduras = new Array<Producto>();
   productos : Producto[];
   mensaje: string;
+  mensajeNuevo: string;
   codigo1: number;
   codigo: number;
   add: boolean;
@@ -30,7 +31,9 @@ export class VerdurasConsultaComponent implements OnInit {
     this.add = false;
     this.mIsEnable = true;
     this.cantidad = 1;
-    this.mensaje = this.cantidad + " und";
+    this.cantidadNueva = 1;
+    this.mensaje = this.cantidad + " lb";
+    this.mensajeNuevo = this.cantidadNueva + " lb";
   }
 
   get(){
@@ -52,21 +55,71 @@ export class VerdurasConsultaComponent implements OnInit {
   
   }
 
+  cont = 0;
+
   mas(codigo){
-    this.codigo1 = codigo; 
-    this.cantidad=this.cantidad+1;
-    this.mensaje = this.cantidad + " und";
-      if(this.cantidad <= 2 ){
+    this.cont++;
+    if(this.cont==1){
+      this.codigo=codigo;
+      this.cantidad=this.cantidad+1;
+      this.mensaje = this.cantidad + " lb";
+      if(this.cantidad <= 2){
         this.mIsEnable = false;
       }
+      if(this.cantidad == 1){
+        this.mIsEnable = true;
+      }
+    }else{
+      if(codigo==this.codigo){
+        this.cantidad=this.cantidad+1;
+        this.mensaje = this.cantidad + " lb";
+        if(this.cantidad <= 2){
+          this.mIsEnable = false;
+        }
+        if(this.cantidad == 1){
+          this.mIsEnable = true;
+        }
+      }else{
+        this.codigo=codigo;
+        this.cantidad = 1;
+        this.cantidad++;
+        this.mensaje = this.cantidad + " lb";
+        if(this.cantidad <= 2){
+          this.mIsEnable = false;
+        }
+        if(this.cantidad == 1){
+          this.mIsEnable = true;
+        }
+      }
+    }
   }
 
+  cont2 = 0;
+
   menos(codigo){
-    this.codigo1 = codigo;
-    this.cantidad=this.cantidad-1;
-    this.mensaje = this.cantidad + " und";
-    if(this.cantidad == 1){
-      this.mIsEnable = true;
+    
+    this.cont2++;
+    if(this.cont2==1){
+      this.codigo=codigo;
+      this.cantidad=this.cantidad-1;
+      this.mensaje = this.cantidad + " lb";
+      if(this.cantidad == 1){
+        this.mIsEnable = true;
+      }
+    }else{
+      if(codigo==this.codigo){
+        this.cantidad=this.cantidad-1;
+        this.mensaje = this.cantidad + " lb";
+        if(this.cantidad == 1){
+          this.mIsEnable = true;
+        }
+      }else{
+        this.codigo=codigo;
+        this.cantidad = 1;
+        this.mensaje = this.cantidad + " lb";
+          this.mIsEnable = true;
+        
+      }
     }
   }
 

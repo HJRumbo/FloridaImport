@@ -141,7 +141,11 @@
               <a class="dropdown-item text-success" [routerLink]="['/clienteRegistro']">Reportes</a>
           </div>
         </li>
-
+        <li class="nav-item" [routerLinkActive]="['link-active']">
+          <a class="nav-link text-success" [routerLink]="['/pedidosConsulta']"
+            >Pedidos</a
+          >
+        </li>
       </ul>
       </div>
     </div>
@@ -206,7 +210,7 @@
             </div>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-white letra" [routerLink]="['/nosotrosConsulta']"
+            <a class="nav-link text-white letra" [routerLink]="['/pedidosConsulta']"
               >Historial</a
             >
           </li>
@@ -233,7 +237,7 @@
             <svg class="bi bi-cart2" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
             </svg>
-            {{num}}
+            {{num}} Items
           </a>
         </li>
         <li ngbDropdown class="nav-item">
@@ -259,11 +263,11 @@
         <div *ngIf="rol===null" class="navbar-nav navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse nav justify-content-center row"
         [ngClass]="{ show: isExpanded }">
         <li class="nav-item" [routerLinkActive]="['link-active']">
-          <a class="nav-link text-white" [routerLink]="['/pedidoRegistro']">
+          <a class="nav-link text-white letra" [routerLink]="['/pedidoRegistro']">
             <svg class="bi bi-cart2" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
             </svg>
-            {{num}}
+            {{num}} Items
           </a>
         </li>
         <li ngbDropdown class="nav-item">

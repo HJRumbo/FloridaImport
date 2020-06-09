@@ -16,17 +16,20 @@ namespace Datos
         }
         public void Guardar(Cliente cliente)
         {
+            var Rol = "Cliente";
+
             using (var command = _connection.CreateCommand())
             {
                 command.CommandText = @"Insert Into Cliente (Identificacion,Nombre,
-                Apellido, TipoPersona, Correo,Contrasena) 
-                values (@Identificacion,@Nombre,@Apellido,@TipoPersona,@Correo, @Contrasena)";
+                Apellido, TipoPersona, Correo,Contrasena, Rol) 
+                values (@Identificacion,@Nombre,@Apellido,@TipoPersona,@Correo, @Contrasena, @Rol)";
                 command.Parameters.AddWithValue("@Identificacion", cliente.Identificacion);
                 command.Parameters.AddWithValue("@Nombre", cliente.Nombre);
                 command.Parameters.AddWithValue("@Apellido", cliente.Apellido);
                 command.Parameters.AddWithValue("@TipoPersona", cliente.TipoPersona);
                 command.Parameters.AddWithValue("@Correo", cliente.Correo);
                 command.Parameters.AddWithValue("@Contrasena", cliente.Contrasena);
+                command.Parameters.AddWithValue("@Rol", Rol);
                 var filas = command.ExecuteNonQuery();
             }
         }
@@ -37,7 +40,7 @@ namespace Datos
             List<Cliente> clientes = new List<Cliente>();
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = "Select * from cliente ";
+                command.CommandText = "Select * from cliente where rol != 'Admin'";
                 dataReader = command.ExecuteReader();
                 if (dataReader.HasRows)
                 {
@@ -62,6 +65,7 @@ namespace Datos
             cliente.TipoPersona = (string)dataReader["TipoPersona"];
             cliente.Correo = (string)dataReader["Correo"];
             cliente.Contrasena = (string)dataReader["Contrasena"];
+            cliente.Rol = (string)dataReader["Rol"];
 
             if(dataReader["Pais"] != System.DBNull.Value){
 
@@ -81,7 +85,7 @@ namespace Datos
             SqlDataReader dataReader;
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = "select * from cliente where identificacion=@identificacion";
+                command.CommandText = "select * from cliente where identificacion=@identificacion and rol != 'Admin'";
                 command.Parameters.AddWithValue("@identificacion", identificacion);
                 dataReader = command.ExecuteReader();
                 dataReader.Read();
@@ -94,7 +98,7 @@ namespace Datos
             SqlDataReader dataReader;
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = "select * from cliente where correo=@correo";
+                command.CommandText = "select * from cliente where correo=@correo and rol != 'Admin'";
                 command.Parameters.AddWithValue("@correo", correo);
                 dataReader = command.ExecuteReader();
                 dataReader.Read();
@@ -109,7 +113,7 @@ namespace Datos
                 if(cliente.Pais==null){
                     
                     command.CommandText = @"update cliente set Nombre=@Nombre, Apellido=@Apellido, TipoPersona=@TipoPersona, 
-                    Correo=@Correo, Contrasena=@Contrasena where Identificacion=@Identificacion";              
+                    Correo=@Correo, Contrasena=@Contrasena where Identificacion=@Identificacion and rol != 'Admin'";              
                     command.Parameters.AddWithValue("@Identificacion", cliente.Identificacion);
                     command.Parameters.AddWithValue("@Nombre", cliente.Nombre);
                     command.Parameters.AddWithValue("@Apellido", cliente.Apellido);
@@ -123,7 +127,7 @@ namespace Datos
 
                     command.CommandText = @"update cliente set Nombre=@Nombre, Apellido=@Apellido, TipoPersona=@TipoPersona, 
                     Correo=@Correo, Contrasena=@Contrasena, Pais=@Pais, Ciudad=@Ciudad, Barrio=@Barrio, Direccion=@Direccion,
-                    CodigoPostal=@CodigoPostal, Telefono=@Telefono where Identificacion=@Identificacion";              
+                    CodigoPostal=@CodigoPostal, Telefono=@Telefono where Identificacion=@Identificacion and rol != 'Admin'";              
                     command.Parameters.AddWithValue("@Identificacion", cliente.Identificacion);
                     command.Parameters.AddWithValue("@Nombre", cliente.Nombre);
                     command.Parameters.AddWithValue("@Apellido", cliente.Apellido);
@@ -151,6 +155,21 @@ namespace Datos
                 command.ExecuteNonQuery();
             }
         }
+
+        public Cliente Validate(string correo, string contraseña) {
+
+            SqlDataReader dataReader;
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "select * from cliente where correo=@correo and contrasena=@contrasena";
+                command.Parameters.AddWithValue("@correo", correo);
+                command.Parameters.AddWithValue("@contrasena", contraseña);
+                dataReader = command.ExecuteReader();
+                dataReader.Read();
+                return DataReaderMapToClient(dataReader);
+            }
+        }
+
        
     }
 }

@@ -1,30 +1,41 @@
+using Datos;
+using Entity;
+using Logica;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Entity;
-using Logica;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using floridaimportdotnet.Config;
 using floridaimportdotnet.Models;
+using floridaimportdotnet.Service;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.SignalR;
+using floridaimportdotnet.Hubs;
 
 namespace floridaimportdotnet.Controllers
 {
-
     [Route("api/[controller]")]
     [ApiController]
     public class ClienteController : ControllerBase
     {
+        private readonly IHubContext<SignalHub> _hubContext;
+        private JwtService _jwtService;
         private readonly ClienteService _clienteService;
         public IConfiguration Configuration { get; }
-        public ClienteController(IConfiguration configuration)
+        public ClienteController(IConfiguration configuration, IOptions<AppSetting> appSettings, IHubContext<SignalHub> hubContext)
         {
+            _hubContext = hubContext;
             Configuration = configuration;
             string connectionString = Configuration["ConnectionStrings:DefaultConnection"];
             _clienteService = new ClienteService(connectionString);
+            _jwtService = new JwtService(appSettings);
         }
-        
+
         [HttpGet]
         public IEnumerable<ClienteViewModel> Gets()
         {
@@ -42,7 +53,7 @@ namespace floridaimportdotnet.Controllers
         }*/
         
         [HttpPost]
-        public ActionResult<ClienteViewModel> Post(ClienteInputModel clienteInput)
+        public async Task<ActionResult<ClienteViewModel>> Post(ClienteInputModel clienteInput)
         {
             Cliente cliente = MapearCliente(clienteInput);
             var response = _clienteService.Guardar(cliente);
@@ -53,9 +64,12 @@ namespace floridaimportdotnet.Controllers
                 {
                     Status = StatusCodes.Status400BadRequest,
                 };
+                
                 return BadRequest(problemDetails);
             }
-            return Ok(response.Cliente);
+            var clienteViewModel = new ClienteViewModel(response.Cliente);
+            await _hubContext.Clients.All.SendAsync("ClienteRegistrado", clienteViewModel);
+            return Ok(clienteViewModel);
         }
 
         [HttpDelete("{correo}")]

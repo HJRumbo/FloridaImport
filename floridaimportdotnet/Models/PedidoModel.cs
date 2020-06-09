@@ -12,8 +12,10 @@ namespace floridaimportdotnet.Models
     public class PedidoInputModel
     {   
         public decimal CodigoPedido{get;set;}
-        [Required(ErrorMessage = "La fecha del pedido es requerido")]
-        public DateTime FechaPedido{get;set;}
+        [Required(ErrorMessage = "La fecha del pedido es requerida")]
+        public string FechaPedido{get;set;}
+        [Required(ErrorMessage = "La hora del pedido es requerida")]
+        public string HoraPedido{get;set;}
         [Required(ErrorMessage = "La identificacion del cliente es requerido")]
         public string IdCliente{get;set;}
         [Required(ErrorMessage = "Al menos un detalle es requerido")]
@@ -24,12 +26,13 @@ namespace floridaimportdotnet.Models
     {   
         public PedidoViewModel()
         {
-
+            
         }
         public PedidoViewModel(Pedido pedido)
         {
             CodigoPedido = pedido.CodigoPedido;
             FechaPedido = pedido.FechaPedido;
+            HoraPedido = pedido.HoraPedido;
             IdCliente = pedido.IdCliente;
             Detalles = pedido.Detalles;
             TotalPedido = pedido.TotalPedido;

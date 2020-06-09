@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Cliente } from './../models/cliente';
 import { ClienteService } from './../../services/cliente.service';
 import { FormGroup, FormBuilder, Validators, AbstractControl} from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AlertModalComponent } from 'src/app/@base/alert-modal/alert-modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { first } from 'rxjs/operators';
 
 interface login{
   correo : string;
@@ -19,6 +21,9 @@ interface login{
 
 
 export class IngresoComponent implements OnInit {
+  returnUrl: String;
+  submitted: boolean;
+  loading: boolean;
 
   formGroup: FormGroup;
   clientes : Cliente[];
@@ -28,13 +33,23 @@ export class IngresoComponent implements OnInit {
   cliente: Cliente;
   searchText:string;
   constructor(private clienteServicio: ClienteService, private formBuilder: FormBuilder, 
-  private router: Router, private modalService: NgbModal) { }
+    private route: ActivatedRoute,
+    private router: Router,
+    private authenticationService: AuthenticationService, private modalService: NgbModal) {
+      // redirect to home if already logged in
+      if (this.authenticationService.currentUserValue) {
+        this.router.navigate(['/']);
+      }
+    }
+
 
   ngOnInit(): void {
     this.buildForm();
     this.login = {correo : "", contrasena : ""}
     this.verCon=false;
     this.tipo="password";
+
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   private buildForm(){
@@ -50,14 +65,14 @@ export class IngresoComponent implements OnInit {
     return this.formGroup.controls;
   }
 
-  onSubmit() {
+  /*onSubmit() {
     if(this.formGroup.invalid){
       return;
     }
     this.acceder();
-  }
+  }*/
 
-  get(){
+  getCliente(){
 
     this.clienteServicio.get().subscribe(clientes => {
       this.clientes = clientes;
@@ -75,20 +90,20 @@ export class IngresoComponent implements OnInit {
       cliente => {
       if(cliente!==null){
         if(cliente.contrasena==this.login.contrasena){
-          window.location.href="https://localhost:5001";
+          window.location.href= "https://localhost:5001/"; //"https://floridainternationalimport.azurewebsites.net";
             sessionStorage.setItem("User" , "Clien");
             sessionStorage.setItem("Nom" , cliente.nombre);
             sessionStorage.setItem("Correo" , cliente.correo);
         }else{
           
-          console.log('Contraseña incorrecta, la contraceña de no coincide con el correo '+
+          console.log('Contraseña incorrecta, la contraseña de no coincide con el correo '+
           cliente.correo);
           this.mensaje(cliente.correo, 'No Contraseña');
         }
       }else{
         
         if(this.login.correo==="admin@gmail.com" && this.login.contrasena==="1234567a"){
-          window.location.href="https://localhost:5001/home";
+          window.location.href="https://localhost:5001/"; //"https://floridainternationalimport.azurewebsites.net";
           sessionStorage.setItem("User" , "Admin");
           sessionStorage.setItem("Nom" , "Administrador");
   
@@ -130,5 +145,28 @@ export class IngresoComponent implements OnInit {
       this.tipo = "password";
       this.verCon = false;
     }
+  }
+
+  // convenience getter for easy access to form fields
+  get f() { return this.formGroup.controls; }
+  onSubmit() {
+    this.submitted = true;
+    // stop here if form is invalid
+    if (this.formGroup.invalid) {
+      return;
+    }
+    this.loading = true;
+    this.authenticationService.login(this.f.correo.value, this.f.Contraseña.value)
+      .pipe(first())
+      .subscribe(
+        data => {
+          this.router.navigate([this.returnUrl]);
+        },
+        error => {
+          const modalRef = this.modalService.open(AlertModalComponent);
+          modalRef.componentInstance.title = 'Acceso Denegado';
+          modalRef.componentInstance.message = error.error;
+          this.loading = false;
+        });
   }
 }

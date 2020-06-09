@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { User } from '../seguridad/user';
 import { Router } from '@angular/router';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-nav-menu',
@@ -10,10 +12,13 @@ export class NavMenuComponent implements OnInit{
   @Input() num: number;
 
   isExpanded = false;
-
+  currentUser: User;
   rol : string;
   nombre :  string;
-  constructor(private router : Router){  }
+  constructor(private router : Router, private authenticationService: AuthenticationService)
+  {
+    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+  }
 
   collapse() {
     this.isExpanded = false;
@@ -32,6 +37,11 @@ export class NavMenuComponent implements OnInit{
     sessionStorage.removeItem('User');
     sessionStorage.removeItem('Nom');
     sessionStorage.removeItem('Correo');
-    window.location.href="https://localhost:5001";
+    window.location.href="https://localhost:5001/"; //"https://floridainternationalimport.azurewebsites.net";
+  }
+
+  logout() {
+    this.authenticationService.logout();
+    this.router.navigate(['/login']);
   }
 }

@@ -33,8 +33,8 @@ export class HortalizasConsultaComponent implements OnInit {
     this.mIsEnable = true;
     this.cantidad = 1;
     this.cantidadNueva = 1;
-    this.mensaje = this.cantidad + " und";
-    this.mensajeNuevo = this.cantidadNueva + " und";
+    this.mensaje = this.cantidad + " lb";
+    this.mensajeNuevo = this.cantidadNueva + " lb";
   }
 
   get(){
@@ -56,37 +56,87 @@ export class HortalizasConsultaComponent implements OnInit {
   
   }
 
+  cont = 0;
+
   mas(codigo){
-    this.codigo1 = codigo; 
-    this.cantidad=this.cantidad+1;
-    this.mensaje = this.cantidad + " und";
-      if(this.cantidad <= 2 ){
+    this.cont++;
+    if(this.cont==1){
+      this.codigo=codigo;
+      this.cantidad=this.cantidad+1;
+      this.mensaje = this.cantidad + " lb";
+      if(this.cantidad <= 2){
         this.mIsEnable = false;
       }
+      if(this.cantidad == 1){
+        this.mIsEnable = true;
+      }
+    }else{
+      if(codigo==this.codigo){
+        this.cantidad=this.cantidad+1;
+        this.mensaje = this.cantidad + " lb";
+        if(this.cantidad <= 2){
+          this.mIsEnable = false;
+        }
+        if(this.cantidad == 1){
+          this.mIsEnable = true;
+        }
+      }else{
+        this.codigo=codigo;
+        this.cantidad = 1;
+        this.cantidad++;
+        this.mensaje = this.cantidad + " lb";
+        if(this.cantidad <= 2){
+          this.mIsEnable = false;
+        }
+        if(this.cantidad == 1){
+          this.mIsEnable = true;
+        }
+      }
+    }
   }
 
+  cont2 = 0;
+
   menos(codigo){
-    this.codigo1 = codigo;
-    this.cantidad=this.cantidad-1;
-    this.mensaje = this.cantidad + " und";
-    if(this.cantidad == 1){
-      this.mIsEnable = true;
+    
+    this.cont2++;
+    if(this.cont2==1){
+      this.codigo=codigo;
+      this.cantidad=this.cantidad-1;
+      this.mensaje = this.cantidad + " lb";
+      if(this.cantidad == 1){
+        this.mIsEnable = true;
+      }
+    }else{
+      if(codigo==this.codigo){
+        this.cantidad=this.cantidad-1;
+        this.mensaje = this.cantidad + " lb";
+        if(this.cantidad == 1){
+          this.mIsEnable = true;
+        }
+      }else{
+        this.codigo=codigo;
+        this.cantidad = 1;
+        this.mensaje = this.cantidad + " lb";
+          this.mIsEnable = true;
+        
+      }
     }
   }
 
   valores: any;
   listaProduct = new Array<Producto>();
-  agregar(hortaliza: Producto){
+  agregar(producto: Producto){
 
     this.add = true;
-    this.codigo = hortaliza.codigo;
+    this.codigo = producto.codigo;
     this.valores = {
 
-      nombre: hortaliza.nombre,
-      codigo: hortaliza.codigo,
-      precio: hortaliza.precio,
+      nombre: producto.nombre,
+      codigo: producto.codigo,
+      precio: producto.precio,
       cantidad: this.cantidad,
-      total: this.cantidad*hortaliza.precio
+      total: this.cantidad*producto.precio
     }
 
     var listaValidar = this.getListProduct();
@@ -101,7 +151,7 @@ export class HortalizasConsultaComponent implements OnInit {
 
     } else {
 
-        var valid = this.validarProducto(hortaliza.codigo, listaValidar);
+        var valid = this.validarProducto(producto.codigo, listaValidar);
 
         if(valid=='S'){
 
@@ -109,7 +159,7 @@ export class HortalizasConsultaComponent implements OnInit {
           localStorage.removeItem('datos');
 
           listaValidar.forEach(element => {
-            if(element.codigo!=hortaliza.codigo){
+            if(element.codigo!=producto.codigo){
               list.push(element);
               localStorage.setItem('datos', JSON.stringify(list));
             }else{
@@ -117,7 +167,7 @@ export class HortalizasConsultaComponent implements OnInit {
             }
           });
 
-          this.agregar(hortaliza);
+          this.agregar(producto);
 
         }else{
 
