@@ -1,4 +1,4 @@
-<h2 class="text-success paddingText">Consultar proveedores registrados.</h2>
+<h2 class="text-success paddingText">Proveedores.</h2>
 
 <div class="row paddingText">
 
@@ -25,6 +25,8 @@
     <th scope="col">Nombre / Razón social</th>
     
     <th scope="col">Correo</th>
+
+    <th scope="col">Productos</th>
     
     </tr>
     
@@ -42,11 +44,15 @@
     
     <td>{{ proveedor.correo }}</td>
 
-    <td> <a routerLink=''>  ver </a></td>
+    <td> <a routerLink='/productoProveedorConsulta/{{proveedor.identificacion}}'>  ver </a></td>
 
     </tr>
     
     </tbody>
     
     </table>
+    <hr>
+<footer class="container">
+    <p>&copy; Company 2017-2019</p>
+</footer>
 

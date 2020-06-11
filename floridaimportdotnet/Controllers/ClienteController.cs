@@ -19,6 +19,7 @@ using floridaimportdotnet.Hubs;
 
 namespace floridaimportdotnet.Controllers
 {
+    
     [Route("api/[controller]")]
     [ApiController]
     public class ClienteController : ControllerBase

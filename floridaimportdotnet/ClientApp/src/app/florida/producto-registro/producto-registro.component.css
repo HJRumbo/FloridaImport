@@ -4,8 +4,12 @@
     margin-right: 3%;
 }
 
-#PaddingText{
+.PaddingText{
     padding-top: 5%;
+}
+
+.PaddingImgCard{
+    margin-top: 5%;
 }
 
 #Padding{

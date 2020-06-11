@@ -84,7 +84,7 @@ namespace Datos
             using (var command = _connection.CreateCommand())
             {
                 command.CommandText = "update producto set nombre=@Nombre, Descripcion=@Descripcion, Cantidad=@Cantidad, Precio=@Precio, Proveedor=@Proveedor where codigo=@codigo";
-                command.Parameters.AddWithValue("@Codigo", producto.Codigo);
+                command.Parameters.AddWithValue("@Codigo", producto.Codigo.ToString());
                 command.Parameters.AddWithValue("@Nombre", producto.Nombre);
                 command.Parameters.AddWithValue("@Descripcion", producto.Descripcion);
                 command.Parameters.AddWithValue("@Cantidad", producto.Cantidad);

@@ -41,29 +41,10 @@
     </div>
   
   </div>
-  <div class="form-group" >
-    <Label>Imágen</Label>
-    <br>
-    <input type="file" (change)="onSelectFile($event)"/>
-  </div>
+
     <div class="row">
-    <div class="form-group col">
     
-      <label>Cantidad</label>
-      
-      <input type="number" name="cantidad" formControlName="cantidad" class="form-control border border-success" 
-      placeholder="Cantidad" [ngClass]="{ 'is-invalid': control.cantidad.errors && formGroup.get('cantidad').touched}"/>
-    
-      <div *ngIf="control.cantidad.errors" class="invalid-feedback">
-    
-          <div *ngIf="control.cantidad.errors.required">Se require la cantidad comprada</div>
-          <div *ngIf="control.cantidad.errors.minlength">La cantidad del producto debe ser mayor a cero</div>
-                    
-        </div>
-      
-      </div>
-    
-      <div class="form-group">
+      <div class="form-group col">
     
         <label>Precio</label>
         
@@ -76,47 +57,31 @@
             <div *ngIf="control.precio.errors.minlength">El precio debe ser mayor de 100 pesos</div>
           </div>
      </div>
-  </div>
-  
-  <div class="row">
-    <div class="form-group col">
-  
-      <label>Tipo de producto</label>
-      
-      <select name="tipo" class="form-control border border-success" formControlName="tipo"
-      [ngClass]="{ 'is-invalid': control.tipo.errors && formGroup.get('tipo').touched}">
-    
-        <option value="Fruta">Fruta</option>
-    
-        <option value="Verdura">Verdura</option>
-
-        <option value="Hortaliza">Hortaliza</option>
-    
-        <div *ngIf="control.tipo.errors" class="invalid-feedback">
-      
-          <div *ngIf="control.tipo.errors.required">Se require el tipo de producto.</div>
-          
-        </div>
-    
-      </select>
-      
-      </div>
- 
      <div class="form-group col">
-    
-      <label>Proveedor</label>
+  
+        <label>Tipo de producto</label>
+        
+        <select name="tipo" class="form-control border border-success" formControlName="tipo"
+        [ngClass]="{ 'is-invalid': control.tipo.errors && formGroup.get('tipo').touched}">
       
-      <input type="text" name="proveedor" formControlName="proveedor" class="form-control border border-success" 
-      placeholder="Proveedor" [ngClass]="{ 'is-invalid': control.proveedor.errors && formGroup.get('proveedor').touched}"/>
+          <option value="Fruta">Fruta</option>
+      
+          <option value="Verdura">Verdura</option>
   
-        <div *ngIf="control.proveedor.errors" class="invalid-feedback">
-  
-          <div *ngIf="control.proveedor.errors.required">Se require el proveedor</div>
-          
+          <option value="Hortaliza">Hortaliza</option>
+      
+          <div *ngIf="control.tipo.errors" class="invalid-feedback">
+        
+            <div *ngIf="control.tipo.errors.required">Se require el tipo de producto.</div>
+            
+          </div>
+      
+        </select>
+        
         </div>
-      
-   </div>
+  
   </div>
+ 
   
     <div class="text-center">
         
@@ -128,12 +93,6 @@
     
     </form>
     
-    </div>
-
-    <div class="col card border border-success cardImg PaddingImgCard" *ngIf="url">
-      <label>Imágen seleccionada:</label>
-      <br>
-      <img [src]="url" height="100">
     </div>
     
     </div>

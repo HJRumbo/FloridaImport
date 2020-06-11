@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Producto } from '../florida/models/producto';
 import { ProductoService } from '../services/producto.service';
+import { Proveedor } from '../florida/models/proveedor';
+import { ProveedorService } from '../services/proveedor.service';
+import { AlertModalComponent } from '../@base/alert-modal/alert-modal.component';
 
 @Component({
   selector: 'app-home',
@@ -10,6 +13,11 @@ import { ProductoService } from '../services/producto.service';
 })
 export class HomeComponent implements OnInit{
 
+  correo: string;
+  proveedor: Proveedor;
+  proveedores: Proveedor[];
+  pais: string;
+  isEnabled: boolean;
   rol: string;
   nombre: string
   productos : Producto[];
@@ -27,7 +35,8 @@ export class HomeComponent implements OnInit{
   mensajeNuevo: string;
   codigo1: number;
   codio2: number;
-  constructor(private productoServicio: ProductoService) { }
+  id: string;
+  constructor(private productoServicio: ProductoService, private proveedorServicio: ProveedorService, private modalService: NgbModal) { }
 
   ngOnInit(){
     this.rol = sessionStorage.getItem('User');
@@ -41,6 +50,42 @@ export class HomeComponent implements OnInit{
     this.mensaje = this.cantidad + " lb";
     this.mensajeNuevo = this.cantidadNueva + " lb";
     this.codigo1 = 1;
+    
+    if(this.rol=="Prove"){
+      this.proveedor = new Proveedor();
+      this.getProv();
+      this.isEnabled = true;
+    }
+  }
+
+  getProv(){
+    this.correo = sessionStorage.getItem('Correo');
+    this.proveedorServicio.getCorreo(this.correo).subscribe(proveedor => {
+      this.proveedor = proveedor;
+      this.id = proveedor.identificacion;
+    })
+  }
+
+  habilitarBoton(){
+    this.isEnabled = false;
+  }
+
+  cancel2(){
+    this.get();
+    this.isEnabled = true;
+  }
+
+  update() {
+    
+    this.proveedorServicio.put(this.proveedor).subscribe(c => {
+      this.isEnabled = true;
+      const messageBox = this.modalService.open(AlertModalComponent)
+
+        messageBox.componentInstance.title = "Resultado de edicion de datos.";
+        messageBox.componentInstance.message = 'Los datos fueron modificados correctamente.';
+        
+    });
+    
   }
 
   get(){
@@ -145,6 +190,11 @@ export class HomeComponent implements OnInit{
   valores: any;
   listaProduct = new Array<Producto>();
   agregar(producto: Producto){
+
+    const messageBox = this.modalService.open(AlertModalComponent)
+
+      messageBox.componentInstance.title = "Felicidades.";
+      messageBox.componentInstance.message = 'El producto se ha agregado al carrito.';
 
     this.add = true;
     this.codigo = producto.codigo;

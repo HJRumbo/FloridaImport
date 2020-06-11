@@ -1,6 +1,14 @@
-<h2 class="text-success paddingText">Consultar Productos registrados.</h2>
+<h2 class="text-success paddingText">Productos del proveedor.</h2>
 
-<div class="row paddingText">
+<div class="paddingText">
+    <label >Nombre: &nbsp;&nbsp;&nbsp;&nbsp;</label>
+    <label >{{nombre}}</label>
+    </div>
+    <hr>
+
+<div class="row ">
+
+    
 
     <div class="col-6">
     
@@ -24,13 +32,9 @@
     
     <th scope="col">Nombre </th>
     
-    <th scope="col">Cantidad</th>
-    
     <th scope="col">Precio</th>
     
-    <th scope="col">Tipo de producto</th>
-
-    <th scope="col">Proveedor</th>
+    <th scope="col">Categoría del producto</th>
     
     </tr>
     
@@ -46,15 +50,9 @@
     
     <td>{{ producto.nombre }}</td>
     
-    <td>{{ producto.cantidad }}</td>
-    
     <td>{{ producto.precio | currency: ' COP ' :true:'1.1-2'}}</td>
 
     <td>{{ producto.tipo }}</td>
-
-    <td>{{ producto.proveedor }}</td>
-
-    <td> <a routerLink='/productoEditar/{{producto.codigo}}'>  ver </a></td>
 
     </tr>
     

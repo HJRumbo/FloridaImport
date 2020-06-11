@@ -7,6 +7,8 @@ import { AlertModalComponent } from 'src/app/@base/alert-modal/alert-modal.compo
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { first } from 'rxjs/operators';
+import { Proveedor } from '../models/proveedor';
+import { ProveedorService } from 'src/app/services/proveedor.service';
 
 interface login{
   correo : string;
@@ -32,10 +34,15 @@ export class IngresoComponent implements OnInit {
   tipo: string;
   cliente: Cliente;
   searchText:string;
-  constructor(private clienteServicio: ClienteService, private formBuilder: FormBuilder, 
+  proveedor: Proveedor;
+  proveedores: Proveedor[];
+  constructor(private clienteServicio: ClienteService, 
+    private proveedorServicio: ProveedorService,
+    private formBuilder: FormBuilder, 
     private route: ActivatedRoute,
     private router: Router,
-    private authenticationService: AuthenticationService, private modalService: NgbModal) {
+    private authenticationService: AuthenticationService, 
+    private modalService: NgbModal) {
       // redirect to home if already logged in
       if (this.authenticationService.currentUserValue) {
         this.router.navigate(['/']);
@@ -85,6 +92,7 @@ export class IngresoComponent implements OnInit {
   }
 
   validarAcceso(){
+
     this.login = this.formGroup.value;
     this.clienteServicio.getCorreo(this.login.correo).subscribe(
       cliente => {
@@ -96,26 +104,44 @@ export class IngresoComponent implements OnInit {
             sessionStorage.setItem("Correo" , cliente.correo);
         }else{
           
+          alert("entró");
           console.log('Contraseña incorrecta, la contraseña de no coincide con el correo '+
           cliente.correo);
           this.mensaje(cliente.correo, 'No Contraseña');
         }
       }else{
-        
-        if(this.login.correo==="admin@gmail.com" && this.login.contrasena==="1234567a"){
-          window.location.href="https://localhost:5001/"; //"https://floridainternationalimport.azurewebsites.net";
-          sessionStorage.setItem("User" , "Admin");
-          sessionStorage.setItem("Nom" , "Administrador");
-  
-      }else{
-          this.mensaje(this.login.correo, "No Contraseña");
-          console.log('El usuario con el correo'+
-          this.login.correo+' no se encuentra registrado');
+        this.proveedorServicio.getCorreo(this.login.correo).subscribe(
+          proveedor => {
+          if(proveedor!==null){
+            
+            if(proveedor.contrasena===this.login.contrasena){
+              window.location.href= "https://localhost:5001/"; //"https://floridainternationalimport.azurewebsites.net";
+                sessionStorage.setItem("User" , "Prove");
+                sessionStorage.setItem("Nom" , proveedor.nombre);
+                sessionStorage.setItem("Correo" , proveedor.correo);
+            }else{
+              console.log('Contraseña incorrecta, la contraseña de no coincide con el correo '+
+              proveedor.correo);
+              this.mensaje(proveedor.correo, 'No Contraseña');
+            }
+          }else{
+            if(this.login.correo==="admin@gmail.com" && this.login.contrasena==="1234567a"){
+              window.location.href="https://localhost:5001/"; //"https://floridainternationalimport.azurewebsites.net";
+              sessionStorage.setItem("User" , "Admin");
+              sessionStorage.setItem("Nom" , "Administrador");
+      
+          }else{
+              this.mensaje(this.login.correo, "No Contraseña");
+              console.log('El usuario con el correo'+
+              this.login.correo+' no se encuentra registrado');
+            
+          }
+          }
+        });
         
       }
-        
-      }
-    })
+    });
+
   }
 
 
@@ -131,7 +157,7 @@ export class IngresoComponent implements OnInit {
         
     }else{
       messageBox.componentInstance.title = "Resultado del ingreso.";
-      messageBox.componentInstance.message = 'Contraseña incorrecta, la contraceña no coincide con el correo '+
+      messageBox.componentInstance.message = 'Contraseña incorrecta, la contraseña no coincide con el correo '+
       correo;
     }
   }

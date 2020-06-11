@@ -78,6 +78,36 @@ namespace floridaimportdotnet
                         Url = new Uri("https://www.byasystems.co/license"),
                     }
                 });
+
+                c.AddSecurityDefinition("bearer", new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Description = "JWT Authorization header using the Bearer scheme.",
+                });
+
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                          new OpenApiSecurityScheme
+                            {
+                                Reference = new OpenApiReference 
+                                { 
+                                    Type = ReferenceType.SecurityScheme, 
+                                    Id = "Bearer" 
+                                }
+                            },
+                            new string[] {}
+
+                    }
+                });
+
+                //////Add Operation Specific Authorization///////
+                c.OperationFilter<AuthOperationFilter>();
+                ///////////////////////////////////////////////
             });
 
             services.AddSignalR();

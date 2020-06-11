@@ -24,6 +24,8 @@ import { DetallesCosultaComponent } from './florida/detalles-cosulta/detalles-co
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
+import { ProductoProveedorRegistroComponent } from './florida/producto-proveedor-registro/producto-proveedor-registro.component';
+import { ProductoProveedorConsultaComponent } from './florida/producto-proveedor-consulta/producto-proveedor-consulta.component';
 import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
@@ -46,6 +48,14 @@ const routes: Routes = [
   {
     path: 'proveedorRegistro',
     component: ProveedorRegistroComponent
+  },
+  {
+    path: 'productoProveedorConsulta/:identificacion',
+    component: ProductoProveedorConsultaComponent
+  },
+  {
+    path: 'productoProveedorRegistro',
+    component: ProductoProveedorRegistroComponent
   },
   {
     path: 'administradorVista',

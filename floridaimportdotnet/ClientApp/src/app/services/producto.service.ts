@@ -42,7 +42,7 @@ export class ProductoService {
     
     tap(_ => this.handleErrorService.log('Consulta')),
     
-    catchError(this.handleErrorService.handleError<Producto[]>('Consulta Cliente', null))
+    catchError(this.handleErrorService.handleError<Producto[]>('Consulta Producto', null))
     
     );
     

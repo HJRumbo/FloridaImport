@@ -81,6 +81,7 @@ namespace Datos
             proveedor.Nombre = (string)dataReader["Nombre"];
             proveedor.Correo = (string)dataReader["Correo"];
             proveedor.Contrasena = (string)dataReader["Contrasena"];
+            proveedor.Descripcion = (string)dataReader["Descripcion"];
             //proveedor.Productos = ConsultarProductos(proveedor.Identificacion);
             return proveedor;
         }
@@ -138,7 +139,7 @@ namespace Datos
             SqlDataReader dataReader;
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = "select * from cliente where correo=@correo";
+                command.CommandText = "select * from proveedor where correo=@correo";
                 command.Parameters.AddWithValue("@correo", correo);
                 dataReader = command.ExecuteReader();
                 dataReader.Read();

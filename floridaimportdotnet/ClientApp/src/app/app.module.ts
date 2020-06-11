@@ -48,6 +48,9 @@ import { DetallesCosultaComponent } from './florida/detalles-cosulta/detalles-co
 import { JwtInterceptor } from './services/jwt.interceptor';
 import { PedidoEditarComponent } from './florida/pedido-editar/pedido-editar.component';
 import { FiltroPedidoPipe } from './pipe/filtro-pedido.pipe';
+import { ProductoProveedorRegistroComponent } from './florida/producto-proveedor-registro/producto-proveedor-registro.component';
+import { ProductoProveedorConsultaComponent } from './florida/producto-proveedor-consulta/producto-proveedor-consulta.component';
+import { ProductoProveedorService } from './services/producto-proveedor.service';
 
 @NgModule({
   declarations: [
@@ -86,7 +89,9 @@ import { FiltroPedidoPipe } from './pipe/filtro-pedido.pipe';
     PedidoCosultaComponent,
     DetallesCosultaComponent,
     PedidoEditarComponent,
-    FiltroPedidoPipe
+    FiltroPedidoPipe,
+    ProductoProveedorRegistroComponent,
+    ProductoProveedorConsultaComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -102,7 +107,12 @@ import { FiltroPedidoPipe } from './pipe/filtro-pedido.pipe';
     NgbModule
   ],
   entryComponents:[AlertModalComponent],
-  providers: [ClienteService, ProductoService, PaisService, ProveedorService, PedidoService, 
+  providers: [ClienteService, 
+    ProductoService, 
+    PaisService, 
+    ProveedorService, 
+    PedidoService, 
+    ProductoProveedorService,
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })

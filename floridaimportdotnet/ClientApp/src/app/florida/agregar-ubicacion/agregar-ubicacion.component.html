@@ -1,3 +1,142 @@
+<div *ngIf="cliente.pais">
+
+  <div class="container">
+
+    <div class="row">
+    
+    <div class="col-md-6 offset-md-3">
+    
+    <h2 class="text-success" id="PaddingText">Registra tu ubicación</h2>
+    
+    <form [formGroup]="formGroup" id="Padding">
+    
+    <div class="row">
+    <div class="form-group col">
+    
+    <label>País</label>
+    
+    <select name="pais" [(ngModel)]="cliente.pais" class="form-control border border-success" formControlName="pais" (change)="getCiudades()"
+    [ngClass]="{ 'is-invalid': control.pais.errors && formGroup.get('pais').touched}">
+
+    <option value="Seleccione">
+      
+    </option>
+      <option *ngFor="let pais of paises" value={{pais.nombre}} >
+          {{pais.nombre}}
+        </option>
+  
+    </select>
+
+    <div *ngIf="control.pais.errors" class="invalid-feedback">
+  
+      <div *ngIf="control.pais.errors.required">Se require el país.</div>
+      
+    </div>
+    
+    </div>
+    
+    <div class="form-group col">
+    
+      <label>Ciudad</label>
+  
+      <select name="ciudad" [(ngModel)]="cliente.ciudad" class="form-control border border-success" formControlName="ciudad"
+      [ngClass]="{ 'is-invalid': control.ciudad.errors && formGroup.get('ciudad').touched}">
+      
+        <option value={{ciudad.nombre}} *ngFor="let ciudad of ciudades">
+            {{ciudad.nombre}}
+          </option>
+    
+      </select>
+
+      <div *ngIf="control.ciudad.errors" class="invalid-feedback">
+  
+        <div *ngIf="control.ciudad.errors.required">Se require la ciudad.</div>
+        
+      </div>
+    
+    </div>
+  
+  </div>
+    <div class="row">
+    <div class="form-group col">
+    
+      <label>Dirección</label>
+      
+      <input type="text" name="direccion" [(ngModel)]="cliente.direccion" formControlName="direccion" class="form-control border border-success" 
+      placeholder="Dirección" [ngClass]="{ 'is-invalid': control.direccion.errors && formGroup.get('direccion').touched}"/>
+
+      <div *ngIf="control.direccion.errors" class="invalid-feedback">
+
+        <div *ngIf="control.direccion.errors.required">Se require la dirección</div>
+        
+      </div>
+      
+      </div>
+    
+    <div class="form-group col">
+    
+    <label>Barrio</label>
+    
+    <input type="text" name="barrio" [(ngModel)]="cliente.barrio" formControlName="barrio" class="form-control border border-success" 
+    placeholder="Barrio" [ngClass]="{ 'is-invalid': control.barrio.errors && formGroup.get('barrio').touched}"/>
+
+    <div *ngIf="control.barrio.errors" class="invalid-feedback">
+
+      <div *ngIf="control.barrio.errors.required">Se require el barrio</div>
+      
+    </div>
+    
+    </div>
+  </div>
+    
+    <div class="form-group">
+    
+        <label>Código postal</label>
+        
+        <input type="text" name="codigoPostal" [(ngModel)]="cliente.codigoPostal" formControlName="codigoPostal" class="form-control border border-success" 
+        placeholder="Código Postal" [ngClass]="{ 'is-invalid': control.codigoPostal.errors && formGroup.get('codigoPostal').touched}"/>
+
+        <div *ngIf="control.codigoPostal.errors" class="invalid-feedback">
+    
+          <div *ngIf="control.codigoPostal.errors.required">Se require el código postal</div>
+          
+        </div>
+     </div>
+  
+     <div class="form-group">
+    
+      <label>Teléfono</label>
+      <div class="input-group">
+      <input type="text" name="telefono" formControlName="telefono" [(ngModel)]="cliente.telefono" class="form-control border border-success col" 
+      placeholder="Teléfono" [ngClass]="{ 'is-invalid': control.telefono.errors && formGroup.get('telefono').touched}"/>
+
+      <div *ngIf="control.telefono.errors" class="invalid-feedback">
+  
+        <div *ngIf="control.telefono.errors.required">Se require el teléfono</div>
+        
+      </div>
+      </div>
+      
+   </div>
+  
+    <div class="text-center">
+        
+    <button class="btn btn-success mr-1" (click)="onSubmit()" [disabled]="formGroup.invalid">Registrar</button>
+    
+    <button class="btn btn-secondary" type="reset">Cancel</button>
+    
+    </div>
+    
+    </form>
+    
+    </div>
+    
+    </div>
+    
+    </div>
+</div>
+
+<div *ngIf="cliente.pais == null">
 <div class="container">
 
     <div class="row">
@@ -131,6 +270,7 @@
     
     </div>
     
+    </div>
     </div>
   
     <footer class="container">

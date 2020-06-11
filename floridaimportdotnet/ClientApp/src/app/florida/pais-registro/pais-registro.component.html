@@ -52,8 +52,8 @@
     
     </div>
     
-    <div class="card border border-success">
-      <table class="table table-striped" *ngIf='pais.ciudades && pais.ciudades.length'>
+    <div class="card border border-success" *ngIf='pais.ciudades && pais.ciudades.length'>
+      <table class="table table-striped" >
     
         <thead>
         
@@ -74,8 +74,6 @@
         <th scope="row">{{ i + 1 }}</th>
         
         <td>{{ ciudad.nombre }}</td>
-    
-        <td>  ver </td>
     
         </tr>
         

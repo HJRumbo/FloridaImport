@@ -127,11 +127,12 @@ getCorreo(){
 
   datosDetalles(): Detalle[]{
 
-    this.detalle = new Detalle();
-
+    
     var lista = JSON.parse(localStorage.getItem('datos'));
 
     lista.forEach(element => {
+      this.detalle = new Detalle();
+
       this.detalle.codigoProducto = element.codigo;
       this.detalle.cantidadProducto = element.cantidad;
       this.detalle.totalDetalle = element.total;

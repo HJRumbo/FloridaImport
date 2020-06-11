@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Producto } from '../models/producto';
 import { ProductoService } from 'src/app/services/producto.service';
+import { AlertModalComponent } from 'src/app/@base/alert-modal/alert-modal.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-verduras-consulta',
@@ -22,7 +24,7 @@ export class VerdurasConsultaComponent implements OnInit {
   searchText:string;
   producto: Producto;
 
-  constructor(private productoServicio: ProductoService) { }
+  constructor(private productoServicio: ProductoService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.get();
@@ -128,6 +130,10 @@ export class VerdurasConsultaComponent implements OnInit {
   agregar(producto: Producto){
 
     this.add = true;
+    const messageBox = this.modalService.open(AlertModalComponent)
+
+      messageBox.componentInstance.title = "Felicidades.";
+      messageBox.componentInstance.message = 'El producto se ha agregado al carrito.';
     this.codigo = producto.codigo;
     this.valores = {
 

@@ -22,13 +22,84 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
+      <div
+        class="navbar-nav navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse row justify-content-center"
+        [ngClass]="{ show: isExpanded }" 
+      >
+      <!--Input de buscar-->
+      <div class="input-group input-group-sm">
+        <input class="form-control border border-white col pInput" id="input-search" type="search" placeholder="¿Que estas buscando?">
+        <div class="input-group-append pButton">
+          <button class="btn btn-success border border-white">
+            <svg class="bi bi-search" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z" clip-rule="evenodd"/>
+              <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clip-rule="evenodd"/>
+            </svg>
+          </button>
+        </div>
+      </div>
 
+      <ul class="navbar-nav flex-grow margen justify-content-center">
+
+        <li ngbDropdown class="nav-item">
+          <a href (click)="false" class="nav-link text-white" ngbDropdownToggle>
+            Cliente
+          </a>
+          <div ngbDropdownMenu class="border border-success">
+              <a class="dropdown-item text-success" [routerLink]="['/clienteConsulta']">Consultar</a>
+              <a class="dropdown-item text-success" [routerLink]="['/clienteRegistro']">Registrar</a>
+          </div>
+        </li>
+        <li ngbDropdown class="nav-item">
+          <a href (click)="false" class="nav-link text-white" ngbDropdownToggle>
+            Proveedor
+          </a>
+          <div ngbDropdownMenu class="border border-success">
+              <a class="dropdown-item text-success" [routerLink]="['/proveedorConsulta']">Consultar</a>
+              <a class="dropdown-item text-success" [routerLink]="['/proveedorRegistro']">Registrar</a>
+          </div>
+        </li>
+        <li ngbDropdown class="nav-item">
+          <a href (click)="false" class="nav-link text-white" ngbDropdownToggle>
+            Productos
+          </a>
+          <div ngbDropdownMenu class="border border-success">
+              <a class="dropdown-item text-success" [routerLink]="['/productoConsulta']">Consultar</a>
+              <a class="dropdown-item text-success" [routerLink]="['/productoRegistro']">Registrar</a>
+          </div>
+        </li>
+        <li ngbDropdown class="nav-item">
+          <a href (click)="false" class="nav-link text-white" ngbDropdownToggle>
+            Países
+          </a>
+          <div ngbDropdownMenu class="border border-success">
+              <a class="dropdown-item text-success" [routerLink]="['/productoConsulta']">Consultar</a>
+              <a class="dropdown-item text-success" [routerLink]="['/paisRegistro']">Registrar</a>
+          </div>
+        </li>
+        <li ngbDropdown class="nav-item">
+          <a href (click)="false" class="nav-link text-white" ngbDropdownToggle>
+            Informes
+          </a>
+          <div ngbDropdownMenu class="border border-success">
+              <a class="dropdown-item text-success" [routerLink]="['/clienteConsulta']">Inventario</a>
+              <a class="dropdown-item text-success" [routerLink]="['/clienteRegistro']">Reportes</a>
+          </div>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['link-active']">
+          <a class="nav-link text-white" [routerLink]="['/pedidosConsulta']"
+            >Pedidos</a
+          >
+        </li>
+      </ul>
+      </div>
+      <!------->
       <div
         class="navbar-nav navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse justify-content-center pInAdmin"
         [ngClass]="{ show: isExpanded }" 
       >
 
-        <ul class="navbar-nav flex-grow margen">
+        <ul class="navbar-nav flex-grow">
 
         <li ngbDropdown class="nav-item">
           <a href (click)="false" class="nav-link text-white" ngbDropdownToggle>
@@ -52,14 +123,51 @@
             </svg>
             {{nombre}}</a>
           <div ngbDropdownMenu class="border border-success">
-              <a class="dropdown-item text-success"  [routerLink]="['/clienteRegistro']">Mi cuenta</a>
               <button class="dropdown-item text-success" (click)="salir()" onclick="location.reload()">Salir</button>
           </div>
         </li>
       </ul>
       <div>
-        <div class="input-group mb-4">
-          <input class="form-control border border-white col" id="input-search" type="search" placeholder="¿Que estas buscando?">
+      </div>
+      </div>
+    </div>
+    </nav>
+    <!------->        
+    
+  </div>
+  <!--No es Administrador-->
+
+  <ng-template #noAdmin>
+    <!--Proveedor-->
+    <div *ngIf="rol=='Prove'; else noProve">
+
+      <nav
+      class="navbar navbar-expand-lg navbar-expand-sm navbar-toggleable-sm navbar-light bg-success border-success box-shadow "
+    >
+      <div class="container">
+        <a class="navbar-brand" [routerLink]="['/']">
+          <p class="text-white">
+            <img src="./../../assets/Logo Florida Import.jpeg" alt="Random first slide" class="imagen" width="200" height="80">
+          </p>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target=".navbar-collapse"
+          aria-label="Toggle navigation"
+          [attr.aria-expanded]="isExpanded"
+          (click)="toggle()"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="navbar-nav navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse row justify-content-center"
+          [ngClass]="{ show: isExpanded }" 
+        >
+        <!--Input de buscar-->
+        <div class="input-group input-group-sm">
+          <input class="form-control border border-white col pInput" id="input-search" type="search" placeholder="¿Que estas buscando?">
           <div class="input-group-append pButton">
             <button class="btn btn-success border border-white">
               <svg class="bi bi-search" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -69,91 +177,66 @@
             </button>
           </div>
         </div>
-      </div>
-      </div>
-    </div>
-    </nav> 
-    <nav
-    class="navbar navbar-expand-lg navbar-expand-sm navbar-toggleable-sm navbar-light bg-light border-success box-shadow mb-3"
-  >
-    <div class="container">
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target=".navbar-collapse"
-        aria-label="Toggle navigation"
-        [attr.aria-expanded]="isExpanded"
-        (click)="toggle()"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div
-        class="navbar-nav navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse justify-content-center letra"
-        [ngClass]="{ show: isExpanded }" 
-      >
-
+  
         <ul class="navbar-nav flex-grow margen justify-content-center">
-
-        <li ngbDropdown class="nav-item">
-          <a href (click)="false" class="nav-link text-success" ngbDropdownToggle>
-            Cliente
-          </a>
-          <div ngbDropdownMenu class="border border-success">
-              <a class="dropdown-item text-success" [routerLink]="['/clienteConsulta']">Consultar</a>
-              <a class="dropdown-item text-success" [routerLink]="['/clienteRegistro']">Registrar</a>
-          </div>
-        </li>
-        <li ngbDropdown class="nav-item">
-          <a href (click)="false" class="nav-link text-success" ngbDropdownToggle>
-            Proveedor
-          </a>
-          <div ngbDropdownMenu class="border border-success">
-              <a class="dropdown-item text-success" [routerLink]="['/proveedorConsulta']">Consultar</a>
-              <a class="dropdown-item text-success" [routerLink]="['/proveedorRegistro']">Registrar</a>
-          </div>
-        </li>
-        <li ngbDropdown class="nav-item">
-          <a href (click)="false" class="nav-link text-success" ngbDropdownToggle>
-            Productos
-          </a>
-          <div ngbDropdownMenu class="border border-success">
-              <a class="dropdown-item text-success" [routerLink]="['/productoConsulta']">Consultar</a>
-              <a class="dropdown-item text-success" [routerLink]="['/productoRegistro']">Registrar</a>
-          </div>
-        </li>
-        <li ngbDropdown class="nav-item">
-          <a href (click)="false" class="nav-link text-success" ngbDropdownToggle>
-            Países
-          </a>
-          <div ngbDropdownMenu class="border border-success">
-              <a class="dropdown-item text-success" [routerLink]="['/productoConsulta']">Consultar</a>
-              <a class="dropdown-item text-success" [routerLink]="['/paisRegistro']">Registrar</a>
-          </div>
-        </li>
-        <li ngbDropdown class="nav-item">
-          <a href (click)="false" class="nav-link text-success" ngbDropdownToggle>
-            Informes
-          </a>
-          <div ngbDropdownMenu class="border border-success">
-              <a class="dropdown-item text-success" [routerLink]="['/clienteConsulta']">Inventario</a>
-              <a class="dropdown-item text-success" [routerLink]="['/clienteRegistro']">Reportes</a>
-          </div>
-        </li>
-        <li class="nav-item" [routerLinkActive]="['link-active']">
-          <a class="nav-link text-success" [routerLink]="['/pedidosConsulta']"
-            >Pedidos</a
-          >
-        </li>
-      </ul>
+  
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-white" [routerLink]="['/productoProveedorRegistro']"
+              >Registrar productos</a
+            >
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-white" [routerLink]="['/pedidosConsulta']"
+              >Registrar ubicación</a
+            >
+          </li>
+        </ul>
+        </div>
+        <!------->
+        <div
+          class="navbar-nav navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse justify-content-center pInAdmin"
+          [ngClass]="{ show: isExpanded }" 
+        >
+  
+          <ul class="navbar-nav flex-grow">
+  
+          <li ngbDropdown class="nav-item">
+            <a href (click)="false" class="nav-link text-white" ngbDropdownToggle>
+              <svg class="bi bi-bell" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 16a2 2 0 002-2H6a2 2 0 002 2z"/>
+                <path fill-rule="evenodd" d="M8 1.918l-.797.161A4.002 4.002 0 004 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 00-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 111.99 0A5.002 5.002 0 0113 6c0 .88.32 4.2 1.22 6z" clip-rule="evenodd"/>
+              </svg>
+            </a>
+            <div ngbDropdownMenu class="border border-success">
+                <a class="dropdown-item text-success" ></a>
+                <a class="dropdown-item text-success" ></a>
+                <a class="dropdown-item text-success" ></a>
+            </div>
+          </li>
+          <li ngbDropdown class="nav-item">
+            <a href (click)="false" class="nav-link text-white letra" ngbDropdownToggle>
+              <svg class="bi bi-people-circle" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 008 15a6.987 6.987 0 005.468-2.63z"/>
+                <path fill-rule="evenodd" d="M8 9a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/>
+                <path fill-rule="evenodd" d="M8 1a7 7 0 100 14A7 7 0 008 1zM0 8a8 8 0 1116 0A8 8 0 010 8z" clip-rule="evenodd"/>
+              </svg>
+              {{nombre}}</a>
+            <div ngbDropdownMenu class="border border-success">
+                <button class="dropdown-item text-success" (click)="salir()" onclick="location.reload()">Salir</button>
+            </div>
+          </li>
+        </ul>
+        <div>
+        </div>
+        </div>
       </div>
+      </nav>
+      <!------->        
+      
     </div>
-    </nav>       
-    
-  </div>
-  <!--No es Administrador-->
-  <ng-template #noAdmin>
+
+    <!--No es Proveedor-->
+    <ng-template #noProve>
   <nav
     class="navbar navbar-expand-lg navbar-expand-sm navbar-toggleable-sm navbar-light bg-success border-success box-shadow mb-3"
   >
@@ -214,10 +297,12 @@
               >Historial</a
             >
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-white letra" [routerLink]="['/fetch-data']"
-              >Agencias oficiales</a
-            >
+          <li ngbDropdown class="nav-item">
+            <a href (click)="false" class="nav-link text-white letra" ngbDropdownToggle>Ayuda</a>
+            <div ngbDropdownMenu class="border border-success">
+                <a class="dropdown-item text-success" href="https://www.calameo.com/read/006318531c786008fd4fe">Manual de usuario</a>
+                
+            </div>
           </li>
 
           <li class="nav-item" [routerLinkActive]="['link-active']">
@@ -253,11 +338,19 @@
               <button class="dropdown-item text-success" (click)="salir()">Salir</button>
           </div>
         </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-white letra" [routerLink]="['/clienteConsulta']"
-              >Notificaciones</a
-            >
-          </li>
+        <li ngbDropdown class="nav-item">
+          <a href (click)="false" class="nav-link text-white" ngbDropdownToggle>
+            <svg class="bi bi-bell" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 16a2 2 0 002-2H6a2 2 0 002 2z"/>
+              <path fill-rule="evenodd" d="M8 1.918l-.797.161A4.002 4.002 0 004 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 00-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 111.99 0A5.002 5.002 0 0113 6c0 .88.32 4.2 1.22 6z" clip-rule="evenodd"/>
+            </svg>
+          </a>
+          <div ngbDropdownMenu class="border border-success">
+              <a class="dropdown-item text-success" ></a>
+              <a class="dropdown-item text-success" ></a>
+              <a class="dropdown-item text-success" ></a>
+          </div>
+        </li>
         </div>
         <!--Sin ingreso-->
         <div *ngIf="rol===null" class="navbar-nav navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse nav justify-content-center row"
@@ -287,6 +380,7 @@
     </div>
     </div>
   </nav>
+</ng-template>
 </ng-template>
 </header>
 
