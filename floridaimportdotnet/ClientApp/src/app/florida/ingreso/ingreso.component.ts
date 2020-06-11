@@ -98,7 +98,7 @@ export class IngresoComponent implements OnInit {
       cliente => {
       if(cliente!==null){
         if(cliente.contrasena==this.login.contrasena){
-          window.location.href= "https://localhost:5001/"; //"https://floridainternationalimport.azurewebsites.net";
+          window.location.href= "https://localhost:5001/";//"https://floridainternationalimport.azurewebsites.net";
             sessionStorage.setItem("User" , "Clien");
             sessionStorage.setItem("Nom" , cliente.nombre);
             sessionStorage.setItem("Correo" , cliente.correo);
@@ -115,7 +115,7 @@ export class IngresoComponent implements OnInit {
           if(proveedor!==null){
             
             if(proveedor.contrasena===this.login.contrasena){
-              window.location.href= "https://localhost:5001/"; //"https://floridainternationalimport.azurewebsites.net";
+              window.location.href= "https://localhost:5001/";//"https://floridainternationalimport.azurewebsites.net";
                 sessionStorage.setItem("User" , "Prove");
                 sessionStorage.setItem("Nom" , proveedor.nombre);
                 sessionStorage.setItem("Correo" , proveedor.correo);
@@ -126,7 +126,7 @@ export class IngresoComponent implements OnInit {
             }
           }else{
             if(this.login.correo==="admin@gmail.com" && this.login.contrasena==="1234567a"){
-              window.location.href="https://localhost:5001/"; //"https://floridainternationalimport.azurewebsites.net";
+              window.location.href="https://localhost:5001/";//"https://floridainternationalimport.azurewebsites.net";
               sessionStorage.setItem("User" , "Admin");
               sessionStorage.setItem("Nom" , "Administrador");
       

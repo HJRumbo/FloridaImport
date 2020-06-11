@@ -37,7 +37,7 @@ export class NavMenuComponent implements OnInit{
     sessionStorage.removeItem('User');
     sessionStorage.removeItem('Nom');
     sessionStorage.removeItem('Correo');
-    window.location.href="https://localhost:5001/"; //"https://floridainternationalimport.azurewebsites.net";
+    window.location.href="https://localhost:5001/";//"https://floridainternationalimport.azurewebsites.net";
   }
 
   logout() {
