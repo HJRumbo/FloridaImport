@@ -31,7 +31,7 @@ export class ProveedorRegistroComponent implements OnInit {
     this.proveedor.contrasena = '';
 
     this.formGroup = this.formBuilder.group({
-      identificacion: [this.proveedor.identificacion, Validators.required],
+      identificacion: [this.proveedor.identificacion, [Validators.required, Validators.pattern('[0-9]*')]],
       nombre: [this.proveedor.nombre, Validators.required],
       descripcion: [this.proveedor.descripcion, Validators.required],
       correo: [this.proveedor.correo, [Validators.required, Validators.email]],

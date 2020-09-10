@@ -9,3 +9,15 @@ C:\Users\usuario\Documents\My Web Sites\FloridaImportWeb\Datos\obj\Debug\netstan
 C:\Users\usuario\Documents\My Web Sites\FloridaImportWeb\Datos\obj\Debug\netstandard2.0\Datos.csproj.CopyComplete
 C:\Users\usuario\Documents\My Web Sites\FloridaImportWeb\Datos\obj\Debug\netstandard2.0\Datos.dll
 C:\Users\usuario\Documents\My Web Sites\FloridaImportWeb\Datos\obj\Debug\netstandard2.0\Datos.pdb
+C:\Users\user\OneDrive\Documentos\ProyectosAngular\FloridaImport\Datos\bin\Debug\netstandard2.0\Datos.deps.json
+C:\Users\user\OneDrive\Documentos\ProyectosAngular\FloridaImport\Datos\bin\Debug\netstandard2.0\Datos.dll
+C:\Users\user\OneDrive\Documentos\ProyectosAngular\FloridaImport\Datos\bin\Debug\netstandard2.0\Datos.pdb
+C:\Users\user\OneDrive\Documentos\ProyectosAngular\FloridaImport\Datos\bin\Debug\netstandard2.0\Entity.dll
+C:\Users\user\OneDrive\Documentos\ProyectosAngular\FloridaImport\Datos\bin\Debug\netstandard2.0\Entity.pdb
+C:\Users\user\OneDrive\Documentos\ProyectosAngular\FloridaImport\Datos\obj\Debug\netstandard2.0\Datos.csprojAssemblyReference.cache
+C:\Users\user\OneDrive\Documentos\ProyectosAngular\FloridaImport\Datos\obj\Debug\netstandard2.0\Datos.AssemblyInfoInputs.cache
+C:\Users\user\OneDrive\Documentos\ProyectosAngular\FloridaImport\Datos\obj\Debug\netstandard2.0\Datos.AssemblyInfo.cs
+C:\Users\user\OneDrive\Documentos\ProyectosAngular\FloridaImport\Datos\obj\Debug\netstandard2.0\Datos.csproj.CoreCompileInputs.cache
+C:\Users\user\OneDrive\Documentos\ProyectosAngular\FloridaImport\Datos\obj\Debug\netstandard2.0\Datos.csproj.CopyComplete
+C:\Users\user\OneDrive\Documentos\ProyectosAngular\FloridaImport\Datos\obj\Debug\netstandard2.0\Datos.dll
+C:\Users\user\OneDrive\Documentos\ProyectosAngular\FloridaImport\Datos\obj\Debug\netstandard2.0\Datos.pdb

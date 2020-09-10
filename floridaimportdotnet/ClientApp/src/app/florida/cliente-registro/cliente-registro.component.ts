@@ -35,7 +35,7 @@ export class ClienteRegistroComponent implements OnInit {
     this.cliente.contrasena = '';
 
     this.formGroup = this.formBuilder.group({
-      identificacion: [this.cliente.identificacion, Validators.required],
+      identificacion: [this.cliente.identificacion, [Validators.required, Validators.pattern('[0-9]*')]],
       nombre: [this.cliente.nombre, Validators.required],
       apellido: [this.cliente.apellido, Validators.required],
       tipoPersona: [this.cliente.tipoPersona, Validators.required],

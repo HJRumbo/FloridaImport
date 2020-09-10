@@ -27,11 +27,11 @@ namespace Datos
                 command.Parameters.AddWithValue("@Contrasena", proveedor.Contrasena);
                 command.Parameters.AddWithValue("@Descripcion", proveedor.Descripcion);
                 var filas = command.ExecuteNonQuery();
-                GuardarProductos(proveedor.Productos);
+                //GuardarProductos(proveedor.Productos);
             }
         }
        
-        public void GuardarProductos(List<Producto> productos)
+        /*public void GuardarProductos(List<Producto> productos)
         {
             foreach (var item in productos)
             {
@@ -51,7 +51,7 @@ namespace Datos
                     var filas = command.ExecuteNonQuery();
                 }
             }
-        }
+        }*/
 
         public List<Proveedor> ConsultarTodos()
         {

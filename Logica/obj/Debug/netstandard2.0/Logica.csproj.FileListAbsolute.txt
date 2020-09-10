@@ -11,3 +11,17 @@ C:\Users\usuario\Documents\My Web Sites\FloridaImportWeb\Logica\obj\Debug\netsta
 C:\Users\usuario\Documents\My Web Sites\FloridaImportWeb\Logica\obj\Debug\netstandard2.0\Logica.csproj.CopyComplete
 C:\Users\usuario\Documents\My Web Sites\FloridaImportWeb\Logica\obj\Debug\netstandard2.0\Logica.dll
 C:\Users\usuario\Documents\My Web Sites\FloridaImportWeb\Logica\obj\Debug\netstandard2.0\Logica.pdb
+C:\Users\user\OneDrive\Documentos\ProyectosAngular\FloridaImport\Logica\bin\Debug\netstandard2.0\Logica.deps.json
+C:\Users\user\OneDrive\Documentos\ProyectosAngular\FloridaImport\Logica\bin\Debug\netstandard2.0\Logica.dll
+C:\Users\user\OneDrive\Documentos\ProyectosAngular\FloridaImport\Logica\bin\Debug\netstandard2.0\Logica.pdb
+C:\Users\user\OneDrive\Documentos\ProyectosAngular\FloridaImport\Logica\bin\Debug\netstandard2.0\Datos.dll
+C:\Users\user\OneDrive\Documentos\ProyectosAngular\FloridaImport\Logica\bin\Debug\netstandard2.0\Entity.dll
+C:\Users\user\OneDrive\Documentos\ProyectosAngular\FloridaImport\Logica\bin\Debug\netstandard2.0\Entity.pdb
+C:\Users\user\OneDrive\Documentos\ProyectosAngular\FloridaImport\Logica\bin\Debug\netstandard2.0\Datos.pdb
+C:\Users\user\OneDrive\Documentos\ProyectosAngular\FloridaImport\Logica\obj\Debug\netstandard2.0\Logica.csprojAssemblyReference.cache
+C:\Users\user\OneDrive\Documentos\ProyectosAngular\FloridaImport\Logica\obj\Debug\netstandard2.0\Logica.AssemblyInfoInputs.cache
+C:\Users\user\OneDrive\Documentos\ProyectosAngular\FloridaImport\Logica\obj\Debug\netstandard2.0\Logica.AssemblyInfo.cs
+C:\Users\user\OneDrive\Documentos\ProyectosAngular\FloridaImport\Logica\obj\Debug\netstandard2.0\Logica.csproj.CoreCompileInputs.cache
+C:\Users\user\OneDrive\Documentos\ProyectosAngular\FloridaImport\Logica\obj\Debug\netstandard2.0\Logica.csproj.CopyComplete
+C:\Users\user\OneDrive\Documentos\ProyectosAngular\FloridaImport\Logica\obj\Debug\netstandard2.0\Logica.dll
+C:\Users\user\OneDrive\Documentos\ProyectosAngular\FloridaImport\Logica\obj\Debug\netstandard2.0\Logica.pdb

@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "bwDualK+Vp82KF+la7rdSpjkbbYkhMXXUy8SmQkFH+FI6B68eDjMi4yeF5rQ5DFFZueUZ4vTI/hKZZ+2WIIWHg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\user\\OneDrive\\Documentos\\ProyectosAngular\\FloridaImport\\Entity\\Entity.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\user\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

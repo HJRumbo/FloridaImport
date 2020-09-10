@@ -35,6 +35,7 @@
         <div *ngIf="control.identificacion.errors" class="invalid-feedback">
       
             <div *ngIf="control.identificacion.errors.required">Se require identificación</div>
+            <div *ngIf="control.identificacion.errors.pattern">La identificación o NIT debe ser numérica.</div>
             
           </div>
         
