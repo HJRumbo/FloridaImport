@@ -22,11 +22,13 @@ export class AgregarUbicacionComponent implements OnInit {
   cliente: Cliente;
   clienteUbicacion: Cliente;
   ciudad: Ciudad;
+  modificar: boolean;
   constructor(private paisServicio: PaisService, private formBuilder: FormBuilder, private clienteServicio: ClienteService, private modalService: NgbModal, private rutaActiva: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.buildForm();
     this.get();
+    this.modificar = false;
     
     this.cliente = new Cliente();
 
@@ -52,7 +54,7 @@ export class AgregarUbicacionComponent implements OnInit {
       direccion: ['', Validators.required],
       barrio: ['', Validators.required],
       codigoPostal: ['', Validators.required],
-      telefono: ['', Validators.required]
+      telefono: ['', [Validators.required, Validators.pattern('[0-9]*')]]
     });
   }
 
@@ -65,8 +67,14 @@ export class AgregarUbicacionComponent implements OnInit {
 
     this.paisServicio.get().subscribe(result => {
       this.paises = result;
+      this.paises.forEach(element => {
+        if(element.nombre===this.formGroup.get('pais').value){
+            this.ciudades = element.ciudades;
+        }
+      });
     })
   }
+
 
   getCiudades(){
 
@@ -103,7 +111,17 @@ export class AgregarUbicacionComponent implements OnInit {
       
         
     });
+
+    this.modificar=false;
     
+  }
+
+  noMod(){
+    this.modificar=true;
+    this.getCiudades();
+  }
+  mod(){
+    this.modificar=false;
   }
   
 }

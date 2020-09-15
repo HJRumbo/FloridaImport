@@ -193,6 +193,12 @@ export class HomeComponent implements OnInit{
 
     const messageBox = this.modalService.open(AlertModalComponent)
 
+    if(producto.cantidad==0){
+      messageBox.componentInstance.title = "Lo sentimos.";
+      messageBox.componentInstance.message = 'El producto se encuentra agotado.';
+
+    }else{
+
       messageBox.componentInstance.title = "Felicidades.";
       messageBox.componentInstance.message = 'El producto se ha agregado al carrito.';
 
@@ -244,6 +250,7 @@ export class HomeComponent implements OnInit{
             this.cantidad = 1;
         }
     }
+  }
 
   }
 
