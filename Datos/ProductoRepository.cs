@@ -19,7 +19,7 @@ namespace Datos
             using (var command = _connection.CreateCommand())
             {
                 command.CommandText = @"Insert Into Producto (Codigo,Nombre,
-                Descripcion, Cantidad, Precio,Proveedor, Tipo) 
+                Descripcion, Cantidad, Precio,Proveedor, Tipo, Imagenes) 
                 values (NEXT VALUE FOR CodigoSequence,@Nombre,@Descripcion,
                 @Cantidad,@Precio, @Proveedor, @Tipo)";
                 command.Parameters.AddWithValue("@Nombre", producto.Nombre);
@@ -28,6 +28,7 @@ namespace Datos
                 command.Parameters.AddWithValue("@Precio", producto.Precio);
                 command.Parameters.AddWithValue("@Proveedor", producto.Proveedor);
                 command.Parameters.AddWithValue("@Tipo", producto.Tipo);
+                command.Parameters.AddWithValue("@Imagenes", producto.Imagen);
                 var filas = command.ExecuteNonQuery();
             }
         }
@@ -63,6 +64,7 @@ namespace Datos
             producto.Precio = (decimal)dataReader["Precio"];
             producto.Proveedor = (string)dataReader["Proveedor"];
             producto.Tipo = (string)dataReader["Tipo"];
+            producto.Imagen = (string)dataReader["Imagenes"];
             return producto;
         }
 

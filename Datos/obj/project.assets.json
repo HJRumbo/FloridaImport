@@ -1068,19 +1068,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\user\\.nuget\\packages\\": {}
+    "C:\\Users\\palac\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\user\\OneDrive\\Documentos\\ProyectosAngular\\FloridaImport\\Datos\\Datos.csproj",
+      "projectUniqueName": "C:\\Users\\palac\\source\\Web\\FloridaImport\\Datos\\Datos.csproj",
       "projectName": "Datos",
-      "projectPath": "C:\\Users\\user\\OneDrive\\Documentos\\ProyectosAngular\\FloridaImport\\Datos\\Datos.csproj",
-      "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\user\\OneDrive\\Documentos\\ProyectosAngular\\FloridaImport\\Datos\\obj\\",
+      "projectPath": "C:\\Users\\palac\\source\\Web\\FloridaImport\\Datos\\Datos.csproj",
+      "packagesPath": "C:\\Users\\palac\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\palac\\source\\Web\\FloridaImport\\Datos\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\palac\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1093,8 +1093,8 @@
       "frameworks": {
         "netstandard2.0": {
           "projectReferences": {
-            "C:\\Users\\user\\OneDrive\\Documentos\\ProyectosAngular\\FloridaImport\\Entity\\Entity.csproj": {
-              "projectPath": "C:\\Users\\user\\OneDrive\\Documentos\\ProyectosAngular\\FloridaImport\\Entity\\Entity.csproj"
+            "C:\\Users\\palac\\source\\Web\\FloridaImport\\Entity\\Entity.csproj": {
+              "projectPath": "C:\\Users\\palac\\source\\Web\\FloridaImport\\Entity\\Entity.csproj"
             }
           }
         }
@@ -1133,7 +1133,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
       }
     }
   }

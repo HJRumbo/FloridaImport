@@ -25,3 +25,17 @@ C:\Users\user\OneDrive\Documentos\ProyectosAngular\FloridaImport\Logica\obj\Debu
 C:\Users\user\OneDrive\Documentos\ProyectosAngular\FloridaImport\Logica\obj\Debug\netstandard2.0\Logica.csproj.CopyComplete
 C:\Users\user\OneDrive\Documentos\ProyectosAngular\FloridaImport\Logica\obj\Debug\netstandard2.0\Logica.dll
 C:\Users\user\OneDrive\Documentos\ProyectosAngular\FloridaImport\Logica\obj\Debug\netstandard2.0\Logica.pdb
+C:\Users\palac\source\Web\FloridaImport\Logica\bin\Debug\netstandard2.0\Logica.deps.json
+C:\Users\palac\source\Web\FloridaImport\Logica\bin\Debug\netstandard2.0\Logica.dll
+C:\Users\palac\source\Web\FloridaImport\Logica\bin\Debug\netstandard2.0\Logica.pdb
+C:\Users\palac\source\Web\FloridaImport\Logica\bin\Debug\netstandard2.0\Datos.dll
+C:\Users\palac\source\Web\FloridaImport\Logica\bin\Debug\netstandard2.0\Entity.dll
+C:\Users\palac\source\Web\FloridaImport\Logica\bin\Debug\netstandard2.0\Entity.pdb
+C:\Users\palac\source\Web\FloridaImport\Logica\bin\Debug\netstandard2.0\Datos.pdb
+C:\Users\palac\source\Web\FloridaImport\Logica\obj\Debug\netstandard2.0\Logica.csprojAssemblyReference.cache
+C:\Users\palac\source\Web\FloridaImport\Logica\obj\Debug\netstandard2.0\Logica.AssemblyInfoInputs.cache
+C:\Users\palac\source\Web\FloridaImport\Logica\obj\Debug\netstandard2.0\Logica.AssemblyInfo.cs
+C:\Users\palac\source\Web\FloridaImport\Logica\obj\Debug\netstandard2.0\Logica.csproj.CoreCompileInputs.cache
+C:\Users\palac\source\Web\FloridaImport\Logica\obj\Debug\netstandard2.0\Logica.csproj.CopyComplete
+C:\Users\palac\source\Web\FloridaImport\Logica\obj\Debug\netstandard2.0\Logica.dll
+C:\Users\palac\source\Web\FloridaImport\Logica\obj\Debug\netstandard2.0\Logica.pdb

@@ -21,3 +21,15 @@ C:\Users\user\OneDrive\Documentos\ProyectosAngular\FloridaImport\Datos\obj\Debug
 C:\Users\user\OneDrive\Documentos\ProyectosAngular\FloridaImport\Datos\obj\Debug\netstandard2.0\Datos.csproj.CopyComplete
 C:\Users\user\OneDrive\Documentos\ProyectosAngular\FloridaImport\Datos\obj\Debug\netstandard2.0\Datos.dll
 C:\Users\user\OneDrive\Documentos\ProyectosAngular\FloridaImport\Datos\obj\Debug\netstandard2.0\Datos.pdb
+C:\Users\palac\source\Web\FloridaImport\Datos\bin\Debug\netstandard2.0\Datos.deps.json
+C:\Users\palac\source\Web\FloridaImport\Datos\bin\Debug\netstandard2.0\Datos.dll
+C:\Users\palac\source\Web\FloridaImport\Datos\bin\Debug\netstandard2.0\Datos.pdb
+C:\Users\palac\source\Web\FloridaImport\Datos\bin\Debug\netstandard2.0\Entity.dll
+C:\Users\palac\source\Web\FloridaImport\Datos\bin\Debug\netstandard2.0\Entity.pdb
+C:\Users\palac\source\Web\FloridaImport\Datos\obj\Debug\netstandard2.0\Datos.csprojAssemblyReference.cache
+C:\Users\palac\source\Web\FloridaImport\Datos\obj\Debug\netstandard2.0\Datos.AssemblyInfoInputs.cache
+C:\Users\palac\source\Web\FloridaImport\Datos\obj\Debug\netstandard2.0\Datos.AssemblyInfo.cs
+C:\Users\palac\source\Web\FloridaImport\Datos\obj\Debug\netstandard2.0\Datos.csproj.CoreCompileInputs.cache
+C:\Users\palac\source\Web\FloridaImport\Datos\obj\Debug\netstandard2.0\Datos.csproj.CopyComplete
+C:\Users\palac\source\Web\FloridaImport\Datos\obj\Debug\netstandard2.0\Datos.dll
+C:\Users\palac\source\Web\FloridaImport\Datos\obj\Debug\netstandard2.0\Datos.pdb
