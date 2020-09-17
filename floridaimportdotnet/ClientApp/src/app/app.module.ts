@@ -52,6 +52,10 @@ import { ProductoProveedorRegistroComponent } from './florida/producto-proveedor
 import { ProductoProveedorConsultaComponent } from './florida/producto-proveedor-consulta/producto-proveedor-consulta.component';
 import { ProductoProveedorService } from './services/producto-proveedor.service';
 
+import { AngularFireModule } from 'angularfire2';
+import { environment } from 'src/environments/environment';
+import { AngularFireStorage } from 'angularfire2/storage';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -91,11 +95,12 @@ import { ProductoProveedorService } from './services/producto-proveedor.service'
     PedidoEditarComponent,
     FiltroPedidoPipe,
     ProductoProveedorRegistroComponent,
-    ProductoProveedorConsultaComponent
+    ProductoProveedorConsultaComponent,
   ],
   imports: [
     ReactiveFormsModule,
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
@@ -113,6 +118,7 @@ import { ProductoProveedorService } from './services/producto-proveedor.service'
     ProveedorService, 
     PedidoService, 
     ProductoProveedorService,
+    AngularFireStorage,
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })

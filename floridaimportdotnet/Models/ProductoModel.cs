@@ -25,6 +25,7 @@ namespace floridaimportdotnet.Models
         [Required(ErrorMessage = "El tipo de prudcto es requerido")]
         [TipoProductoValidacion(ErrorMessage= "El tipo de producto debe ser Fruta, Verdura u Hortalza")]
         public string Tipo {get;set;}
+        public string Imagen {get;set;}
     }
 
     public class ProductoViewModel : ProductoInputModel
@@ -42,6 +43,7 @@ namespace floridaimportdotnet.Models
             Precio = producto.Precio;
             Proveedor = producto.Proveedor;
             Tipo = producto.Tipo;
+            Imagen = producto.Imagen;
         }
     }
 

@@ -5,6 +5,8 @@ import { FormGroup, FormBuilder, Validators, AbstractControl} from '@angular/for
 import { AlertModalComponent } from 'src/app/@base/alert-modal/alert-modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
+import { AngularFireStorage, AngularFireUploadTask, AngularFireStorageReference } from 'angularfire2/storage';
+
 @Component({
   selector: 'app-producto-registro',
   templateUrl: './producto-registro.component.html',
@@ -15,8 +17,10 @@ export class ProductoRegistroComponent implements OnInit {
   formGroup: FormGroup;
   producto:  Producto;
   url: any;
+  imageURL: string;
+
   constructor(private productoService: ProductoService, private formBuilder: FormBuilder, 
-  private modalService: NgbModal) { }
+  private modalService: NgbModal, private storage: AngularFireStorage) { }
 
   ngOnInit() {
     this.buildForm();
@@ -56,7 +60,9 @@ export class ProductoRegistroComponent implements OnInit {
   add() {
 
     this.producto = this.formGroup.value;
+    this.producto.imagen = this.imageURL;
     this.productoService.post(this.producto).subscribe(p => {
+      console.log(p);
       if (p != null) {
         
         this.producto = p;
@@ -77,6 +83,46 @@ export class ProductoRegistroComponent implements OnInit {
       }
       console.log(this.url);
     }
-}
+  }
+
+  //LO NUEVO PARA METER LAS IMAGENES A LA BASE DE DATOS
+  ///////////////////////////////////777
+  //////////////////////////////////////
+  //////////////////////////////////////
+
+  onPhotoSelected(event): void {
+    //SUBIR IMAGEN
+    const file = event.target.files[0];
+    let nombre = new Date().getTime().toString();
+    nombre = nombre + file.name.toString().substring( file.name.toString().lastIndexOf('.') );
+    console.log(nombre);
+    const ruta = `Productos/${nombre}`;
+    const refs = this.storage.ref(ruta);
+    const task = refs.put(file);
+
+  
+  
+  
+  
+    
+    task.percentageChanges().subscribe(porcentaje => {
+      console.log(porcentaje);
+    });
+
+    task.then(() => {
+      refs.getDownloadURL().subscribe(imagenUrl => {
+        this.imageURL = imagenUrl;
+      });
+    });
+
+    
+
+
+  
+  
+  
+  
+  }
+
 
 }
