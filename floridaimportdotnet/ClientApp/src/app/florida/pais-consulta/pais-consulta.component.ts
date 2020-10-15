@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PaisService } from 'src/app/services/pais.service';
+import { Pais } from '../models/pais';
 
 @Component({
   selector: 'app-pais-consulta',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PaisConsultaComponent implements OnInit {
 
-  constructor() { }
+  paises: Pais[];
+  searchText:string;
+
+  constructor(private paisServicio: PaisService) { }
 
   ngOnInit(): void {
+    this.get();
   }
 
+  get(){
+    this.paisServicio.get().subscribe(result => {
+      this.paises = result;      
+    })
+  }
 }

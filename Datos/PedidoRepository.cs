@@ -150,15 +150,48 @@ namespace Datos
             }
         }
 
-/*
-        public void Eliminar(Producto producto)
+        public void ModificarTest(Pedido pedido)
         {
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = "Delete from producto where codigo=@codigo";
-                command.Parameters.AddWithValue("@codigo", producto.Codigo);
+                command.CommandText = "update pedido set FechaPedido=@FechaPedido, HoraPedido=@HoraPedido, TotalPedido=@TotalPedido, IdCliente=@IdCliente, Estado=@Estado where CodigoPedido=@CodigoPedido";
+                command.Parameters.AddWithValue("@CodigoPedido", pedido.CodigoPedido);
+                command.Parameters.AddWithValue("@FechaPedido", pedido.FechaPedido);
+                command.Parameters.AddWithValue("@HoraPedido", pedido.HoraPedido);
+                command.Parameters.AddWithValue("@TotalPedido", pedido.TotalPedido);
+                command.Parameters.AddWithValue("@IdCliente", pedido.IdCliente);
+                command.Parameters.AddWithValue("@Estado", pedido.Estado);
                 command.ExecuteNonQuery();
+                ModificarDetalles(pedido.Detalles);
             }
-        }*/
+        }
+
+        public void ModificarDetalles(List<Detalle> detalles)
+        {
+            foreach (var item in detalles)
+            {
+                using (var command = _connection.CreateCommand())
+                {
+                    command.CommandText = "update detalle set CodigoProducto=@CodigoProducto, CantidadProducto=@CantidadProducto, TotalDetalle=@TotalDetalle where CodigoDetalle=@CodigoDetalle";
+                    command.Parameters.AddWithValue("@CodigoDetalle", item.CodigoDetalle);
+                    command.Parameters.AddWithValue("@CodigoProducto", item.CodigoProducto);
+                    command.Parameters.AddWithValue("@CantidadProducto", item.CantidadProducto);
+                    command.Parameters.AddWithValue("@TotalDetalle", item.TotalDetalle);
+                    var filas = command.ExecuteNonQuery();
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        /*
+                public void Eliminar(Producto producto)
+                {
+                    using (var command = _connection.CreateCommand())
+                    {
+                        command.CommandText = "Delete from producto where codigo=@codigo";
+                        command.Parameters.AddWithValue("@codigo", producto.Codigo);
+                        command.ExecuteNonQuery();
+                    }
+                }*/
     }
 }

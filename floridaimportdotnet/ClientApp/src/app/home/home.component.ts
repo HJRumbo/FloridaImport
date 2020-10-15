@@ -5,6 +5,12 @@ import { ProductoService } from '../services/producto.service';
 import { Proveedor } from '../florida/models/proveedor';
 import { ProveedorService } from '../services/proveedor.service';
 import { AlertModalComponent } from '../@base/alert-modal/alert-modal.component';
+import Swal from 'sweetalert2';
+import { ChartDataSets } from 'chart.js';
+import { Label } from 'ng2-charts';
+import { PedidoService } from '../services/pedido.service';
+import { Pedido } from '../florida/models/pedido';
+import { groupBy } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -24,6 +30,7 @@ export class HomeComponent implements OnInit{
   frutas = new Array<Producto>();
   verduras = new Array<Producto>();
   hortalizas = new Array<Producto>();
+  pedidos = new Array<Pedido>();
   acu = 0;
   searchText:string;
   add: boolean;
@@ -36,7 +43,10 @@ export class HomeComponent implements OnInit{
   codigo1: number;
   codio2: number;
   id: string;
-  constructor(private productoServicio: ProductoService, private proveedorServicio: ProveedorService, private modalService: NgbModal) { }
+  constructor(private productoServicio: ProductoService, 
+    private proveedorServicio: ProveedorService, 
+    private modalService: NgbModal,
+    private pedidoService: PedidoService) { }
 
   ngOnInit(){
     this.rol = sessionStorage.getItem('User');
@@ -56,6 +66,9 @@ export class HomeComponent implements OnInit{
       this.getProv();
       this.isEnabled = true;
     }
+    /*if(this.rol=="Admin"){
+      this.getPedidos();
+    }*/
   }
 
   getProv(){
@@ -191,16 +204,32 @@ export class HomeComponent implements OnInit{
   listaProduct = new Array<Producto>();
   agregar(producto: Producto){
 
-    const messageBox = this.modalService.open(AlertModalComponent)
+    if(this.cantidad>producto.cantidad){
 
-    if(producto.cantidad==0){
-      messageBox.componentInstance.title = "Lo sentimos.";
-      messageBox.componentInstance.message = 'El producto se encuentra agotado.';
+      Swal.fire({
+        icon: 'error',
+        title: 'Lo sentimos...',
+        text: 'No contamos con la cantidad que desea comprar.'
+      })
 
     }else{
 
-      messageBox.componentInstance.title = "Felicidades.";
-      messageBox.componentInstance.message = 'El producto se ha agregado al carrito.';
+    if(producto.cantidad==0){
+      Swal.fire({
+        icon: 'error',
+        title: 'Lo sentimos...',
+        text: 'El producto se ha agotado.'
+      })
+
+    }else{
+
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'El producto se ha agregado al carrito.',
+        showConfirmButton: false,
+        timer: 1500
+      })
 
     this.add = true;
     this.codigo = producto.codigo;
@@ -251,8 +280,8 @@ export class HomeComponent implements OnInit{
         }
     }
   }
-
-  }
+}
+}
 
   validarProducto(codigo: any, lista: any): any{
     var result = 'N';
@@ -273,6 +302,29 @@ export class HomeComponent implements OnInit{
     this.add=false;
     this.codigo = 0;
   }
+
+  //Gráfica dinámica: No funcional aún--------------------------------------------------------------------------------
+
+  getPedidos(){
+    this.pedidoService.get().subscribe(p => {
+      this.pedidos = p;
+      this.pedidos.forEach(element => {
+        let date = new Date(element.fechaPedido.replace(/-+/g, '/'));
+        //const result = _.chain(element).groupBy(element.fechaPedido);
+
+      });
+      //const results = groupBy(p, i => i.fechaPedido);
+    })
+    
+  }
+
+  public lineChartData: ChartDataSets[] = [
+    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Frutas' },
+    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Verduras' },
+    { data: [180, 480, 770, 90, 1000, 270, 400], label: 'Hortalizas', yAxisID: 'y-axis-1' }
+  ];
+  public lineChartLabels: Label[] = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio',
+  'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
 
 }
 

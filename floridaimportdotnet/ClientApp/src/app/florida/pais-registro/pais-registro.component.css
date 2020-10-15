@@ -1,4 +1,14 @@
 #margen{
     margin-top: 5%;
     margin-bottom: 20%;
+    margin-left: 10%;
 }
+
+.sinborde {
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 4;
+    border-color: green;
+    
+  }

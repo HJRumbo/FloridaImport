@@ -73,7 +73,7 @@
             Países
           </a>
           <div ngbDropdownMenu class="border border-success">
-              <a class="dropdown-item text-success" [routerLink]="['/productoConsulta']">Consultar</a>
+              <a class="dropdown-item text-success" [routerLink]="['/paisConsulta']">Consultar</a>
               <a class="dropdown-item text-success" [routerLink]="['/paisRegistro']">Registrar</a>
           </div>
         </li>
@@ -185,11 +185,11 @@
               >Registrar productos</a
             >
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-white" [routerLink]="['/pedidosConsulta']"
-              >Registrar ubicación</a
+          <!--- <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-white" [routerLink]="['/productoProveedorConsulta']"
+              >Consultar productos</a
             >
-          </li>
+          </li>-->
         </ul>
         </div>
         <!------->
@@ -300,7 +300,7 @@
           <li ngbDropdown class="nav-item">
             <a href (click)="false" class="nav-link text-white letra" ngbDropdownToggle>Ayuda</a>
             <div ngbDropdownMenu class="border border-success">
-                <a class="dropdown-item text-success" href="https://www.calameo.com/read/006318531c786008fd4fe">Manual de usuario</a>
+                <a class="dropdown-item text-success" href="https://www.calameo.com/read/006318531c786008fd4fe" target="_blank">Manual de usuario</a>
                 
             </div>
           </li>

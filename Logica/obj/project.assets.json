@@ -1087,19 +1087,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\palac\\.nuget\\packages\\": {}
+    "C:\\Users\\user\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\palac\\source\\Web\\FloridaImport\\Logica\\Logica.csproj",
+      "projectUniqueName": "C:\\Users\\user\\OneDrive\\Documentos\\Proyecto\\FloridaImport\\Logica\\Logica.csproj",
       "projectName": "Logica",
-      "projectPath": "C:\\Users\\palac\\source\\Web\\FloridaImport\\Logica\\Logica.csproj",
-      "packagesPath": "C:\\Users\\palac\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\palac\\source\\Web\\FloridaImport\\Logica\\obj\\",
+      "projectPath": "C:\\Users\\user\\OneDrive\\Documentos\\Proyecto\\FloridaImport\\Logica\\Logica.csproj",
+      "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\user\\OneDrive\\Documentos\\Proyecto\\FloridaImport\\Logica\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\palac\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1112,11 +1112,11 @@
       "frameworks": {
         "netstandard2.0": {
           "projectReferences": {
-            "C:\\Users\\palac\\source\\Web\\FloridaImport\\Datos\\Datos.csproj": {
-              "projectPath": "C:\\Users\\palac\\source\\Web\\FloridaImport\\Datos\\Datos.csproj"
+            "C:\\Users\\user\\OneDrive\\Documentos\\Proyecto\\FloridaImport\\Datos\\Datos.csproj": {
+              "projectPath": "C:\\Users\\user\\OneDrive\\Documentos\\Proyecto\\FloridaImport\\Datos\\Datos.csproj"
             },
-            "C:\\Users\\palac\\source\\Web\\FloridaImport\\Entity\\Entity.csproj": {
-              "projectPath": "C:\\Users\\palac\\source\\Web\\FloridaImport\\Entity\\Entity.csproj"
+            "C:\\Users\\user\\OneDrive\\Documentos\\Proyecto\\FloridaImport\\Entity\\Entity.csproj": {
+              "projectPath": "C:\\Users\\user\\OneDrive\\Documentos\\Proyecto\\FloridaImport\\Entity\\Entity.csproj"
             }
           }
         }
@@ -1147,7 +1147,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -1,68 +1,88 @@
-<div class="row">
-    <div class="col">
+<div *ngIf="rol!='Admin'; else Admin" class="text-center text-danger" id="noAdmin">
+  <h2><strong>VISTA PROTEGIDA</strong></h2>
+  <br />
+  <svg width="10em" height="10em" viewBox="0 0 16 16" class="bi bi-emoji-dizzy" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+    <path fill-rule="evenodd" d="M9.146 5.146a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708.708l-.647.646.647.646a.5.5 0 0 1-.708.708l-.646-.647-.646.647a.5.5 0 1 1-.708-.708l.647-.646-.647-.646a.5.5 0 0 1 0-.708zm-5 0a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 1 1 .708.708l-.647.646.647.646a.5.5 0 1 1-.708.708L5.5 7.207l-.646.647a.5.5 0 1 1-.708-.708l.647-.646-.647-.646a.5.5 0 0 1 0-.708z" />
+    <path d="M10 11a2 2 0 1 1-4 0 2 2 0 0 1 4 0z" />
+  </svg>
+  <br />
+  <br />
+  <br />
+  <h2>Lo sentimos, usted no está autorizado para ingresar a esta ventana.</h2>
+</div>
+
+<ng-template #Admin>
+
+  <div class="row paddingText">
+    <div class="espacioDerecha">
       <h5>
-        <svg class="bi bi-person-bounding-box" width="7em" height="7em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M1.5 1a.5.5 0 00-.5.5v3a.5.5 0 01-1 0v-3A1.5 1.5 0 011.5 0h3a.5.5 0 010 1h-3zM11 .5a.5.5 0 01.5-.5h3A1.5 1.5 0 0116 1.5v3a.5.5 0 01-1 0v-3a.5.5 0 00-.5-.5h-3a.5.5 0 01-.5-.5zM.5 11a.5.5 0 01.5.5v3a.5.5 0 00.5.5h3a.5.5 0 010 1h-3A1.5 1.5 0 010 14.5v-3a.5.5 0 01.5-.5zm15 0a.5.5 0 01.5.5v3a1.5 1.5 0 01-1.5 1.5h-3a.5.5 0 010-1h3a.5.5 0 00.5-.5v-3a.5.5 0 01.5-.5z" clip-rule="evenodd"/>
-            <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/>
-          </svg>
-        Datos del cliente
-      </h5> 
+        <svg width="7em" height="7em" viewBox="0 0 16 16" class="bi bi-person-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+          <path fill-rule="evenodd" d="M2 15v-1c0-1 1-4 6-4s6 3 6 4v1H2zm6-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+        </svg>
+      </h5>
       <div *ngIf="cliente.pais">
 
         <svg class="bi bi-geo-alt" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+          <path fill-rule="evenodd" d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
         </svg>
 
-        <label >&nbsp;&nbsp;{{cliente.pais}}&nbsp;&nbsp;</label>
-        <label >{{cliente.ciudad}}&nbsp;&nbsp;</label>
+        <label>&nbsp;&nbsp;{{cliente.pais}}&nbsp;&nbsp;</label>
+        <label>{{cliente.ciudad}}&nbsp;&nbsp;</label>
         <br>
         <svg class="bi bi-house-door" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M7.646 1.146a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 .146.354v7a.5.5 0 0 1-.5.5H9.5a.5.5 0 0 1-.5-.5v-4H7v4a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .146-.354l6-6zM2.5 7.707V14H6v-4a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v4h3.5V7.707L8 2.207l-5.5 5.5z"/>
-            <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
-          </svg>
-        <label >&nbsp;&nbsp;{{cliente.direccion}}&nbsp;&nbsp;</label>
-        <label >{{cliente.barrio}}&nbsp;&nbsp;</label>
+          <path fill-rule="evenodd" d="M7.646 1.146a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 .146.354v7a.5.5 0 0 1-.5.5H9.5a.5.5 0 0 1-.5-.5v-4H7v4a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .146-.354l6-6zM2.5 7.707V14H6v-4a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v4h3.5V7.707L8 2.207l-5.5 5.5z" />
+          <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
+        </svg>
+        <label>&nbsp;&nbsp;{{cliente.direccion}}&nbsp;&nbsp;</label>
+        <label>{{cliente.barrio}}&nbsp;&nbsp;</label>
+      </div>
     </div>
-    </div>   
     <div class="col padding">
       <div class="row">
         <div>
           <h2 class="title text-success">
-            Informacion del usuario:
+            <strong>INFORMACIÓN</strong>
           </h2>
-          <form >
+          <br>
+          <form>
             <div class="form-group">
-              <label>Identificacion: &nbsp;&nbsp;&nbsp;&nbsp;</label>
-        <label>{{cliente.identificacion}}</label>
+              <label><strong>Identificacion: &nbsp;&nbsp;&nbsp;&nbsp;</strong></label>
+              <label>{{cliente.identificacion}}</label>
             </div>
-          <div class="row"> 
-            <div class="form-group col">
-              <label>Nombre</label>
-              <input type="text" name="nombre" [(ngModel)]="cliente.nombre" class="form-control" disabled/>
+            <div class="row">
+              <div class="form-group col">
+                <label><strong>Nombre</strong></label>
+                <input type="text" name="nombre" [(ngModel)]="cliente.nombre" class="form-control" disabled />
+              </div>
+              <div class="form-group col">
+                <label><strong>Apellido</strong></label>
+                <input type="text" name="apellido" [(ngModel)]="cliente.apellido" class="form-control" disabled />
+              </div>
             </div>
-            <div class="form-group col">
-              <label>Apellido</label>
-              <input type="text" name="apellido" [(ngModel)]="cliente.apellido" class="form-control" disabled/>
+            <div class="row">
+              <div class="form-group col">
+                <label><strong>Tipo de persona</strong></label>
+                <input type="text" name="tipoPersona" [(ngModel)]="cliente.tipoPersona" class="form-control" disabled />
+              </div>
+              <div class="form-group col">
+                <label><strong>Correo</strong></label>
+                <input type="email" name="correo" [(ngModel)]="cliente.correo" class="form-control" disabled />
+              </div>
             </div>
-          </div>
-          <div class="row"> 
-            <div class="form-group col">
-              <label>Tipo de persona</label>
-              <input type="text" name="tipoPersona" [(ngModel)]="cliente.tipoPersona" class="form-control" disabled/>
-            </div>
-            <div class="form-group col">
-              <label>Correo</label>
-              <input type="email" name="correo" [(ngModel)]="cliente.correo" class="form-control" disabled/>
-            </div>
-          </div>
             <div class="text-center">
-              <button class="btn btn-success mr-1" (click)="confDelete()">Eliminar</button>
-              <button class="btn btn-secondary mr-1" type="reset">Cancelar</button>
+              <button class="btn btn-success mr-1" (click)="delete()">Eliminar</button>
             </div>
           </form>
         </div>
-          
-          </div>
+
       </div>
+    </div>
   </div>
+
+</ng-template>
+  <footer class="footer">
+    <p id="margen">&copy; Company 2017-2019</p>
+  </footer>
 

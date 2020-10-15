@@ -5,14 +5,15 @@
     <div class="col-md-4 offset-md-3 border-success padding justify-content-center" >
     
       <div class="header">
-        <h2 class="text-success title" >Registro de países</h2>
+        <h2 class="text-success title text-center" ><strong>REGISTRO DE PAÍSES</strong> </h2>
       </div>
     <form [formGroup]="formGroup" id="Padding">
     
     <div class="form-group">
-        <label>Pais</label>
-        <input autocomplete="off" type="text" name="nombre" formControlName="nombre" class="form-control border border-success" 
-        placeholder="Nombre del pais" [ngClass]="{ 'is-invalid': control.nombre.errors && formGroup.get('nombre').touched}"/>
+      <br>
+        <br>
+        <input autocomplete="off" type="text" name="nombre" formControlName="nombre" class="form-control sinborde" 
+        placeholder="País" [ngClass]="{ 'is-invalid': control.nombre.errors && formGroup.get('nombre').touched}"/>
   
         <div *ngIf="control.nombre.errors" class="invalid-feedback">
   
@@ -22,12 +23,12 @@
      </div>
   
      <div class="form-group">
-      <label>Ciudad</label>
+      <br>
       <div class="input-group">
-        <input type="text" name="nombreCiudad" id="nombreCiudad" formControlName="nombreCiudad" class="form-control border border-success col" 
-        placeholder="Nombre" [ngClass]="{ 'is-invalid': control.nombreCiudad.errors && formGroup.get('nombreCiudad').touched}"/>
+        <input type="text" name="nombreCiudad" id="nombreCiudad" formControlName="nombreCiudad" class="form-control sinborde col" 
+        placeholder="Ciudad" [ngClass]="{ 'is-invalid': control.nombreCiudad.errors && formGroup.get('nombreCiudad').touched}"/>
         <div class="input-group-append">
-            <button  class="btn btn-white border border-success text-success" (click)="addCiudad()"  [disabled]="formGroup.invalid">
+            <button  class="btn btn-white sinborde" (click)="addCiudad()"  [disabled]="formGroup.invalid">
               <svg class="bi bi-plus" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M8 3.5a.5.5 0 01.5.5v4a.5.5 0 01-.5.5H4a.5.5 0 010-1h3.5V4a.5.5 0 01.5-.5z" clip-rule="evenodd"/>
                 <path fill-rule="evenodd" d="M7.5 8a.5.5 0 01.5-.5h4a.5.5 0 010 1H8.5V12a.5.5 0 01-1 0V8z" clip-rule="evenodd"/>
@@ -42,7 +43,7 @@
   
     <div class="text-center">
         
-    <button class="btn btn-success mr-1" [disabled]="formGroup.invalid" (click)="post()">Guardar</button>
+    <button class="btn btn-success mr-1" [disabled]="formGroup.invalid" (click)="onSubmit()">Guardar</button>
     
     <button class="btn btn-secondary" type="reset" (click)="cancel()">Cancel</button>
     

@@ -1,131 +1,144 @@
-<div class="container">
+<div *ngIf="rol=='Clien' || rol=='Prove'; else Admin" class="text-center text-danger" id="noAdmin">
+  <h2><strong>VISTA PROTEGIDA</strong></h2>
+  <br />
+  <svg width="10em" height="10em" viewBox="0 0 16 16" class="bi bi-emoji-dizzy" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+    <path fill-rule="evenodd" d="M9.146 5.146a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708.708l-.647.646.647.646a.5.5 0 0 1-.708.708l-.646-.647-.646.647a.5.5 0 1 1-.708-.708l.647-.646-.647-.646a.5.5 0 0 1 0-.708zm-5 0a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 1 1 .708.708l-.647.646.647.646a.5.5 0 1 1-.708.708L5.5 7.207l-.646.647a.5.5 0 1 1-.708-.708l.647-.646-.647-.646a.5.5 0 0 1 0-.708z" />
+    <path d="M10 11a2 2 0 1 1-4 0 2 2 0 0 1 4 0z" />
+  </svg>
+  <br />
+  <br />
+  <br />
+  <h2>Lo sentimos, usted no está autorizado para ingresar a esta ventana.</h2>
+</div>
+
+<ng-template #Admin>
+
+  <div class="container">
 
     <div class="row">
-    
-    <div class="col-md-6 offset-md-3">
-    
-    <h2 class="text-success" id="PaddingText">Registro de proveedores</h2>
-    
-    <form [formGroup]="formGroup" id="Padding">
-    
-    <div class="row">
-    <div class="form-group col">
-    
-    <label>Nombre / Razón social</label>
-    
-    <input type="text" name="nombre" formControlName="nombre" class="form-control border border-success" 
-    placeholder="Nombre" [ngClass]="{ 'is-invalid': control.nombre.errors && formGroup.get('nombre').touched}"
-  
-    />
-    
-    <div *ngIf="control.nombre.errors" class="invalid-feedback">
-  
-      <div *ngIf="control.nombre.errors.required">Se require el nombre</div>
-      
-    </div>
-    </div>
-    
-    <div class="form-group col">
-    
-        <label>Identificación / NIT</label>
-        
-        <input type="text" name="identificacion" formControlName="identificacion" class="form-control border border-success" 
-        placeholder="Identificación / NIT" [ngClass]="{ 'is-invalid': control.identificacion.errors && formGroup.get('identificacion').touched}"/>
-      
-        <div *ngIf="control.identificacion.errors" class="invalid-feedback">
-      
-            <div *ngIf="control.identificacion.errors.required">Se require identificación</div>
-            <div *ngIf="control.identificacion.errors.pattern">La identificación o NIT debe ser numérica.</div>
-            
-          </div>
-        
-        </div>
-  
-  </div>
-    <div class="row">
-    
-        <div class="form-group col">
-    
-            <label>Descripción</label>
-        
-            <textarea type="text" name="descripcion" formControlName="descripcion" class="form-control border border-success" 
-            placeholder="Descripción..." [ngClass]="{ 'is-invalid': control.descripcion.errors && formGroup.get('descripcion').touched}"></textarea>
-        
-            <div *ngIf="control.descripcion.errors" class="invalid-feedback">
-        
-              <div *ngIf="control.descripcion.errors.required">Se require la descripción</div>
-              
+
+      <div class="col-md-6 offset-md-3">
+
+        <h2 class="text-success title text-center" id="PaddingText"><strong>REGISTRO DE PROVEEDORES</strong></h2>
+
+        <form [formGroup]="formGroup" id="Padding">
+
+          <div class="row">
+            <div class="form-group col">
+
+              <br>
+              <input type="text" name="nombre" formControlName="nombre" class="form-control  sinborde"
+                     placeholder="Nombre" [ngClass]="{ 'is-invalid': control.nombre.errors && formGroup.get('nombre').touched}" />
+
+              <div *ngIf="control.nombre.errors" class="invalid-feedback">
+
+                <div *ngIf="control.nombre.errors.required">Se require el nombre</div>
+
+              </div>
             </div>
-          
+
+            <div class="form-group col">
+
+              <br>
+              <input type="text" name="identificacion" formControlName="identificacion" class="form-control sinborde"
+                     placeholder="Identificación / NIT" [ngClass]="{ 'is-invalid': control.identificacion.errors && formGroup.get('identificacion').touched}" />
+
+              <div *ngIf="control.identificacion.errors" class="invalid-feedback">
+
+                <div *ngIf="control.identificacion.errors.required">Se require identificación</div>
+                <div *ngIf="control.identificacion.errors.pattern">La identificación o NIT debe ser numérica.</div>
+
+              </div>
+
+            </div>
+
           </div>
+          <div class="row">
+
+            <div class="form-group col">
+              <br>
+
+              <textarea type="text" name="descripcion" formControlName="descripcion" class="form-control sinborde"
+                        placeholder="Descripción..." [ngClass]="{ 'is-invalid': control.descripcion.errors && formGroup.get('descripcion').touched}"></textarea>
+
+              <div *ngIf="control.descripcion.errors" class="invalid-feedback">
+
+                <div *ngIf="control.descripcion.errors.required">Se require la descripción</div>
+
+              </div>
+
+            </div>
+          </div>
+
+          <div class="form-group">
+
+            <br>
+            <input type="email" name="correo" formControlName="correo" class="form-control sinborde"
+                   placeholder="email@example.com" [ngClass]="{ 'is-invalid': control.correo.errors && formGroup.get('correo').touched}" />
+
+            <div *ngIf="control.correo.errors" class="invalid-feedback">
+
+              <div *ngIf="control.correo.errors.required">Se require el correo</div>
+              <div *ngIf="control.correo.errors.email">
+                {{control.correo.value}} No corresponde a un correo electrónico. Por favor,
+                asegúrese de digitar bien su correo.
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+            <br>
+            <div class="input-group">
+              <input type="{{tipo}}" name="contrasena" formControlName="contrasena" class="form-control sinborde col"
+                     placeholder="Contraseña" [ngClass]="{ 'is-invalid': control.contrasena.errors && formGroup.get('contrasena').touched}" />
+              <div class="input-group-append">
+                <button class="btn btn-white sinborde" width="1em" height="1.5em" (click)="ver()">
+                  <div *ngIf="verCon==false">
+                    <svg class="bi bi-eye " width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.134 13.134 0 001.66 2.043C4.12 11.332 5.88 12.5 8 12.5c2.12 0 3.879-1.168 5.168-2.457A13.134 13.134 0 0014.828 8a13.133 13.133 0 00-1.66-2.043C11.879 4.668 10.119 3.5 8 3.5c-2.12 0-3.879 1.168-5.168 2.457A13.133 13.133 0 001.172 8z" clip-rule="evenodd" />
+                      <path fill-rule="evenodd" d="M8 5.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM4.5 8a3.5 3.5 0 117 0 3.5 3.5 0 01-7 0z" clip-rule="evenodd" />
+                    </svg>
+                  </div>
+                  <div *ngIf="verCon==true">
+                    <svg class="bi bi-eye-slash " width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 00-2.79.588l.77.771A5.944 5.944 0 018 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0114.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z" />
+                      <path d="M11.297 9.176a3.5 3.5 0 00-4.474-4.474l.823.823a2.5 2.5 0 012.829 2.829l.822.822zm-2.943 1.299l.822.822a3.5 3.5 0 01-4.474-4.474l.823.823a2.5 2.5 0 002.829 2.829z" />
+                      <path d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 001.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 018 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709z" />
+                      <path fill-rule="evenodd" d="M13.646 14.354l-12-12 .708-.708 12 12-.708.708z" clip-rule="evenodd" />
+                    </svg>
+                  </div>
+                </button>
+              </div>
+              <div *ngIf="control.contrasena.errors" class="invalid-feedback">
+                <div *ngIf="control.contrasena.errors.required">Se require la contraseña</div>
+                <div *ngIf="control.contrasena.errors.minlength">La contraseña debe contener mínimo 8 caracteres</div>
+                <div *ngIf="control.contrasena.errors.maxlength">La contraseña debe contener máximo 20 caracteres</div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="text-center">
+
+            <button class="btn btn-success mr-1" (click)="onSubmit()" [disabled]="formGroup.invalid">Registrar</button>
+
+            <button class="btn btn-secondary" type="reset">Cancel</button>
+
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+
   </div>
-    
-    <div class="form-group">
-    
-        <label>Correo</label>
-        
-        <input type="email" name="correo" formControlName="correo" class="form-control border border-success" 
-        placeholder="email@example.com" [ngClass]="{ 'is-invalid': control.correo.errors && formGroup.get('correo').touched}"/>
-  
-          <div *ngIf="control.correo.errors" class="invalid-feedback">
-  
-            <div *ngIf="control.correo.errors.required">Se require el correo</div>
-            <div *ngIf="control.correo.errors.email">{{control.correo.value}} No corresponde a un correo electrónico. Por favor, 
-              asegúrese de digitar bien su correo.</div>
-  
-          </div>
-        
-     </div>
-  
-     <div class="form-group">
-    
-      <label>Contraseña</label>
-      <div class="input-group">
-      <input type="{{tipo}}" name="contrasena" formControlName="contrasena" class="form-control border border-success col" 
-      placeholder="Contraseña" [ngClass]="{ 'is-invalid': control.contrasena.errors && formGroup.get('contrasena').touched}"/>
-      <div class="input-group-append">
-      <button class="btn btn-white border border-success" width="1em" height="1.5em" (click)="ver()">
-        <div *ngIf="verCon==false">
-          <svg class="bi bi-eye" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.134 13.134 0 001.66 2.043C4.12 11.332 5.88 12.5 8 12.5c2.12 0 3.879-1.168 5.168-2.457A13.134 13.134 0 0014.828 8a13.133 13.133 0 00-1.66-2.043C11.879 4.668 10.119 3.5 8 3.5c-2.12 0-3.879 1.168-5.168 2.457A13.133 13.133 0 001.172 8z" clip-rule="evenodd"/>
-            <path fill-rule="evenodd" d="M8 5.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM4.5 8a3.5 3.5 0 117 0 3.5 3.5 0 01-7 0z" clip-rule="evenodd"/>
-          </svg>
-        </div>
-        <div *ngIf="verCon==true">
-          <svg class="bi bi-eye-slash" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 00-2.79.588l.77.771A5.944 5.944 0 018 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0114.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z"/>
-            <path d="M11.297 9.176a3.5 3.5 0 00-4.474-4.474l.823.823a2.5 2.5 0 012.829 2.829l.822.822zm-2.943 1.299l.822.822a3.5 3.5 0 01-4.474-4.474l.823.823a2.5 2.5 0 002.829 2.829z"/>
-            <path d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 001.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 018 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709z"/>
-            <path fill-rule="evenodd" d="M13.646 14.354l-12-12 .708-.708 12 12-.708.708z" clip-rule="evenodd"/>
-          </svg>
-        </div>
-      </button>
-      </div>
-      <div *ngIf="control.contrasena.errors" class="invalid-feedback">
-        <div *ngIf="control.contrasena.errors.required">Se require la contraseña</div>
-        <div *ngIf="control.contrasena.errors.minlength">La contraseña debe contener mínimo 8 caracteres</div>
-        <div *ngIf="control.contrasena.errors.maxlength">La contraseña debe contener máximo 20 caracteres</div>
-      </div>
-      </div>
-      
-   </div>
-  
-    <div class="text-center">
-        
-    <button class="btn btn-success mr-1"(click)="onSubmit()" [disabled]="formGroup.invalid">Registrar</button>
-    
-    <button class="btn btn-secondary" type="reset">Cancel</button>
-    
-    </div>
-    
-    </form>
-    
-    </div>
-    
-    </div>
-    
-    </div>
-  
-    <footer class="container">
-      <p>&copy; Company 2017-2019</p>
-    </footer>
+
+</ng-template>
+
+  <footer class="footer">
+    <p id="margen">&copy; Company 2017-2019</p>
+  </footer>

@@ -17,23 +17,26 @@ export class ProductoRegistroComponent implements OnInit {
   formGroup: FormGroup;
   producto:  Producto;
   url: any;
+  rol: string;
   imageURL: string;
 
   constructor(private productoService: ProductoService, private formBuilder: FormBuilder, 
   private modalService: NgbModal, private storage: AngularFireStorage) { }
 
   ngOnInit() {
-    this.buildForm();
+    this.rol = sessionStorage.getItem('User');
+    if (this.rol == "Admin") {
+      this.buildForm();
+    }
   }
 
   private buildForm(){
     this.producto = new Producto()
     this.producto.nombre = '';
     this.producto.descripcion = '';
-    this.producto.cantidad = 0;
-    this.producto.precio = 0;
     this.producto.proveedor = '';
     this.producto.tipo = '';
+    this.producto.imagen = '';
 
     this.formGroup = this.formBuilder.group({
       nombre: [this.producto.nombre, Validators.required],
@@ -41,7 +44,8 @@ export class ProductoRegistroComponent implements OnInit {
       cantidad: [this.producto.cantidad, [Validators.required, Validators.minLength(1)]],
       precio: [this.producto.precio, [Validators.required, Validators.minLength(100)]],
       proveedor: [this.producto.proveedor, Validators.required],
-      tipo: [this.producto.tipo, Validators.required]
+      tipo: [this.producto.tipo, Validators.required],
+      imagen: ['', Validators.required]
     });
   }
 
@@ -61,6 +65,7 @@ export class ProductoRegistroComponent implements OnInit {
 
     this.producto = this.formGroup.value;
     this.producto.imagen = this.imageURL;
+    console.log(this.producto.imagen);
     this.productoService.post(this.producto).subscribe(p => {
       console.log(p);
       if (p != null) {
@@ -112,6 +117,7 @@ export class ProductoRegistroComponent implements OnInit {
     task.then(() => {
       refs.getDownloadURL().subscribe(imagenUrl => {
         this.imageURL = imagenUrl;
+        console.log(this.imageURL);
       });
     });
 

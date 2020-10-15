@@ -57,7 +57,8 @@ namespace floridaimportdotnet.Controllers
                 Cantidad = productoInput.Cantidad,
                 Precio = productoInput.Precio,
                 Proveedor = productoInput.Proveedor,
-                Tipo = productoInput.Tipo
+                Tipo = productoInput.Tipo,
+                Imagen = productoInput.Imagen
             };
 
             return producto;

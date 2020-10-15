@@ -4,16 +4,16 @@
     
     <div class="col-md-6 offset-md-3">
     
-    <h2 class="text-success PaddingText">Registro de Productos</h2>
+    <h2 class="text-success text-center PaddingText"><strong>REGISTRO DE PRODUCTOS DEL PROVEEDOR</strong></h2>
     
     <form [formGroup]="formGroup" id="Padding">
     
     <div class="row">
     <div class="form-group col">
+
+      <br>
     
-    <label>Nombre</label>
-    
-    <input autocomplete="off" type="text" name="nombre" formControlName="nombre" class="form-control border border-success" 
+    <input autocomplete="off" type="text" name="nombre" formControlName="nombre" class="form-control sinborde" 
     placeholder="Nombre" [ngClass]="{ 'is-invalid': control.nombre.errors && formGroup.get('nombre').touched}"
   
     />
@@ -27,9 +27,9 @@
     
     <div class="form-group col">
     
-      <label>Descripción</label>
+      <br>
   
-      <textarea type="text" name="descripcion" formControlName="descripcion" class="form-control border border-success" 
+      <textarea type="text" name="descripcion" formControlName="descripcion" class="form-control sinborde" 
       placeholder="Descripción..." [ngClass]="{ 'is-invalid': control.descripcion.errors && formGroup.get('descripcion').touched}"></textarea>
   
       <div *ngIf="control.descripcion.errors" class="invalid-feedback">
@@ -46,9 +46,9 @@
     
       <div class="form-group col">
     
-        <label>Precio</label>
+        <br>
         
-        <input type="number" name="precio" formControlName="precio" class="form-control border border-success" 
+        <input type="number" name="precio" formControlName="precio" class="form-control sinborde" 
         placeholder="Precio" [ngClass]="{ 'is-invalid': control.precio.errors && formGroup.get('precio').touched}"/>
   
           <div *ngIf="control.precio.errors" class="invalid-feedback">
@@ -59,10 +59,12 @@
      </div>
      <div class="form-group col">
   
-        <label>Tipo de producto</label>
+        <br>
         
-        <select name="tipo" class="form-control border border-success" formControlName="tipo"
+        <select name="tipo" class="form-control sinborde" formControlName="tipo"
         [ngClass]="{ 'is-invalid': control.tipo.errors && formGroup.get('tipo').touched}">
+
+          <option value="">Tipo de fruta</option>
       
           <option value="Fruta">Fruta</option>
       
@@ -70,18 +72,18 @@
   
           <option value="Hortaliza">Hortaliza</option>
       
-          <div *ngIf="control.tipo.errors" class="invalid-feedback">
-        
-            <div *ngIf="control.tipo.errors.required">Se require el tipo de producto.</div>
-            
-          </div>
-      
         </select>
+
+        <div *ngIf="control.tipo.errors" class="invalid-feedback">
+        
+          <div *ngIf="control.tipo.errors.required">Se require el tipo de producto.</div>
+          
+        </div>
         
         </div>
   
   </div>
- 
+  <br>
   
     <div class="text-center">
         
@@ -99,6 +101,6 @@
     
     </div>
   
-    <footer class="container">
-      <p>&copy; Company 2017-2019</p>
+    <footer class="footer">
+      <p id="margen">&copy; Company 2017-2019</p>
     </footer>

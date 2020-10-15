@@ -10,9 +10,11 @@ namespace Datos
     {
         private readonly SqlConnection _connection;
         private readonly List<Proveedor> _proveedores = new List<Proveedor>();
+        private readonly ProductoProveedorRepository productos;
         public ProveedorRepository(ConnectionManager connection)
         {
             _connection = connection._conexion;
+            productos = new ProductoProveedorRepository(connection);
         }
         public void Guardar(Proveedor proveedor)
         {
@@ -166,6 +168,7 @@ namespace Datos
         {
             using (var command = _connection.CreateCommand())
             {
+                productos.EliminarProductos(proveedor.Identificacion);
                 command.CommandText = "Delete from proveedor where Identificacion=@Identificacion";
                 command.Parameters.AddWithValue("@Identificacion", proveedor.Identificacion);
                 command.ExecuteNonQuery();

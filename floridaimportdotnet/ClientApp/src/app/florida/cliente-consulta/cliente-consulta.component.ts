@@ -3,6 +3,8 @@ import { Cliente } from '../models/cliente';
 import { ClienteService } from './../../services/cliente.service';
 import {Observable, of} from 'rxjs';
 import { SignalRService } from 'src/app/services/signal-r.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AlertModalEliminarComponent } from '../../@base/alert-modal-eliminar/alert-modal-eliminar.component';
 
 @Component({
   selector: 'app-cliente-consulta',
@@ -13,10 +15,17 @@ export class ClienteConsultaComponent implements OnInit {
 
   clientes : Cliente[];
   searchText:string;
-  constructor(private clienteServicio: ClienteService, private signalRService: SignalRService) { }
+  rol: string;
+  constructor(private clienteServicio: ClienteService,
+    private signalRService: SignalRService,
+    private modalService: NgbModal) { }
 
   ngOnInit() {
-    this.get();
+    this.rol = sessionStorage.getItem('User');
+
+    if (this.rol == "Admin") {
+      this.get();
+    }
   }
 
   get(){

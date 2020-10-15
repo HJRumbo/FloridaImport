@@ -119,31 +119,26 @@ namespace Datos
             return ciudad;
         }
 
-        /*
-
-        public void Modificar( Producto producto)
+        public void Modificar( Pais pais)
         {
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = "update producto set nombre=@Nombre, Descripcion=@Descripcion, Cantidad=@Cantidad, Precio=@Precio, Proveedor=@Proveedor where codigo=@codigo";
-                command.Parameters.AddWithValue("@Codigo", producto.Codigo);
-                command.Parameters.AddWithValue("@Nombre", producto.Nombre);
-                command.Parameters.AddWithValue("@Descripcion", producto.Descripcion);
-                command.Parameters.AddWithValue("@Cantidad", producto.Cantidad);
-                command.Parameters.AddWithValue("@Precio", producto.Precio);
-                command.Parameters.AddWithValue("@Proveedor", producto.Proveedor);
+                command.CommandText = "update pais set nombre=@Nombre where nombre=@Nombre";
+                command.Parameters.AddWithValue("@Nombre", pais.Nombre);
                 command.ExecuteNonQuery();
             }
         }
 
-        public void Eliminar(Producto producto)
+        public void Eliminar(Pais pais)
         {
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = "Delete from producto where codigo=@codigo";
-                command.Parameters.AddWithValue("@codigo", producto.Codigo);
+                command.CommandText = "Delete from ciudad where codPais=@codigoPais";
+                command.Parameters.AddWithValue("@codigoPais", pais.Codigo);
+                command.CommandText = "Delete from Pais where Codigo=@codigo";
+                command.Parameters.AddWithValue("@codigo", pais.Codigo);
                 command.ExecuteNonQuery();
             }
-        }*/
+        }
     }
 }

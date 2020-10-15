@@ -26,7 +26,9 @@ export class PedidoCosultaComponent implements OnInit {
   codigoPe: number;
   nocamb: boolean;
   select: string;
-  constructor(private pedidoServicio: PedidoService, private clienteServicio: ClienteService, private modalService: NgbModal) { }
+  mostrar: boolean;
+  constructor(private pedidoServicio: PedidoService, private clienteServicio: ClienteService, 
+    private modalService: NgbModal) { }
 
   ngOnInit() {
     this.cambEsta = false;
@@ -36,6 +38,7 @@ export class PedidoCosultaComponent implements OnInit {
     this.rol = sessionStorage.getItem('User');
     if(this.rol=="Clien"){
       this.getCliente();
+      this.mostrar = false;
     }else{
       if(this.rol=="Admin"){
         this.getAdmin();
@@ -75,6 +78,11 @@ pedidcosClient(id, allPedidos){
   allPedidos.forEach(element => {
     if(element.idCliente === id){
       this.pedidos.push(element);
+      if (this.pedidos != null) {
+        this.mostrar = true;
+      } else {
+        this.mostrar = false;
+      }
     }
   });
 }

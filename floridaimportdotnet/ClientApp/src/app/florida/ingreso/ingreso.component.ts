@@ -9,6 +9,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { first } from 'rxjs/operators';
 import { Proveedor } from '../models/proveedor';
 import { ProveedorService } from 'src/app/services/proveedor.service';
+import Swal from 'sweetalert2';
 
 interface login{
   correo : string;
@@ -36,6 +37,7 @@ export class IngresoComponent implements OnInit {
   searchText:string;
   proveedor: Proveedor;
   proveedores: Proveedor[];
+    rol: string;
   constructor(private clienteServicio: ClienteService, 
     private proveedorServicio: ProveedorService,
     private formBuilder: FormBuilder, 
@@ -51,12 +53,16 @@ export class IngresoComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.buildForm();
-    this.login = {correo : "", contrasena : ""}
-    this.verCon=false;
-    this.tipo="password";
+    this.rol = sessionStorage.getItem('User');
 
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    if (this.rol == null) {
+      this.buildForm();
+      this.login = { correo: "", contrasena: "" }
+      this.verCon = false;
+      this.tipo = "password";
+
+      this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    }
   }
 
   private buildForm(){
@@ -104,7 +110,6 @@ export class IngresoComponent implements OnInit {
             sessionStorage.setItem("Correo" , cliente.correo);
         }else{
           
-          alert("entró");
           console.log('Contraseña incorrecta, la contraseña de no coincide con el correo '+
           cliente.correo);
           this.mensaje(cliente.correo, 'No Contraseña');
@@ -147,18 +152,26 @@ export class IngresoComponent implements OnInit {
 
   mensaje(correo, mc){
 
-    const messageBox = this.modalService.open(AlertModalComponent)
-
     if(mc==='No Correo'){
 
-        messageBox.componentInstance.title = "Resultado del ingreso.";
-        messageBox.componentInstance.message = 'El usuario con el correo '+
-        correo+' no se encuentra registrado';
+        Swal.fire({
+          icon: 'error',
+          title: 'Resultado del ingreso...',
+          text: 'El usuario con el correo '+
+          correo+' no se encuentra registrado',
+          confirmButtonColor: '#22bb33',
+        })
         
     }else{
-      messageBox.componentInstance.title = "Resultado del ingreso.";
-      messageBox.componentInstance.message = 'Contraseña incorrecta, la contraseña no coincide con el correo '+
-      correo;
+
+      Swal.fire({
+        icon: 'error',
+        title: 'Resultado del ingreso...',
+        text: 'Contraseña incorrecta, la contraseña no coincide con el correo '+
+        correo,
+        confirmButtonColor: '#22bb33',
+      })
+
     }
   }
 
@@ -194,5 +207,12 @@ export class IngresoComponent implements OnInit {
           modalRef.componentInstance.message = error.error;
           this.loading = false;
         });
+  }
+
+  salir() {
+    sessionStorage.removeItem('User');
+    sessionStorage.removeItem('Nom');
+    sessionStorage.removeItem('Correo');
+    window.location.href = "https://localhost:5001/";//"https://floridainternationalimport.azurewebsites.net";
   }
 }

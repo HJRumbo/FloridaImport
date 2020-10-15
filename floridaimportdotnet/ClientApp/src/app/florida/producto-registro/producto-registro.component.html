@@ -1,145 +1,171 @@
-<div class="container">
+<div *ngIf="rol!='Admin'; else Admin" class="text-center text-danger" id="noAdmin">
+  <h2><strong>VISTA PROTEGIDA</strong></h2>
+  <br />
+  <svg width="10em" height="10em" viewBox="0 0 16 16" class="bi bi-emoji-dizzy" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+    <path fill-rule="evenodd" d="M9.146 5.146a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708.708l-.647.646.647.646a.5.5 0 0 1-.708.708l-.646-.647-.646.647a.5.5 0 1 1-.708-.708l.647-.646-.647-.646a.5.5 0 0 1 0-.708zm-5 0a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 1 1 .708.708l-.647.646.647.646a.5.5 0 1 1-.708.708L5.5 7.207l-.646.647a.5.5 0 1 1-.708-.708l.647-.646-.647-.646a.5.5 0 0 1 0-.708z" />
+    <path d="M10 11a2 2 0 1 1-4 0 2 2 0 0 1 4 0z" />
+  </svg>
+  <br />
+  <br />
+  <br />
+  <h2>Lo sentimos, usted no está autorizado para ingresar a esta ventana.</h2>
+</div>
+
+<ng-template #Admin>
+
+  <div class="container">
 
     <div class="row">
-    
-    <div class="col-md-6 offset-md-3">
-    
-    <h2 class="text-success PaddingText">Registro de Productos</h2>
-    
-    <form [formGroup]="formGroup" id="Padding">
-    
-    <div class="row">
-    <div class="form-group col">
-    
-    <label>Nombre</label>
-    
-    <input autocomplete="off" type="text" name="nombre" formControlName="nombre" class="form-control border border-success" 
-    placeholder="Nombre" [ngClass]="{ 'is-invalid': control.nombre.errors && formGroup.get('nombre').touched}"
-  
-    />
-    
-    <div *ngIf="control.nombre.errors" class="invalid-feedback">
-  
-      <div *ngIf="control.nombre.errors.required">Se require el nombre</div>
-      
-    </div>
-    </div>
-    
-    <div class="form-group col">
-    
-      <label>Descripción</label>
-  
-      <textarea type="text" name="descripcion" formControlName="descripcion" class="form-control border border-success" 
-      placeholder="Descripción..." [ngClass]="{ 'is-invalid': control.descripcion.errors && formGroup.get('descripcion').touched}"></textarea>
-  
-      <div *ngIf="control.descripcion.errors" class="invalid-feedback">
-  
-        <div *ngIf="control.descripcion.errors.required">Se require una descripción</div>
-        
-      </div>
-    
-    </div>
-  
-  </div>
-  <div class="form-group" >
-    <Label>Imágen</Label>
-    <br>
-    <input type="file" accept=".png, .jpg" (change)="onPhotoSelected($event)"/>
-  </div>
-    <div class="row">
-    <div class="form-group col">
-    
-      <label>Cantidad</label>
-      
-      <input type="number" name="cantidad" formControlName="cantidad" class="form-control border border-success" 
-      placeholder="Cantidad" [ngClass]="{ 'is-invalid': control.cantidad.errors && formGroup.get('cantidad').touched}"/>
-    
-      <div *ngIf="control.cantidad.errors" class="invalid-feedback">
-    
-          <div *ngIf="control.cantidad.errors.required">Se require la cantidad comprada</div>
-          <div *ngIf="control.cantidad.errors.minlength">La cantidad del producto debe ser mayor a cero</div>
-                    
-        </div>
-      
-      </div>
-    
-      <div class="form-group">
-    
-        <label>Precio</label>
-        
-        <input type="number" name="precio" formControlName="precio" class="form-control border border-success" 
-        placeholder="Precio" [ngClass]="{ 'is-invalid': control.precio.errors && formGroup.get('precio').touched}"/>
-  
-          <div *ngIf="control.precio.errors" class="invalid-feedback">
-  
-            <div *ngIf="control.precio.errors.required">Se require el precio del producto</div>
-            <div *ngIf="control.precio.errors.minlength">El precio debe ser mayor de 100 pesos</div>
+
+      <div class="col-md-6 offset-md-3">
+
+        <h2 class="text-success text-center PaddingText"><strong>REGISTRO DE PRODUCTOS</strong></h2>
+
+        <form [formGroup]="formGroup" id="Padding">
+
+          <div class="row">
+            <div class="form-group col">
+
+              <br>
+
+              <input autocomplete="off" type="text" name="nombre" formControlName="nombre" class="form-control sinborde"
+                     placeholder="Nombre" [ngClass]="{ 'is-invalid': control.nombre.errors && formGroup.get('nombre').touched}" />
+
+              <div *ngIf="control.nombre.errors" class="invalid-feedback">
+
+                <div *ngIf="control.nombre.errors.required">Se require el nombre</div>
+
+              </div>
+            </div>
+
+            <div class="form-group col">
+
+              <br>
+
+              <textarea type="text" name="descripcion" formControlName="descripcion" class="form-control sinborde"
+                        placeholder="Descripción..." [ngClass]="{ 'is-invalid': control.descripcion.errors && formGroup.get('descripcion').touched}"></textarea>
+
+              <div *ngIf="control.descripcion.errors" class="invalid-feedback">
+
+                <div *ngIf="control.descripcion.errors.required">Se require una descripción</div>
+
+              </div>
+
+            </div>
+
           </div>
-     </div>
-  </div>
-  
-  <div class="row">
-    <div class="form-group col">
-  
-      <label>Tipo de producto</label>
-      
-      <select name="tipo" class="form-control border border-success" formControlName="tipo"
-      [ngClass]="{ 'is-invalid': control.tipo.errors && formGroup.get('tipo').touched}">
-    
-        <option value="Fruta">Fruta</option>
-    
-        <option value="Verdura">Verdura</option>
+          <div class="form-group">
+            <Label>Imágen</Label>
+            <br>
+            <input formControlName="imagen" type="file" accept=".png, .jpg" (change)="onPhotoSelected($event)"
+                   [ngClass]="{ 'is-invalid': control.imagen.errors && formGroup.get('imagen').touched}" />
+            <div *ngIf="control.imagen.errors" class="invalid-feedback">
 
-        <option value="Hortaliza">Hortaliza</option>
-    
-        <div *ngIf="control.tipo.errors" class="invalid-feedback">
-      
-          <div *ngIf="control.tipo.errors.required">Se require el tipo de producto.</div>
-          
-        </div>
-    
-      </select>
-      
+              <div *ngIf="control.imagen.errors.required">Se require una imágen para el producto</div>
+
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="form-group col">
+
+              <br>
+
+              <input type="number" name="cantidad" formControlName="cantidad" class="form-control sinborde"
+                     placeholder="Cantidad" [ngClass]="{ 'is-invalid': control.cantidad.errors && formGroup.get('cantidad').touched}" />
+
+              <div *ngIf="control.cantidad.errors" class="invalid-feedback">
+
+                <div *ngIf="control.cantidad.errors.required">Se require la cantidad comprada</div>
+                <div *ngIf="control.cantidad.errors.minlength">La cantidad del producto debe ser mayor a cero</div>
+
+              </div>
+
+            </div>
+
+            <div class="form-group">
+
+              <br>
+
+              <input type="number" name="precio" formControlName="precio" class="form-control sinborde"
+                     placeholder="Precio" [ngClass]="{ 'is-invalid': control.precio.errors && formGroup.get('precio').touched}" />
+
+              <div *ngIf="control.precio.errors" class="invalid-feedback">
+
+                <div *ngIf="control.precio.errors.required">Se require el precio del producto</div>
+                <div *ngIf="control.precio.errors.minlength">El precio debe ser mayor de 100 pesos</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col">
+
+              <br>
+
+              <select name="tipo" class="form-control sinborde" formControlName="tipo"
+                      [ngClass]="{ 'is-invalid': control.tipo.errors && formGroup.get('tipo').touched}">
+
+                <option value="" selected>Tipo de producto</option>
+
+                <option value="Fruta">Fruta</option>
+
+                <option value="Verdura">Verdura</option>
+
+                <option value="Hortaliza">Hortaliza</option>
+
+
+
+              </select>
+              <div *ngIf="control.tipo.errors" class="invalid-feedback">
+
+                <div *ngIf="control.tipo.errors.required">Se require el tipo de producto.</div>
+
+              </div>
+
+            </div>
+
+            <div class="form-group col">
+
+              <br>
+
+              <input type="text" name="proveedor" formControlName="proveedor" class="form-control sinborde"
+                     placeholder="Proveedor" [ngClass]="{ 'is-invalid': control.proveedor.errors && formGroup.get('proveedor').touched}" />
+
+              <div *ngIf="control.proveedor.errors" class="invalid-feedback">
+
+                <div *ngIf="control.proveedor.errors.required">Se require el proveedor</div>
+
+              </div>
+
+            </div>
+          </div>
+
+          <div class="text-center">
+
+            <button class="btn btn-success mr-1" (click)="onSubmit()" [disabled]="formGroup.invalid">Registrar</button>
+
+            <button class="btn btn-secondary" type="reset">Cancel</button>
+
+          </div>
+
+        </form>
+
       </div>
- 
-     <div class="form-group col">
-    
-      <label>Proveedor</label>
-      
-      <input type="text" name="proveedor" formControlName="proveedor" class="form-control border border-success" 
-      placeholder="Proveedor" [ngClass]="{ 'is-invalid': control.proveedor.errors && formGroup.get('proveedor').touched}"/>
-  
-        <div *ngIf="control.proveedor.errors" class="invalid-feedback">
-  
-          <div *ngIf="control.proveedor.errors.required">Se require el proveedor</div>
-          
-        </div>
-      
-   </div>
-  </div>
-  
-    <div class="text-center">
-        
-    <button class="btn btn-success mr-1"(click)="onSubmit()" [disabled]="formGroup.invalid">Registrar</button>
-    
-    <button class="btn btn-secondary" type="reset">Cancel</button>
-    
-    </div>
-    
-    </form>
-    
+
+      <div class="col card border border-success cardImg PaddingImgCard" *ngIf="url">
+        <label>Imágen seleccionada:</label>
+        <br>
+        <img [src]="url" height="100">
+      </div>
+
     </div>
 
-    <div class="col card border border-success cardImg PaddingImgCard" *ngIf="url">
-      <label>Imágen seleccionada:</label>
-      <br>
-      <img [src]="url" height="100">
-    </div>
-    
-    </div>
-    
-    </div>
-  
-    <footer class="container">
-      <p>&copy; Company 2017-2019</p>
-    </footer>
+  </div>
+
+</ng-template>
+
+  <footer class="footer">
+    <p id="margen">&copy; Company 2017-2019</p>
+  </footer>

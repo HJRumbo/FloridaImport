@@ -11,10 +11,17 @@ export class ProveedorConsultaComponent implements OnInit {
 
   proveedores : Proveedor[];
   searchText:string;
+    rol: string;
   constructor(private proveedorServicio: ProveedorService) { }
 
   ngOnInit() {
-    this.get();
+    this.rol = sessionStorage.getItem('User');
+
+    if (this.rol == "Admin") {
+
+      this.get();
+
+    }
   }
 
   get(){

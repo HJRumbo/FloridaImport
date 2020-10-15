@@ -11,10 +11,17 @@ export class ProductoConsultaComponent implements OnInit {
 
   productos: Producto[];
   searchText: string;
+  rol: string;
   constructor(private productoServicio: ProductoService) { }
 
   ngOnInit() {
-    this.get();
+    this.rol = sessionStorage.getItem('User');
+
+    if (this.rol == "Admin") {
+
+      this.get();
+
+    }
   }
 
   get(){

@@ -52,7 +52,61 @@ namespace Logica
             _conexion.Close();
             return pais;
         }
+
+        public string Modificar(Pais paisNuevo)
+        {
+            try
+            {
+                _conexion.Open();
+                var paisViejo = _repositorio.BuscarxNombre(paisNuevo.Nombre);
+                if (paisViejo != null)
+                {
+                    _repositorio.Modificar(paisNuevo);
+                    _conexion.Close();
+                    return ($"El registro {paisNuevo.Nombre} se ha modificado satisfactoriamente.");
+                }
+                else
+                {
+                    return ($"Lo sentimos, {paisNuevo.Nombre} no se encuentra registrada.");
+                }
+            }
+            catch (Exception e)
+            {
+
+                return $"Error de la Aplicación: {e.Message}";
+            }
+            finally { _conexion.Close(); }
+
+        }
+
+        public string Eliminar(string nombre)
+        {
+            try
+            {
+                _conexion.Open();
+                var pais = _repositorio.BuscarxNombre(nombre);
+                if (pais != null)
+                {
+                    _repositorio.Eliminar(pais);
+                    _conexion.Close();
+                    return ($"El registro {pais.Nombre} se ha eliminado satisfactoriamente.");
+                }
+                else
+                {
+                    return ($"Lo sentimos, {pais} no se encuentra registrada.");
+                }
+            }
+            catch (Exception e)
+            {
+
+                return $"Error de la Aplicación: {e.Message}";
+            }
+            finally { _conexion.Close(); }
+
+        }
     }
+
+
 
     public class GuardarPaisResponse 
     {

@@ -1,8 +1,8 @@
-<h2 class="text-success paddingText">Consultar detalles.</h2>
+<h2 class="text-success paddingText"><strong>DETALLES</strong></h2>
 
-    <div class="col-6">
+    <div class="col-6 paddingText">
     
-    <input [(ngModel)]="searchText" type="text" class="form-control" placeholder="Type to filter">
+    <input [(ngModel)]="searchText" type="text" class="form-control sinborde" placeholder="Filtrar">
     
     </div>
 
@@ -11,7 +11,7 @@
     
     <table class="table table-striped" *ngIf='list && list.length'>
     
-    <thead>
+    <thead class="thead-dark">
     
     <tr>
     
@@ -54,6 +54,6 @@
     </table>
 
     <hr>
-  <footer class="container">
-    <p>&copy; Company 2017-2019</p>
-  </footer>
+    <footer class="footer">
+        <p id="margen">&copy; Company 2017-2019</p>
+    </footer>

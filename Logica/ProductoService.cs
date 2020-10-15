@@ -20,6 +20,12 @@ namespace Logica
         {
             try
             {
+                if (producto.Precio<=0) {
+                    return new GuardarProductoResponse($"El precio debe ser mayor que cero");
+                }
+                if (producto.Cantidad<=0) {
+                    return new GuardarProductoResponse($"La cantidad debe ser mayor que cero");
+                }
                 _conexion.Open();
                 _repositorio.Guardar(producto);
                 _conexion.Close();

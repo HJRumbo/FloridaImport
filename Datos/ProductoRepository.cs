@@ -21,7 +21,7 @@ namespace Datos
                 command.CommandText = @"Insert Into Producto (Codigo,Nombre,
                 Descripcion, Cantidad, Precio,Proveedor, Tipo, Imagenes) 
                 values (NEXT VALUE FOR CodigoSequence,@Nombre,@Descripcion,
-                @Cantidad,@Precio, @Proveedor, @Tipo)";
+                @Cantidad,@Precio, @Proveedor, @Tipo, @Imagenes)";
                 command.Parameters.AddWithValue("@Nombre", producto.Nombre);
                 command.Parameters.AddWithValue("@Descripcion", producto.Descripcion);
                 command.Parameters.AddWithValue("@Cantidad", producto.Cantidad);
@@ -101,7 +101,7 @@ namespace Datos
             using (var command = _connection.CreateCommand())
             {
                 command.CommandText = "Delete from producto where codigo=@codigo";
-                command.Parameters.AddWithValue("@codigo", producto.Codigo);
+                command.Parameters.AddWithValue("@codigo", producto.Codigo.ToString());
                 command.ExecuteNonQuery();
             }
         }

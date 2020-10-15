@@ -1,0 +1,50 @@
+<h2 class="text-success paddingText text-uppercase"><strong> CIUDADES DE {{pais.nombre}}</strong></h2>
+
+<div class="row paddingText">
+
+    <div class="col-6">
+    
+    <input [(ngModel)]="searchText" type="text" class="form-control sinborde" placeholder="Filtrar">
+    
+    </div>
+    
+</div>
+    
+    <hr>
+    
+    <table class="table table-striped" *ngIf='pais.ciudades && pais.ciudades.length'>
+    
+    <thead class="thead-dark">
+    
+    <tr>
+    
+    <th scope="col">#</th>
+    
+    <th scope="col">Código</th>
+    
+    <th scope="col">Nombre </th>
+    
+    </tr>
+    
+    </thead>
+    
+    <tbody>
+    
+    <tr *ngFor="let ciudad of pais.ciudades; index as i ">
+    
+    <th scope="row">{{ i + 1 }}</th>
+    
+    <td>{{ ciudad.codigo }} </td>
+    
+    <td>{{ ciudad.nombre }}</td>
+
+    </tr>
+    
+    </tbody>
+    
+    </table>
+
+    <hr>
+    <footer class="footer">
+        <p id="margen">&copy; Company 2017-2019</p>
+    </footer>

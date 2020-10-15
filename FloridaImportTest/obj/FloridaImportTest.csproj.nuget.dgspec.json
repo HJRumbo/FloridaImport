@@ -1,0 +1,352 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\user\\OneDrive\\Documentos\\Proyecto\\FloridaImport\\FloridaImportTest\\FloridaImportTest.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\user\\OneDrive\\Documentos\\Proyecto\\FloridaImport\\Datos\\Datos.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\user\\OneDrive\\Documentos\\Proyecto\\FloridaImport\\Datos\\Datos.csproj",
+        "projectName": "Datos",
+        "projectPath": "C:\\Users\\user\\OneDrive\\Documentos\\Proyecto\\FloridaImport\\Datos\\Datos.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\user\\OneDrive\\Documentos\\Proyecto\\FloridaImport\\Datos\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {
+              "C:\\Users\\user\\OneDrive\\Documentos\\Proyecto\\FloridaImport\\Entity\\Entity.csproj": {
+                "projectPath": "C:\\Users\\user\\OneDrive\\Documentos\\Proyecto\\FloridaImport\\Entity\\Entity.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            },
+            "System.Collections": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\user\\OneDrive\\Documentos\\Proyecto\\FloridaImport\\Entity\\Entity.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\user\\OneDrive\\Documentos\\Proyecto\\FloridaImport\\Entity\\Entity.csproj",
+        "projectName": "Entity",
+        "projectPath": "C:\\Users\\user\\OneDrive\\Documentos\\Proyecto\\FloridaImport\\Entity\\Entity.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\user\\OneDrive\\Documentos\\Proyecto\\FloridaImport\\Entity\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\user\\OneDrive\\Documentos\\Proyecto\\FloridaImport\\FloridaImportdotnet\\FloridaImportdotnet.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\user\\OneDrive\\Documentos\\Proyecto\\FloridaImport\\FloridaImportdotnet\\FloridaImportdotnet.csproj",
+        "projectName": "FloridaImportdotnet",
+        "projectPath": "C:\\Users\\user\\OneDrive\\Documentos\\Proyecto\\FloridaImport\\FloridaImportdotnet\\FloridaImportdotnet.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\user\\OneDrive\\Documentos\\Proyecto\\FloridaImport\\FloridaImportdotnet\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "C:\\Users\\user\\OneDrive\\Documentos\\Proyecto\\FloridaImport\\Entity\\Entity.csproj": {
+                "projectPath": "C:\\Users\\user\\OneDrive\\Documentos\\Proyecto\\FloridaImport\\Entity\\Entity.csproj"
+              },
+              "C:\\Users\\user\\OneDrive\\Documentos\\Proyecto\\FloridaImport\\Logica\\Logica.csproj": {
+                "projectPath": "C:\\Users\\user\\OneDrive\\Documentos\\Proyecto\\FloridaImport\\Logica\\Logica.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.AspNetCore.SpaServices.Extensions": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
+            "Microsoft.OpenApi": {
+              "target": "Package",
+              "version": "[1.1.4, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[5.0.0-rc2, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.6.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\user\\OneDrive\\Documentos\\Proyecto\\FloridaImport\\FloridaImportTest\\FloridaImportTest.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\user\\OneDrive\\Documentos\\Proyecto\\FloridaImport\\FloridaImportTest\\FloridaImportTest.csproj",
+        "projectName": "FloridaImportTest",
+        "projectPath": "C:\\Users\\user\\OneDrive\\Documentos\\Proyecto\\FloridaImport\\FloridaImportTest\\FloridaImportTest.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\user\\OneDrive\\Documentos\\Proyecto\\FloridaImport\\FloridaImportTest\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "C:\\Users\\user\\OneDrive\\Documentos\\Proyecto\\FloridaImport\\Entity\\Entity.csproj": {
+                "projectPath": "C:\\Users\\user\\OneDrive\\Documentos\\Proyecto\\FloridaImport\\Entity\\Entity.csproj"
+              },
+              "C:\\Users\\user\\OneDrive\\Documentos\\Proyecto\\FloridaImport\\FloridaImportdotnet\\FloridaImportdotnet.csproj": {
+                "projectPath": "C:\\Users\\user\\OneDrive\\Documentos\\Proyecto\\FloridaImport\\FloridaImportdotnet\\FloridaImportdotnet.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[16.4.0, )"
+            },
+            "NUnit3TestAdapter": {
+              "target": "Package",
+              "version": "[3.15.1, )"
+            },
+            "nunit": {
+              "target": "Package",
+              "version": "[3.12.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\user\\OneDrive\\Documentos\\Proyecto\\FloridaImport\\Logica\\Logica.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\user\\OneDrive\\Documentos\\Proyecto\\FloridaImport\\Logica\\Logica.csproj",
+        "projectName": "Logica",
+        "projectPath": "C:\\Users\\user\\OneDrive\\Documentos\\Proyecto\\FloridaImport\\Logica\\Logica.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\user\\OneDrive\\Documentos\\Proyecto\\FloridaImport\\Logica\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {
+              "C:\\Users\\user\\OneDrive\\Documentos\\Proyecto\\FloridaImport\\Datos\\Datos.csproj": {
+                "projectPath": "C:\\Users\\user\\OneDrive\\Documentos\\Proyecto\\FloridaImport\\Datos\\Datos.csproj"
+              },
+              "C:\\Users\\user\\OneDrive\\Documentos\\Proyecto\\FloridaImport\\Entity\\Entity.csproj": {
+                "projectPath": "C:\\Users\\user\\OneDrive\\Documentos\\Proyecto\\FloridaImport\\Entity\\Entity.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

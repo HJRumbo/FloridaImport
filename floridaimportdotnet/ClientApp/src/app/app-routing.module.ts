@@ -27,6 +27,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProductoProveedorRegistroComponent } from './florida/producto-proveedor-registro/producto-proveedor-registro.component';
 import { ProductoProveedorConsultaComponent } from './florida/producto-proveedor-consulta/producto-proveedor-consulta.component';
 import { AuthGuard } from './services/auth.guard';
+import { CiudadesConsultaComponent } from './florida/ciudades-consulta/ciudades-consulta.component';
 
 const routes: Routes = [
   {
@@ -128,6 +129,10 @@ const routes: Routes = [
   {
     path: 'pedidoRegistro',
     component: PedidoRegistroComponent
+  },
+  {
+    path: 'ciudadesConsulta/:nombre',
+    component: CiudadesConsultaComponent
   }
 ]
 

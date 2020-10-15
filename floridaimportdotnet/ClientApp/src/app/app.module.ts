@@ -52,9 +52,14 @@ import { ProductoProveedorRegistroComponent } from './florida/producto-proveedor
 import { ProductoProveedorConsultaComponent } from './florida/producto-proveedor-consulta/producto-proveedor-consulta.component';
 import { ProductoProveedorService } from './services/producto-proveedor.service';
 
+//Graficos
+import { ChartsModule } from 'ng2-charts';
+
 import { AngularFireModule } from 'angularfire2';
 import { environment } from 'src/environments/environment';
 import { AngularFireStorage } from 'angularfire2/storage';
+import { CiudadesConsultaComponent } from './florida/ciudades-consulta/ciudades-consulta.component';
+import { AlertModalEliminarComponent } from './@base/alert-modal-eliminar/alert-modal-eliminar.component';
 
 @NgModule({
   declarations: [
@@ -96,6 +101,8 @@ import { AngularFireStorage } from 'angularfire2/storage';
     FiltroPedidoPipe,
     ProductoProveedorRegistroComponent,
     ProductoProveedorConsultaComponent,
+    CiudadesConsultaComponent,
+    AlertModalEliminarComponent,
   ],
   imports: [
     ReactiveFormsModule,
@@ -109,9 +116,10 @@ import { AngularFireStorage } from 'angularfire2/storage';
       { path: 'fetch-data', component: FetchDataComponent },
     ]),
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    ChartsModule
   ],
-  entryComponents:[AlertModalComponent],
+  entryComponents: [AlertModalComponent, AlertModalEliminarComponent],
   providers: [ClienteService, 
     ProductoService, 
     PaisService, 

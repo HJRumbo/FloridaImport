@@ -1,1 +1,54 @@
-<p>pais-consulta works!</p>
+<h2 class="text-success paddingText"><strong>PAÍSES</strong> </h2>
+
+<div class="row paddingText">
+
+    <div class="col-6">
+    
+    <input [(ngModel)]="searchText" type="text" class="form-control sinborde" placeholder="Filtrar">
+    
+    </div>
+    
+    </div>
+    
+    <hr>
+    
+    <table class="table table-striped" *ngIf='paises && paises.length'>
+    
+    <thead class="thead-dark">
+    
+    <tr>
+    
+    <th scope="col">#</th>
+    
+    <th scope="col">Código</th>
+    
+    <th scope="col">Nombre </th>
+
+    <th scope="col">Ciudades </th>
+    
+    </tr>
+    
+    </thead>
+    
+    <tbody>
+    
+    <tr *ngFor="let pais of paises; index as i ">
+    
+    <th scope="row">{{ i + 1 }}</th>
+    
+    <td>{{ pais.codigo }} </td>
+    
+    <td>{{ pais.nombre }}</td>
+
+    <td> <a routerLink='/ciudadesConsulta/{{pais.nombre}}'>  Ver </a></td>
+
+    </tr>
+    
+    </tbody>
+    
+    </table>
+
+    <hr>
+    <footer class="footer">
+        <p id="margen">&copy; Company 2017-2019</p>
+    </footer>

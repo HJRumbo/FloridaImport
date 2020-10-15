@@ -18,11 +18,13 @@ export class PaisRegistroComponent implements OnInit {
   pais: Pais;
   ciudad: Ciudad;
   ciudades = new Array<Ciudad>();
+  UnaCiudad: boolean;
   constructor(private paisServicio: PaisService, private formBuilder: FormBuilder, 
     private router: Router, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.buildForm();
+    this.UnaCiudad=true;
   }
 
   private buildForm(){
@@ -44,10 +46,17 @@ export class PaisRegistroComponent implements OnInit {
     if(this.formGroup.invalid){
       return;
     }
-    this.addCiudad();
+    this.post();
   }
 
   post(){
+    if(this.UnaCiudad==true){
+      this.pais.ciudades;
+      this.ciudad = new Ciudad();
+      this.ciudad.nombre = this.formGroup.get('nombreCiudad').value;
+      this.pais.ciudades.push(this.ciudad);
+    }
+    
     this.pais.nombre = this.formGroup.get('nombre').value;
     this.pais.ciudades;
     this.paisServicio.post(this.pais).subscribe(p => {
@@ -57,9 +66,13 @@ export class PaisRegistroComponent implements OnInit {
 
       }
     });
+
+    this.buildForm();
+    this.cancel();
   }  
 
   addCiudad(){
+    this.UnaCiudad=false;
     this.pais.ciudades;
     this.ciudad = new Ciudad();
     this.ciudad.nombre = this.formGroup.get('nombreCiudad').value;

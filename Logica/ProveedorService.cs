@@ -66,12 +66,12 @@ namespace Logica
             return proveedor;
         }
 
-        public string Eliminar(string identificacion)
+        public string Eliminar(string correo)
         {
             try
             {
                 _conexion.Open();
-                var proveedor = _repositorio.BuscarxIdentificacion(identificacion);
+                var proveedor = _repositorio.BuscarxCorreo(correo);
                 if (proveedor != null)
                 {
                     _repositorio.Eliminar(proveedor);
@@ -80,7 +80,7 @@ namespace Logica
                 }
                 else
                 {
-                    return ($"Lo sentimos, {identificacion} no se encuentra registrada.");
+                    return ($"Lo sentimos, {correo} no se encuentra registrada.");
                 }
             }
             catch (Exception e)
@@ -96,7 +96,7 @@ namespace Logica
             try
             {
                 _conexion.Open();
-                var proveedorViejo = _repositorio.BuscarxIdentificacion(proveedorNuevo.Identificacion);
+                var proveedorViejo = _repositorio.BuscarxCorreo(proveedorNuevo.Correo);
                 if (proveedorViejo != null)
                 {
                     _repositorio.Modificar(proveedorNuevo);
@@ -105,7 +105,7 @@ namespace Logica
                 }
                 else
                 {
-                    return ($"Lo sentimos, {proveedorNuevo.Identificacion} no se encuentra registrada.");
+                    return ($"Lo sentimos, {proveedorNuevo.Correo} no se encuentra registrado.");
                 }
             }
             catch (Exception e)

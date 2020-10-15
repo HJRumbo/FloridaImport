@@ -42,6 +42,31 @@ namespace Logica
             finally { _conexion.Close(); }
         }
 
+        public Cliente GuardarTest(Cliente cliente)
+        {
+            try
+            {
+                var clienteBuscado = BuscarxIdentificacion(cliente.Identificacion);
+                if (clienteBuscado != null)
+                {
+                    return null;
+                }
+                var clienteBuscadoCorreo = BuscarxCorreo(cliente.Correo);
+                if (clienteBuscadoCorreo != null)
+                {
+                    return null;
+                }
+                _conexion.Open();
+                _repositorio.Guardar(cliente);
+                _conexion.Close();
+                return cliente;
+            }
+            catch (Exception )
+            {
+                return null;
+            }
+            finally { _conexion.Close(); }
+        }
         public List<Cliente> ConsultarTodos()
         {
             _conexion.Open();
@@ -74,12 +99,12 @@ namespace Logica
             return cliente;
         }
 
-        public string Eliminar(string identificacion)
+        public string Eliminar(string correo)
         {
             try
             {
                 _conexion.Open();
-                var cliente = _repositorio.BuscarxIdentificacion(identificacion);
+                var cliente = _repositorio.BuscarxCorreo(correo);
                 if (cliente != null)
                 {
                     _repositorio.Eliminar(cliente);
@@ -88,7 +113,7 @@ namespace Logica
                 }
                 else
                 {
-                    return ($"Lo sentimos, {identificacion} no se encuentra registrada.");
+                    return ($"Lo sentimos, {correo} no se encuentra registrado.");
                 }
             }
             catch (Exception e)

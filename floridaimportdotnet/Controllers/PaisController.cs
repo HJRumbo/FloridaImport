@@ -28,8 +28,8 @@ namespace floridaimportdotnet.Controllers
         [HttpGet]
         public IEnumerable<PaisViewModel> Gets()
         {
-            var paices = _paisService.ConsultarTodos().Select(p=> new PaisViewModel(p));
-            return paices;
+            var paises = _paisService.ConsultarTodos().Select(p=> new PaisViewModel(p));
+            return paises;
         }
         
         [HttpPost]
@@ -70,6 +70,34 @@ namespace floridaimportdotnet.Controllers
             }  
 
             return listaCiu;
+        }
+
+        [HttpGet("{nombre}")]
+        public ActionResult<PaisViewModel> GetNombre(string nombre)
+        {
+            var pais = _paisService.BuscarxNombre(nombre);
+            if (pais == null) return NotFound();
+            var paisViewModel = new PaisViewModel(pais);
+            return paisViewModel;
+        }
+
+        [HttpPut("{nombre}")]
+        public ActionResult<string> Put(string nombre, Pais pais)
+        {
+            var nom=_paisService.BuscarxNombre(pais.Nombre);
+            if(nom==null){
+                return BadRequest("No encontrado");
+            }
+            var mensaje=_paisService.Modificar(pais);
+           return Ok(mensaje);
+
+        }
+
+        [HttpDelete("{nombre}")]
+        public ActionResult<string> Delete(string nombre)
+        {
+            string mensaje = _paisService.Eliminar(nombre);
+            return Ok(mensaje);
         }
     }
 }

@@ -77,5 +77,14 @@ get(): Observable<Pais[]> {
       catchError(this.handleErrorService.handleError<string>('Elimiar Pais', null))
     );
   }
+
+  getNombre(nombre: string): Observable<Pais> {
+    const url = `${this.baseUrl + 'api/Pais'}/${nombre}`;
+      return this.http.get<Pais>(url, httpOptions)
+      .pipe(
+        tap(_ => this.handleErrorService.log('Consulta')),
+        catchError(this.handleErrorService.handleError<Pais>('Buscar Pais', null))
+      );
+  }
   
 }

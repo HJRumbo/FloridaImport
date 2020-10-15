@@ -30,13 +30,13 @@ export class PedidoRegistroComponent implements OnInit {
   detalles = new Array<Detalle>();
   pagar: boolean;
   item: number;
+  vacio: boolean;
   constructor(private clienteServicio: ClienteService, private pedidoService: PedidoService) { }
 
   ngOnInit(): void {
     this.pagar = false;
+    this.vacio = false;
     this.getListProduct();
-    this.getCorreo();
-    this.obtenerFecha();
 
   }
 
@@ -61,9 +61,17 @@ getListProduct() {
 
   this.list = JSON.parse(localStorage.getItem('datos'));
 
-  this.list.forEach(element => {
-    this.totalPedido = this.totalPedido + element.total;
-  });
+  if(this.list!=null){
+    this.vacio = false;
+    this.list.forEach(element => {
+      this.totalPedido = this.totalPedido + element.total;
+    });
+    this.getCorreo();
+    this.obtenerFecha();
+  }else{
+    this.vacio = true;
+  }
+
 }
 
 getCorreo(){
@@ -105,6 +113,7 @@ getCorreo(){
     });
 
     localStorage.removeItem('datos');
+    window.location.href = "https://localhost:5001/pedidoRegistro";
   }
 
   datosPedido(): any{

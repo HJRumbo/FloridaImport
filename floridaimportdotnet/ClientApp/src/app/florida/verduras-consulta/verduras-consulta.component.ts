@@ -3,6 +3,7 @@ import { Producto } from '../models/producto';
 import { ProductoService } from 'src/app/services/producto.service';
 import { AlertModalComponent } from 'src/app/@base/alert-modal/alert-modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-verduras-consulta',
@@ -129,11 +130,34 @@ export class VerdurasConsultaComponent implements OnInit {
   listaProduct = new Array<Producto>();
   agregar(producto: Producto){
 
-    this.add = true;
-    const messageBox = this.modalService.open(AlertModalComponent)
+    if(this.cantidad>producto.cantidad){
 
-      messageBox.componentInstance.title = "Felicidades.";
-      messageBox.componentInstance.message = 'El producto se ha agregado al carrito.';
+      Swal.fire({
+        icon: 'error',
+        title: 'Lo sentimos...',
+        text: 'No contamos con la cantidad que desea comprar.'
+      })
+
+    }else{
+
+    if(producto.cantidad==0){
+      Swal.fire({
+        icon: 'error',
+        title: 'Lo sentimos...',
+        text: 'El producto se ha agotado.'
+      })
+
+    }else{
+
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'El producto se ha agregado al carrito.',
+        showConfirmButton: false,
+        timer: 1500
+      })
+
+    this.add = true;
     this.codigo = producto.codigo;
     this.valores = {
 
@@ -181,8 +205,10 @@ export class VerdurasConsultaComponent implements OnInit {
             this.cantidad = 1;
         }
     }
+  }
 
   }
+}
 
   validarProducto(codigo: any, lista: any): any{
     var result = 'N';

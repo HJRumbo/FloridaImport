@@ -1,12 +1,12 @@
 <div *ngIf="cliente.pais">
 
-  <div class="container">
+  <div class="container paddingText">
 
     <div class="row">
     
     <div class="col-md-6 offset-md-3">
     
-    <h2 class="text-success" id="PaddingText">Registra tu ubicación</h2>
+    <h2 class="text-success text-center" id="PaddingText"><strong>REGISTRO DE UBICACIÓN</strong></h2>
     
     <form [formGroup]="formGroup" id="Padding">
     
@@ -14,9 +14,9 @@
       <div class="row">
     <div class="form-group col">
     
-    <label>País</label>
+    <br>
     
-    <select name="pais" class="form-control border border-success" formControlName="pais" (change)="getCiudades()"
+    <select name="pais" class="form-control sinborde" formControlName="pais" (change)="getCiudades()"
     [ngClass]="{ 'is-invalid': control.pais.errors && formGroup.get('pais').touched}">
 
       <option *ngFor="let pais of paises" value={{pais.nombre}} >
@@ -35,10 +35,10 @@
     
     <div class="form-group col">
     
-      <label>Ciudad</label>
+      <br>
   
       <div class="input-group">
-      <select name="ciudad" class="form-control border border-success" formControlName="ciudad"
+      <select name="ciudad" class="form-control sinborde" formControlName="ciudad"
       [ngClass]="{ 'is-invalid': control.ciudad.errors && formGroup.get('ciudad').touched}">
       
         <option *ngFor="let ciudad of ciudades" selected={{ciudad.nombre}} >
@@ -53,7 +53,7 @@
         
       </div>
 
-      <button class="btn btn-white border border-success" (click)="mod()">
+      <button class="btn btn-white sinborde text-success" (click)="mod()">
         <svg class="bi bi-arrow-repeat" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" d="M2.854 7.146a.5.5 0 0 0-.708 0l-2 2a.5.5 0 1 0 .708.708L2.5 8.207l1.646 1.647a.5.5 0 0 0 .708-.708l-2-2zm13-1a.5.5 0 0 0-.708 0L13.5 7.793l-1.646-1.647a.5.5 0 0 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0 0-.708z"/>
             <path fill-rule="evenodd" d="M8 3a4.995 4.995 0 0 0-4.192 2.273.5.5 0 0 1-.837-.546A6 6 0 0 1 14 8a.5.5 0 0 1-1.001 0 5 5 0 0 0-5-5zM2.5 7.5A.5.5 0 0 1 3 8a5 5 0 0 0 9.192 2.727.5.5 0 1 1 .837.546A6 6 0 0 1 2 8a.5.5 0 0 1 .501-.5z"/>
@@ -68,9 +68,9 @@
     <div class="row">
     <div class="form-group col">
     
-      <label>País</label>
+      <br>
       
-      <input name="pais" [(ngModel)]="cliente.pais" class="form-control border border-success" formControlName="pais" (change)="getCiudades()"
+      <input name="pais" [(ngModel)]="cliente.pais" class="form-control sinborde" formControlName="pais" (change)="getCiudades()"
       [ngClass]="{ 'is-invalid': control.pais.errors && formGroup.get('pais').touched}" disabled>
   
       <div *ngIf="control.pais.errors" class="invalid-feedback">
@@ -83,10 +83,10 @@
       
       <div class="form-group col">
       
-        <label>Ciudad</label>
+        <br>
     
         <div class="input-group">
-        <input name="ciudad" [(ngModel)]="cliente.ciudad" class="form-control border border-success" formControlName="ciudad"
+        <input name="ciudad" [(ngModel)]="cliente.ciudad" class="form-control sinborde" formControlName="ciudad"
         [ngClass]="{ 'is-invalid': control.ciudad.errors && formGroup.get('ciudad').touched}" disabled>
   
         <div *ngIf="control.ciudad.errors" class="invalid-feedback">
@@ -95,7 +95,7 @@
           
         </div>
   
-        <button class="btn btn-white border border-success" (click)="noMod()">
+        <button class="btn btn-white sinborde text-success" (click)="noMod()">
           <svg class="bi bi-arrow-repeat" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" d="M2.854 7.146a.5.5 0 0 0-.708 0l-2 2a.5.5 0 1 0 .708.708L2.5 8.207l1.646 1.647a.5.5 0 0 0 .708-.708l-2-2zm13-1a.5.5 0 0 0-.708 0L13.5 7.793l-1.646-1.647a.5.5 0 0 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0 0-.708z"/>
               <path fill-rule="evenodd" d="M8 3a4.995 4.995 0 0 0-4.192 2.273.5.5 0 0 1-.837-.546A6 6 0 0 1 14 8a.5.5 0 0 1-1.001 0 5 5 0 0 0-5-5zM2.5 7.5A.5.5 0 0 1 3 8a5 5 0 0 0 9.192 2.727.5.5 0 1 1 .837.546A6 6 0 0 1 2 8a.5.5 0 0 1 .501-.5z"/>
@@ -110,10 +110,9 @@
   
     <div class="row">
     <div class="form-group col">
-    
-      <label>Dirección</label>
+    <br>
       
-      <input type="text" name="direccion" [(ngModel)]="cliente.direccion" formControlName="direccion" class="form-control border border-success" 
+      <input type="text" name="direccion" [(ngModel)]="cliente.direccion" formControlName="direccion" class="form-control sinborde" 
       placeholder="Dirección" [ngClass]="{ 'is-invalid': control.direccion.errors && formGroup.get('direccion').touched}"/>
 
       <div *ngIf="control.direccion.errors" class="invalid-feedback">
@@ -126,9 +125,9 @@
     
     <div class="form-group col">
     
-    <label>Barrio</label>
+    <br>
     
-    <input type="text" name="barrio" [(ngModel)]="cliente.barrio" formControlName="barrio" class="form-control border border-success" 
+    <input type="text" name="barrio" [(ngModel)]="cliente.barrio" formControlName="barrio" class="form-control sinborde" 
     placeholder="Barrio" [ngClass]="{ 'is-invalid': control.barrio.errors && formGroup.get('barrio').touched}"/>
 
     <div *ngIf="control.barrio.errors" class="invalid-feedback">
@@ -142,9 +141,9 @@
     
     <div class="form-group">
     
-        <label>Código postal</label>
+        <br>
         
-        <input type="text" name="codigoPostal" [(ngModel)]="cliente.codigoPostal" formControlName="codigoPostal" class="form-control border border-success" 
+        <input type="text" name="codigoPostal" [(ngModel)]="cliente.codigoPostal" formControlName="codigoPostal" class="form-control sinborde" 
         placeholder="Código Postal" [ngClass]="{ 'is-invalid': control.codigoPostal.errors && formGroup.get('codigoPostal').touched}"/>
 
         <div *ngIf="control.codigoPostal.errors" class="invalid-feedback">
@@ -156,9 +155,9 @@
   
      <div class="form-group">
     
-      <label>Teléfono</label>
+      <br>
       <div class="input-group">
-      <input type="text" name="telefono" formControlName="telefono" [(ngModel)]="cliente.telefono" class="form-control border border-success col" 
+      <input type="text" name="telefono" formControlName="telefono" [(ngModel)]="cliente.telefono" class="form-control sinborde col" 
       placeholder="Teléfono" [ngClass]="{ 'is-invalid': control.telefono.errors && formGroup.get('telefono').touched}"/>
 
       <div *ngIf="control.telefono.errors" class="invalid-feedback">
@@ -189,26 +188,26 @@
 </div>
 
 <div *ngIf="cliente.pais == null">
-<div class="container">
+<div class="container paddingText">
 
     <div class="row">
     
     <div class="col-md-6 offset-md-3">
     
-    <h2 class="text-success" id="PaddingText">Registra tu ubicación</h2>
+    <h2 class="text-success text-center" id="PaddingText"><strong>REGISTRO DE UBICACIÓN</strong></h2>
     
     <form [formGroup]="formGroup" id="Padding">
     
     <div class="row">
     <div class="form-group col">
     
-    <label>País</label>
+    <br>
     
-    <select name="pais" class="form-control border border-success" formControlName="pais" (change)="getCiudades()"
+    <select name="pais" class="form-control sinborde" formControlName="pais" (change)="getCiudades()"
     [ngClass]="{ 'is-invalid': control.pais.errors && formGroup.get('pais').touched}">
 
-    <option value="Seleccione">
-      
+    <option value="" selected>
+      País
     </option>
       <option *ngFor="let pais of paises" value={{pais.nombre}} >
           {{pais.nombre}}
@@ -226,11 +225,12 @@
     
     <div class="form-group col">
     
-      <label>Ciudad</label>
+      <br>
   
-      <select name="ciudad" class="form-control border border-success" formControlName="ciudad"
+      <select name="ciudad" class="form-control sinborde" formControlName="ciudad"
       [ngClass]="{ 'is-invalid': control.ciudad.errors && formGroup.get('ciudad').touched}">
       
+        <option value="" selected>Ciudad</option>
         <option *ngFor="let ciudad of ciudades" value={{ciudad.nombre}} >
             {{ciudad.nombre}}
           </option>
@@ -249,9 +249,9 @@
     <div class="row">
     <div class="form-group col">
     
-      <label>Dirección</label>
+      <br>
       
-      <input type="text" name="direccion" formControlName="direccion" class="form-control border border-success" 
+      <input type="text" name="direccion" formControlName="direccion" class="form-control sinborde" 
       placeholder="Dirección" [ngClass]="{ 'is-invalid': control.direccion.errors && formGroup.get('direccion').touched}"/>
 
       <div *ngIf="control.direccion.errors" class="invalid-feedback">
@@ -264,9 +264,9 @@
     
     <div class="form-group col">
     
-    <label>Barrio</label>
+    <br>
     
-    <input type="text" name="barrio" formControlName="barrio" class="form-control border border-success" 
+    <input type="text" name="barrio" formControlName="barrio" class="form-control sinborde" 
     placeholder="Barrio" [ngClass]="{ 'is-invalid': control.barrio.errors && formGroup.get('barrio').touched}"/>
 
     <div *ngIf="control.barrio.errors" class="invalid-feedback">
@@ -280,9 +280,9 @@
     
     <div class="form-group">
     
-        <label>Código postal</label>
+        <br>
         
-        <input type="text" name="codigoPostal" formControlName="codigoPostal" class="form-control border border-success" 
+        <input type="text" name="codigoPostal" formControlName="codigoPostal" class="form-control sinborde" 
         placeholder="Código Postal" [ngClass]="{ 'is-invalid': control.codigoPostal.errors && formGroup.get('codigoPostal').touched}"/>
 
         <div *ngIf="control.codigoPostal.errors" class="invalid-feedback">
@@ -294,15 +294,15 @@
   
      <div class="form-group">
     
-      <label>Teléfono</label>
+      <br>
       <div class="input-group">
-      <input type="text" name="telefono" formControlName="telefono" class="form-control border border-success col" 
+      <input type="text" name="telefono" formControlName="telefono" class="form-control sinborde col" 
       placeholder="Teléfono" [ngClass]="{ 'is-invalid': control.telefono.errors && formGroup.get('telefono').touched}"/>
 
       <div *ngIf="control.telefono.errors" class="invalid-feedback">
   
         <div *ngIf="control.telefono.errors.required">Se require el teléfono</div>
-        <div *ngIf="control.telefono.errors.pattern">Solo números.</div>
+        <div *ngIf="control.telefono.errors.pattern">Sólo números.</div>
         
       </div>
       </div>
@@ -326,6 +326,7 @@
     </div>
     </div>
   
-    <footer class="container">
-      <p>&copy; Company 2017-2019</p>
+
+    <footer class="footer">
+      <p id="margen">&copy; Company 2017-2019</p>
     </footer>

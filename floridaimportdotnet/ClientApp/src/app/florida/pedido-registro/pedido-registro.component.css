@@ -1,0 +1,27 @@
+.footer {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    color: white;
+    /* Set the fixed height of the footer here */
+    min-height: 60px;
+    line-height: 60px; /* Vertically center the text there */
+    background-color: #1A1A1A;
+    margin-top: 9.2%;
+  }
+
+  #margen{
+      margin-left: 100px;
+  }
+
+  .paddingText{
+    padding-top: 2%;
+}
+
+.paddingIco{
+    padding-top: 5%;
+}
+
+.padding{
+    padding-bottom: 8%;
+}

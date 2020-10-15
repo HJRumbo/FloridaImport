@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "X5GGoyAijDPt+xhp4xvA4Br9kyz/Ww5Sp3+SZlGG6xDD4x9j+KfcIfRU0o7cPq81+fGmiUWAF9cU959LstZjZw==",
+  "dgSpecHash": "93WF8YM5E8X2BSVYxFiHo1fEzyeFNrn/86xf4py5cZQTZpJ6k+voMblDQxLw3sbq5kkuhUqmmdtCJvIxWw0UWg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\palac\\source\\Web\\FloridaImport\\Entity\\Entity.csproj",
+  "projectFilePath": "C:\\Users\\user\\OneDrive\\Documentos\\Proyecto\\FloridaImport\\Entity\\Entity.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\palac\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
-    "C:\\Users\\palac\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+    "C:\\Users\\user\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
   ],
   "logs": []
 }

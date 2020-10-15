@@ -32,7 +32,6 @@ export class ProductoProveedorRegistroComponent implements OnInit {
     this.producto = new ProductoProveedor()
     this.producto.nombre = '';
     this.producto.descripcion = '';
-    this.producto.precio = 0;
     this.producto.idProveedor = '';
     this.producto.tipo = '';
 

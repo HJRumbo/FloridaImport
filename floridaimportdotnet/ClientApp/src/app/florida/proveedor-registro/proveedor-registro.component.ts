@@ -14,12 +14,17 @@ export class ProveedorRegistroComponent implements OnInit {
   proveedor:  Proveedor;
   verCon: boolean;
   tipo: string;
+    rol: string;
   constructor(private proveedorService: ProveedorService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    this.buildForm();
-    this.verCon=false;
-    this.tipo="password";
+    this.rol = sessionStorage.getItem('User');
+
+    if (this.rol == "Admin" || this.rol == null) {
+      this.buildForm();
+      this.verCon = false;
+      this.tipo = "password";
+    }
   }
 
   private buildForm(){

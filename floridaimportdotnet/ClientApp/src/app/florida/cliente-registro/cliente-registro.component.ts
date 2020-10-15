@@ -16,13 +16,18 @@ export class ClienteRegistroComponent implements OnInit {
   cliente:  Cliente;
   verCon: boolean;
   tipo: string;
+    rol: string;
   constructor(private clienteService: ClienteService, private formBuilder: FormBuilder, 
   private modalService: NgbModal) { }
 
   ngOnInit() {
-    this.buildForm();
-    this.verCon=false;
-    this.tipo="password";
+    this.rol = sessionStorage.getItem('User');
+
+    if (this.rol == "Admin" || this.rol == null) {
+      this.buildForm();
+      this.verCon = false;
+      this.tipo = "password";
+    }
   }
 
   private buildForm(){

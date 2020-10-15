@@ -5,6 +5,8 @@ import { Producto } from '../models/producto';
 import { AlertModalComponent } from 'src/app/@base/alert-modal/alert-modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AlertModalEliminarComponent } from '../../@base/alert-modal-eliminar/alert-modal-eliminar.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-producto-editar',
@@ -59,21 +61,85 @@ export class ProductoEditarComponent implements OnInit {
   }
 
   update() {
-    this.productoService.put(this.producto).subscribe(p => {
-      const messageBox = this.modalService.open(AlertModalComponent)
-        messageBox.componentInstance.title = "Resultado de edicion de datos.";
-        messageBox.componentInstance.message = 'Los datos fueron modificados correctamente.';
 
-    });
+    Swal.fire({
+      title: '¿Está seguro?',
+      text: "Se guardaran los cambios realizados a los datos del producto "+this.producto.nombre,
+      icon: 'question',
+      showCancelButton: true,
+      cancelButtonColor: '#d33',
+      confirmButtonColor: '#22bb33',
+      cancelButtonText: 'cancelar!',
+      confirmButtonText: 'Actualizar!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.productoService.put(this.producto).subscribe(p => {
+
+          Swal.fire({
+            title: 'Resultado de eliminación de datos!',
+            text: 'La información del producto ' + this.producto.nombre + ' fué actualizada correctamente.',
+            icon: 'success',
+            confirmButtonColor: '#22bb33',
+          })
+          
+        });
+
+        
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        Swal.fire({
+          title: 'Cancelado',
+          text: 'La actualización del producto ' + this.producto.nombre + ' fué cancelada.',
+          icon: 'error',
+          confirmButtonColor: '#22bb33',
+        })
+      }
+    })
+
   }
 
   delete() {
-    this.productoService.delete(this.producto.codigo.toString()).subscribe(p => {
-      const messageBox = this.modalService.open(AlertModalComponent)
-        messageBox.componentInstance.title = "Resultado de edicion de datos.";
-        messageBox.componentInstance.message = 'Los datos fueron eliminados correctamente.';
+    Swal.fire({
+      title: '¿Está seguro?',
+      text: "Si elimina al producto "+this.producto.nombre+", sus datos no podrán ser recuperados!",
+      icon: 'warning',
+      showCancelButton: true,
+      cancelButtonColor: '#d33',
+      confirmButtonColor: '#22bb33',
+      cancelButtonText: 'cancelar!',
+      confirmButtonText: 'Eliminar!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.productoService.delete(this.producto.codigo.toString()).subscribe(c => {
 
-    });
+          Swal.fire({
+            title: 'Resultado de eliminación de datos!',
+            text: 'El producto ' + this.producto.nombre + ' fué eliminada correctamente.',
+            icon: 'success',
+            confirmButtonColor: '#22bb33',
+          })
+          
+        });
+
+        window.location.href = "https://localhost:5001/productoConsulta";
+
+        
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        Swal.fire({
+          title: 'Cancelado',
+          text: 'La eliminación del producto ' + this.producto.nombre + ' fué cancelada.',
+          icon: 'error',
+          confirmButtonColor: '#22bb33',
+        })
+      }
+    })
   }
 
 }

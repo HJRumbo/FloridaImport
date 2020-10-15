@@ -121,5 +121,15 @@ namespace Datos
                 command.ExecuteNonQuery();
             }
         }
+
+        public void EliminarProductos(string identificacion)
+        {
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "Delete from productoProve where IdProveedor=@IdProveedor";
+                command.Parameters.AddWithValue("@IdProveedor", identificacion);
+                command.ExecuteNonQuery();
+            }
+        }
     }
 }

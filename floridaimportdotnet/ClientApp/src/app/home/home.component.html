@@ -14,15 +14,13 @@
     </main>
   </div>
 <ng-template #noAdmin>
-  <div class="Padding1" *ngIf="rol=='Prove'; else noProve">
-    <div class="row">
+  <div class="row Padding1 " *ngIf="rol=='Prove'; else noProve">
       <div class="col">
         <h5>
-          <svg class="bi bi-person-bounding-box" width="7em" height="7em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M1.5 1a.5.5 0 00-.5.5v3a.5.5 0 01-1 0v-3A1.5 1.5 0 011.5 0h3a.5.5 0 010 1h-3zM11 .5a.5.5 0 01.5-.5h3A1.5 1.5 0 0116 1.5v3a.5.5 0 01-1 0v-3a.5.5 0 00-.5-.5h-3a.5.5 0 01-.5-.5zM.5 11a.5.5 0 01.5.5v3a.5.5 0 00.5.5h3a.5.5 0 010 1h-3A1.5 1.5 0 010 14.5v-3a.5.5 0 01.5-.5zm15 0a.5.5 0 01.5.5v3a1.5 1.5 0 01-1.5 1.5h-3a.5.5 0 010-1h3a.5.5 0 00.5-.5v-3a.5.5 0 01.5-.5z" clip-rule="evenodd"/>
-              <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/>
-            </svg>
-          Perfil
+          <svg width="7em" height="7em" viewBox="0 0 16 16" class="bi bi-person-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+            <path fill-rule="evenodd" d="M2 15v-1c0-1 1-4 6-4s6 3 6 4v1H2zm6-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+          </svg>
         </h5> 
       </div>   
       <div class="col padding">
@@ -73,17 +71,25 @@
             
             </div>
         </div>
-    </div>
   </div>
 <ng-template #noProve>
 <ngb-carousel class="carrusel">
   <ng-template ngbSlide>
     <div class="picsum-img-wrapper">
-      <img src="./../../assets/Frutas.jpg" alt="Random first slide" class="imagen">
+      <img src="./../../assets/Productos.jpg" alt="Random first slide" class="imagen">
     </div>
     <div class="carousel-caption">
-      <h1>FRUTAS FRESCAS.</h1>
-      <p>Las mejores frutas, con la mayor frescura y la mejor calidad.</p>
+      <h1>FRUTAS, VERDURAS Y HORTALIZAS FRESCAS.</h1>
+      <p>Nuestros productos cuentan con la mayor frescura y la mejor calidad.</p>
+    </div>
+  </ng-template>
+  <ng-template ngbSlide>
+    <div class="picsum-img-wrapper">
+      <img src="./../../assets/BannerFruta.jpg" alt="Random third slide" class="imagen">
+    </div>
+    <div class="carousel-caption text-success">
+      <h1>DISFRUTA SUS BENEFICIOS.</h1>
+      <p>El sabor de las frutas, la frescura de las verduras y <br> lo saludable de las hortalizas.</p>
     </div>
   </ng-template>
   <ng-template ngbSlide>
@@ -95,25 +101,16 @@
       <p>Comercializamos nuestras frutas por toda la región, para que puedas disfrutarlas.</p>
     </div>
   </ng-template>
-  <ng-template ngbSlide>
-    <div class="picsum-img-wrapper">
-      <img src="./../../assets/EntregaDomicilio.png" alt="Random third slide" class="imagen">
-    </div>
-    <div class="carousel-caption text-danger">
-      <h1>ESPÉRALAS EN CASA.</h1>
-      <p>Pídelas YA y recíbelas en tu domicilio.</p>
-    </div>
-  </ng-template>
 </ngb-carousel>
 
-<div class="container Padding">
+<div class="container Padding margenp">
   <!-- Example row of columns -->
   <a name="productos">
     <h2 class="text-success">Frutas</h2>
     <hr heigth="10px">
     <div class="row">
      <div class="col-md-4" *ngFor="let fruta of frutas; index as i" >
-      <img src="{{fruta.imagen}}"> 
+      <img src="{{fruta.imagen}}" width="250em" height="200em"> 
        <svg class="bi bi-card-image justify-content-center" width="5em" height="5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
         
         <!-- <path fill-rule="evenodd" d="M14.5 3h-13a.5.5 0 00-.5.5v9a.5.5 0 00.5.5h13a.5.5 0 00.5-.5v-9a.5.5 0 00-.5-.5zm-13-1A1.5 1.5 0 000 3.5v9A1.5 1.5 0 001.5 14h13a1.5 1.5 0 001.5-1.5v-9A1.5 1.5 0 0014.5 2h-13z" clip-rule="evenodd"/>
@@ -123,6 +120,7 @@
        <h3>{{fruta.nombre}}</h3>
        <p>{{fruta.descripcion}}</p>
        <p>{{fruta.precio | currency: ' COP ' :true:'1.1-2'}}</p>
+       <p>Unds Disponibles: {{fruta.cantidad}}</p>
        <div *ngIf="codigo==fruta.codigo">
         <div class="row">
         <div class="input-group col " padding-left = "40px">
@@ -189,14 +187,16 @@
   <hr heigth="10px">
   <div class="row">
    <div class="col-md-4" *ngFor="let verdura of verduras; index as i " >
+    <img src="{{verdura.imagen}}" width="250em" height="200em">
      <svg class="bi bi-card-image justify-content-center" width="5em" height="5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-       <path fill-rule="evenodd" d="M14.5 3h-13a.5.5 0 00-.5.5v9a.5.5 0 00.5.5h13a.5.5 0 00.5-.5v-9a.5.5 0 00-.5-.5zm-13-1A1.5 1.5 0 000 3.5v9A1.5 1.5 0 001.5 14h13a1.5 1.5 0 001.5-1.5v-9A1.5 1.5 0 0014.5 2h-13z" clip-rule="evenodd"/>
+       <!--<path fill-rule="evenodd" d="M14.5 3h-13a.5.5 0 00-.5.5v9a.5.5 0 00.5.5h13a.5.5 0 00.5-.5v-9a.5.5 0 00-.5-.5zm-13-1A1.5 1.5 0 000 3.5v9A1.5 1.5 0 001.5 14h13a1.5 1.5 0 001.5-1.5v-9A1.5 1.5 0 0014.5 2h-13z" clip-rule="evenodd"/>
        <path d="M10.648 7.646a.5.5 0 01.577-.093L15.002 9.5V13h-14v-1l2.646-2.354a.5.5 0 01.63-.062l2.66 1.773 3.71-3.71z"/>
-       <path fill-rule="evenodd" d="M4.502 7a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" clip-rule="evenodd"/>
+       <path fill-rule="evenodd" d="M4.502 7a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" clip-rule="evenodd"/>-->
      </svg>
      <h3>{{verdura.nombre}}</h3>
      <p>{{verdura.descripcion}}</p>
      <p>{{verdura.precio | currency: ' COP ' :true:'1.1-2'}}</p>
+     <p>Unds Disponibles: {{verdura.cantidad}}</p>
      <div *ngIf="codigo==verdura.codigo">
       <div class="row">
       <div class="input-group col " padding-left = "40px">
@@ -263,14 +263,16 @@
   <hr heigth="10px">
   <div class="row">
    <div class="col-md-4" *ngFor="let hortaliza of hortalizas; index as i " >
+    <img src="{{hortaliza.imagen}}" width="250em" height="200em">
      <svg class="bi bi-card-image justify-content-center" width="5em" height="5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-       <path fill-rule="evenodd" d="M14.5 3h-13a.5.5 0 00-.5.5v9a.5.5 0 00.5.5h13a.5.5 0 00.5-.5v-9a.5.5 0 00-.5-.5zm-13-1A1.5 1.5 0 000 3.5v9A1.5 1.5 0 001.5 14h13a1.5 1.5 0 001.5-1.5v-9A1.5 1.5 0 0014.5 2h-13z" clip-rule="evenodd"/>
+       <!--<path fill-rule="evenodd" d="M14.5 3h-13a.5.5 0 00-.5.5v9a.5.5 0 00.5.5h13a.5.5 0 00.5-.5v-9a.5.5 0 00-.5-.5zm-13-1A1.5 1.5 0 000 3.5v9A1.5 1.5 0 001.5 14h13a1.5 1.5 0 001.5-1.5v-9A1.5 1.5 0 0014.5 2h-13z" clip-rule="evenodd"/>
        <path d="M10.648 7.646a.5.5 0 01.577-.093L15.002 9.5V13h-14v-1l2.646-2.354a.5.5 0 01.63-.062l2.66 1.773 3.71-3.71z"/>
-       <path fill-rule="evenodd" d="M4.502 7a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" clip-rule="evenodd"/>
+       <path fill-rule="evenodd" d="M4.502 7a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" clip-rule="evenodd"/>-->
      </svg>
      <h3>{{hortaliza.nombre}}</h3>
      <p>{{hortaliza.descripcion}}</p>
      <p>{{hortaliza.precio | currency: ' COP ' :true:'1.1-2'}}</p>
+     <p>Unds Disponibles: {{hortaliza.cantidad}}</p>
      <div *ngIf="codigo==hortaliza.codigo">
       <div class="row">
       <div class="input-group col " padding-left = "40px">
@@ -338,6 +340,6 @@
 </ng-template>
 </ng-template>
 
-<footer class="container">
-  <p>&copy; Company 2017-2019</p>
+<footer class="footer">
+  <p id="margen">&copy; Company 2017-2019</p>
 </footer>

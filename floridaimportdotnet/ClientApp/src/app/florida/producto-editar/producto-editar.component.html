@@ -1,14 +1,17 @@
 <div class="container">
 
-    <div class="row">
+    <div class="row margenPringipal">
+   <div class="img">
+    <img src="{{producto.imagen}}" width="250em" height="200em">
+  </div>
+    <div class="col-md-6 offset-md-3 margen">
     
-    <div class="col-md-6 offset-md-3">
-    
-    <h2 class="text-success" id="PaddingText">Datos del Producto</h2>
+    <h2 class="text-success" id="PaddingText"><strong> DATOS DEL PRODUCTO</strong></h2>
+      <br />
     
     <form id="Padding">
     <div class="form-group">
-        <label>Codigo: &nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <label><strong>Código: &nbsp;&nbsp;&nbsp;&nbsp;</strong></label>
         <label>{{producto.codigo}}</label>
      </div>
     
@@ -16,16 +19,16 @@
         
     <div class="form-group col">
     
-    <label>Nombre</label>
+    <label><strong>Nombre</strong></label>
     
-    <input type="text" name="nombre" [(ngModel)]="producto.nombre" class="form-control" />
+    <input type="text" name="nombre" [(ngModel)]="producto.nombre" class="form-control sinborde" />
     </div>
     
     <div class="form-group col">
     
-      <label>Descripcion</label>
+      <label><strong>Descripción</strong></label>
   
-      <textarea type="text" name="descripcion" [(ngModel)]="producto.descripcion" class="form-control"></textarea>
+      <textarea type="text" name="descripcion" [(ngModel)]="producto.descripcion" class="form-control sinborde"></textarea>
     
     </div>
   
@@ -33,33 +36,33 @@
     <div class="row">
     <div class="form-group col">
     
-      <label>Cantidad</label>
+      <label><strong>Cantidad</strong></label>
       
-      <input type="number" name="cantidad" [(ngModel)]="producto.cantidad" class="form-control" />
+      <input type="number" name="cantidad" [(ngModel)]="producto.cantidad" class="form-control sinborde" />
     </div>
     
       <div class="form-group">
     
-        <label>Precio</label>
+        <label><strong>Precio</strong></label>
         
-        <input type="number" name="precio" [(ngModel)]="producto.precio" class="form-control" />
+        <input type="number" name="precio" [(ngModel)]="producto.precio" class="form-control sinborde" />
      </div>
   </div>
   
   <div class="row">
     <div class="form-group col">
   
-      <label>Tipo de producto</label>
+      <label><strong>Tipo de producto</strong></label>
       
-      <input type="text" name="tipo" [(ngModel)]="producto.tipo" class="form-control" />
+      <input type="text" name="tipo" [(ngModel)]="producto.tipo" class="form-control sinborde" />
       
     </div>
  
      <div class="form-group col">
     
-      <label>Proveedor</label>
+      <label><strong>Proveedor</strong></label>
       
-      <input type="text" name="proveedor" [(ngModel)]="producto.proveedor" class="form-control" />
+      <input type="text" name="proveedor" [(ngModel)]="producto.proveedor" class="form-control sinborde" />
       
    </div>
   </div>
@@ -67,7 +70,6 @@
     <div class="text-center">
         <button class="btn btn-success mr-1" (click)="update()" >Actualizar</button>
         <button class="btn btn-success mr-1" (click)="delete()">Eliminar</button>
-        <button class="btn btn-secondary" type="reset">Cancel</button>
     </div>
     
     </form>
@@ -78,6 +80,6 @@
     
     </div>
   
-    <footer class="container">
-      <p>&copy; Company 2017-2019</p>
+    <footer class="footer">
+      <p id="margen">&copy; Company 2017-2019</p>
     </footer>

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Observable, of} from 'rxjs';
 import { AlertModalComponent } from './alert-modal/alert-modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -34,9 +35,14 @@ export class HandleHttpErrorService {
   public log(message: string) {
 
   if(message!=='Consulta'){
-    const messageBox = this.modalService.open(AlertModalComponent)
-    messageBox.componentInstance.title = "Resultado Operación.";
-    messageBox.componentInstance.message = message;
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Resultado Operación.',
+      text: message,
+      showConfirmButton: false,
+      timer: 1500
+    })
     console.log(message);
   }else{
     console.log('Datos enviados');
@@ -67,9 +73,11 @@ export class HandleHttpErrorService {
     
     }
     
-    const modalRef = this.modalService.open(AlertModalComponent);   
-    modalRef.componentInstance.title = 'Mensaje de Error';    
-    modalRef.componentInstance.message = mensajeValidaciones;
+    Swal.fire({
+      icon: 'error',
+      title: 'Mensaje de Error...',
+      html: mensajeValidaciones
+    })
     
     }
   
