@@ -4,6 +4,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HandleHttpErrorService } from '../@base/handle-http-error.service';
 import { Pais } from '../florida/models/pais';
+import { Ciudad } from '../florida/models/ciudad';
 
 const httpOptionsPut = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -61,7 +62,7 @@ get(): Observable<Pais[]> {
   }
 
   put(pais: Pais): Observable<any> {
-    const url = `${this.baseUrl}api/Cliente/${pais.codigo}`;
+    const url = `${this.baseUrl}api/Pais/${pais.codigo}`;
     return this.http.put(url, pais, httpOptions)
     .pipe(
       tap(_ => this.handleErrorService.log('Informacion del pais modificada correctamente')),

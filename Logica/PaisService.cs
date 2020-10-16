@@ -104,6 +104,8 @@ namespace Logica
             finally { _conexion.Close(); }
 
         }
+
+        
     }
 
 
@@ -124,4 +126,5 @@ namespace Logica
         public string Mensaje { get; set; }
         public Pais Pais { get; set; }
     }
+
 }

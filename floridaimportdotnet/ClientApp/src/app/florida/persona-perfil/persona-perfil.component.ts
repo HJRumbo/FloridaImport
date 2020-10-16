@@ -5,6 +5,7 @@ import { AlertModalComponent } from 'src/app/@base/alert-modal/alert-modal.compo
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { AlertModalEliminarComponent } from '../../@base/alert-modal-eliminar/alert-modal-eliminar.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-persona-perfil',
@@ -45,27 +46,44 @@ export class PersonaPerfilComponent implements OnInit {
 
   update() {
 
-    const messageBox = this.modalService.open(AlertModalEliminarComponent)
-    messageBox.componentInstance.title = "Resultado de la modificación de datos.";
-    messageBox.componentInstance.message = 'Señor/a ' + this.cliente.nombre + ' ' + this.cliente.apellido + ' ¿Está seguro de modificar su información?';
-    messageBox.result.then((resultado: any) => {
-      const messageBox = this.modalService.open(AlertModalComponent)
-      if (resultado == 'Si') {
-
+    Swal.fire({
+      title: '¿Está seguro?',
+      text: "Señor/a " + this.cliente.nombre+ ' ' + this.cliente.apellido + ' ¿Está seguro de actualizar su información?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#22bb33',
+      confirmButtonText: 'Actualizar!',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'cancelar!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
         this.clienteServicio.put(this.cliente).subscribe(c => {
           this.isEnabled = true;
 
-          messageBox.componentInstance.title = "Resultado de la modificación de datos.";
-          messageBox.componentInstance.message = 'Los datos fueron modificados correctamente.';
-
+          Swal.fire({
+            title: 'Resultado de eliminación de datos!',
+            text: 'Señor/a ' + this.cliente.nombre + ' ' + this.cliente.apellido + ' sus datos fueron actualizados correctamente.',
+            icon: 'success',
+            confirmButtonColor: '#22bb33',
+          })
+          
         });
 
-      } else {
-        messageBox.componentInstance.title = "Resultado de la modificación de datos.";
-        messageBox.componentInstance.message = 'La modificación de sus datos fué cancelada.';
+        
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        Swal.fire({
+          title: 'Cancelado',
+          text: 'La modificación de ' + this.cliente.nombre + ' fué cancelada.',
+          icon: 'error',
+          confirmButtonColor: '#22bb33',
+        })
       }
+    })
 
-    });
   }
     irAUbicacion(){
       this.router.navigate['/agregarUbicacion'];
@@ -73,20 +91,27 @@ export class PersonaPerfilComponent implements OnInit {
 
   delete() {
 
-    const messageBox = this.modalService.open(AlertModalEliminarComponent)
-
-    messageBox.componentInstance.title = "Resultado de la eliminación de datos.";
-    messageBox.componentInstance.message = 'Señor/a ' + this.cliente.nombre + ' ' + this.cliente.apellido + ' ¿Está seguro de eliminar su información de nuestra aplicación? Su información no podrá ser recuperada';
-    messageBox.result.then((resultado: any) => {
-      const messageBox = this.modalService.open(AlertModalComponent)
-      if (resultado == 'Si') {
-
-
+    Swal.fire({
+      title: '¿Está seguro?',
+      text: 'Señor/a ' + this.cliente.nombre+ ' ' + this.cliente.apellido + ' ¿Está seguro de eliminar su información de nuestra aplicación? Su información no podrá ser recuperada',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#22bb33',
+      confirmButtonText: 'Eliminar!',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'cancelar!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
         this.clienteServicio.delete(this.cliente.correo).subscribe(c => {
 
-          messageBox.componentInstance.title = "Resultado de eliminación de datos.";
-          messageBox.componentInstance.message = 'Señor/a ' + this.cliente.nombre + ' ' + this.cliente.apellido + ', gracias por hacer parte de Florida International Import, Esperamos que vuelvas.';
-
+          Swal.fire({
+            title: 'Resultado de eliminación de datos!',
+            text: 'El cliente ' + this.cliente.nombre + ' ' + this.cliente.apellido + ' fué eliminada correctamente.',
+            icon: 'success',
+            confirmButtonColor: '#22bb33',
+          })
+          
         });
 
         localStorage.removeItem('Correo');
@@ -94,12 +119,19 @@ export class PersonaPerfilComponent implements OnInit {
         localStorage.removeItem('User');
         window.location.href = "https://localhost:5001";
 
-
-      } else {
-        messageBox.componentInstance.title = "Resultado de eliminación de datos.";
-        messageBox.componentInstance.message = 'La eliminación de ' + this.cliente.nombre + ' fué cancelada.';
+        
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        Swal.fire({
+          title: 'Cancelado',
+          text: 'La eliminación de ' + this.cliente.nombre + ' fué cancelada.',
+          icon: 'error',
+          confirmButtonColor: '#22bb33',
+        })
       }
-    });
+    })
 
   }
 }

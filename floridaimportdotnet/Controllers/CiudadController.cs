@@ -14,52 +14,45 @@ namespace floridaimportdotnet.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PaisController: ControllerBase
+    public class CiudadController: ControllerBase
     {
-        private readonly PaisService _paisService;
+        private readonly CiudadService _ciudadService;
         public IConfiguration Configuration { get; }
-        public PaisController(IConfiguration configuration)
+        public CiudadController(IConfiguration configuration)
         {
             Configuration = configuration;
             string connectionString = Configuration["ConnectionStrings:DefaultConnection"];
-            _paisService = new PaisService(connectionString);
-        }
-
-        [HttpGet]
-        public IEnumerable<PaisViewModel> Gets()
-        {
-            var paises = _paisService.ConsultarTodos().Select(p=> new PaisViewModel(p));
-            return paises;
+            _ciudadService = new CiudadService(connectionString);
         }
         
-        [HttpPost]
-        public ActionResult<PaisViewModel> Post(PaisInputModel paisInput)
+        [HttpPost("{nombrePais}")]
+        public ActionResult<PaisViewModel> PostCiudad(string nombrePais, CiudadInputModel ciudadInput)
         {
-            Pais pais = MapearPais(paisInput);
-            var response = _paisService.Guardar(pais);
+            Ciudad ciudad = MapearUnaCiudad(ciudadInput);
+            var response = _ciudadService.GuardarCiudad(ciudad, nombrePais);
             if (response.Error) 
             {
-                ModelState.AddModelError("Guardar Pais", response.Mensaje);
+                ModelState.AddModelError("Guardar Ciudad", response.Mensaje);
                 var problemDetails = new ValidationProblemDetails(ModelState)
                 {
                     Status = StatusCodes.Status400BadRequest,
                 };
                 return BadRequest(problemDetails);
             }
-            return Ok(response.Pais);
+            return Ok(response.Ciudad);
         }
 
-        private Pais MapearPais(PaisInputModel paisInput)
+        private Ciudad MapearUnaCiudad(CiudadInputModel ciudadInput)
         {
-            var pais = new Pais
+            var ciudad = new Ciudad
             {
-                Nombre = paisInput.Nombre,
-                Ciudades = MapearCiudad(paisInput.Ciudades)
+                Nombre = ciudadInput.Nombre,
+                
             };
 
-            return pais;
+            return ciudad;
         }
-        private List<Ciudad> MapearCiudad(List<Ciudad> ciudades)
+        /*private List<Ciudad> MapearCiudad(List<Ciudad> ciudades)
         {
             List<Ciudad> listaCiu = new List<Ciudad>();
 
@@ -78,24 +71,24 @@ namespace floridaimportdotnet.Controllers
             if (pais == null) return NotFound();
             var paisViewModel = new PaisViewModel(pais);
             return paisViewModel;
-        }
+        }*/
 
-        [HttpPut("{nombre}")]
-        public ActionResult<string> Put(string nombre, Pais pais)
+        [HttpPut("{codigo}")]
+        public ActionResult<string> Put(decimal codigo, Ciudad ciudad)
         {
-            var nom=_paisService.BuscarxNombre(nombre);
+            var nom=_ciudadService.BuscarxCodigo(codigo);
             if(nom==null){
                 return BadRequest("No encontrado");
             }
-            var mensaje=_paisService.Modificar(pais);
+            var mensaje=_ciudadService.Modificar(ciudad, codigo);
            return Ok(mensaje);
 
         }
 
-        [HttpDelete("{nombre}")]
-        public ActionResult<string> Delete(string nombre)
+        [HttpDelete("{codigo}")]
+        public ActionResult<string> Delete(decimal codigo)
         {
-            string mensaje = _paisService.Eliminar(nombre);
+            string mensaje = _ciudadService.Eliminar(codigo);
             return Ok(mensaje);
         }
     }
