@@ -27,7 +27,7 @@ export class HandleHttpErrorService {
   };
   
   }
- 
+
   private mostrarError500(error: any) {
     console.error(error);
   }

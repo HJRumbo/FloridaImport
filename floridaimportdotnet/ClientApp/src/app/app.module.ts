@@ -51,6 +51,7 @@ import { FiltroPedidoPipe } from './pipe/filtro-pedido.pipe';
 import { ProductoProveedorRegistroComponent } from './florida/producto-proveedor-registro/producto-proveedor-registro.component';
 import { ProductoProveedorConsultaComponent } from './florida/producto-proveedor-consulta/producto-proveedor-consulta.component';
 import { ProductoProveedorService } from './services/producto-proveedor.service';
+import {MatButtonModule} from '@angular/material/button';
 
 //Graficos
 import { ChartsModule } from 'ng2-charts';
@@ -60,6 +61,7 @@ import { environment } from 'src/environments/environment';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { CiudadesConsultaComponent } from './florida/ciudades-consulta/ciudades-consulta.component';
 import { AlertModalEliminarComponent } from './@base/alert-modal-eliminar/alert-modal-eliminar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -117,7 +119,9 @@ import { AlertModalEliminarComponent } from './@base/alert-modal-eliminar/alert-
     ]),
     AppRoutingModule,
     NgbModule,
-    ChartsModule
+    ChartsModule,
+    BrowserAnimationsModule,
+    MatButtonModule
   ],
   entryComponents: [AlertModalComponent, AlertModalEliminarComponent],
   providers: [ClienteService, 

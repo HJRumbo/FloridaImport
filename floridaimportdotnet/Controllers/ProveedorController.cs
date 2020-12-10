@@ -31,7 +31,7 @@ namespace floridaimportdotnet.Controllers
             return proveedores;
         }
 
-       /*[HttpGet("{identificacion}")]
+        /*[HttpGet("{identificacion}")]
         public ActionResult<ProveedorViewModel> GetId(string identificacion)
         {
             var proveedor = _proveedorService.BuscarxIdentificacion(identificacion);
@@ -72,7 +72,7 @@ namespace floridaimportdotnet.Controllers
                 return BadRequest("No encontrado");
             }
             var mensaje=_proveedorService.Modificar(proveedor);
-           return Ok(mensaje);
+            return Ok(mensaje);
 
         }
         
@@ -98,6 +98,15 @@ namespace floridaimportdotnet.Controllers
             if (proveedor == null) return NotFound();
             var proveedorViewModel = new ProveedorViewModel(proveedor);
             return proveedorViewModel;
+        }
+
+        [HttpGet]
+        [Route("numeroProveedores")]
+        public ActionResult<decimal> GetCount()
+        {
+            var contador = _proveedorService.CountProveedores();
+            if (contador == 0) return NotFound();
+            return contador;
         }
         
     }

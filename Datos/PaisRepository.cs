@@ -17,11 +17,13 @@ namespace Datos
         
         public void Guardar(Pais pais)
         {
+            var Estado = "Activo";
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = @"Insert Into Pais (Codigo,Nombre) 
-                values (NEXT VALUE FOR CodPaisSequence,@Nombre)";
+                command.CommandText = @"Insert Into Pais (Codigo,Nombre, Estado) 
+                values (NEXT VALUE FOR CodPaisSequence,@Nombre, @Estado)";
                 command.Parameters.AddWithValue("@Nombre", pais.Nombre);
+                command.Parameters.AddWithValue("@Estado", Estado);
                 var filas = command.ExecuteNonQuery();
                 GuardarCiudades(pais.Ciudades);
                 
@@ -45,7 +47,7 @@ namespace Datos
                 }
             }
         }
-       
+        
         public Pais BuscarxNombre(string nombre)
         {
             SqlDataReader dataReader;
@@ -65,7 +67,7 @@ namespace Datos
             List<Pais> paises = new List<Pais>();
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = "Select * from pais";
+                command.CommandText = "Select * from pais where estado='Activo' ";
                 dataReader = command.ExecuteReader();
                 if (dataReader.HasRows)
                 {
@@ -95,7 +97,7 @@ namespace Datos
             List<Ciudad> ciudades = new List<Ciudad>();
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = "Select * from ciudad where codPais=@codPais";
+                command.CommandText = "Select * from ciudad where codPais=@codPais and estado='Activa' ";
                 command.Parameters.AddWithValue("@codPais", codPais);
                 dataReader = command.ExecuteReader();
                 if (dataReader.HasRows)
@@ -131,11 +133,15 @@ namespace Datos
 
         public void Eliminar(Pais pais)
         {
+            var estadoPais = "Eliminado";
+            var estadoCiudad = "Eliminada";
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = "Delete from ciudad where codPais=@codigoPais";
+                command.CommandText = "Update ciudad set Estado=@Estado where codPais=@codigoPais";
+                command.Parameters.AddWithValue("@Estado", estadoCiudad);
                 command.Parameters.AddWithValue("@codigoPais", pais.Codigo);
-                command.CommandText = "Delete from Pais where Codigo=@codigo";
+                command.CommandText = "Update Pais set Estado=@Estado where Codigo=@codigo";
+                command.Parameters.AddWithValue("@Estado", estadoPais);
                 command.Parameters.AddWithValue("@codigo", pais.Codigo);
                 command.ExecuteNonQuery();
             }

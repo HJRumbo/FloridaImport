@@ -13,7 +13,7 @@ const httpOptionsPut = {
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
- 
+  
 @Injectable({
   providedIn: 'root'
 })
@@ -31,7 +31,7 @@ private handleErrorService: HandleHttpErrorService)
 
 {
 
-this.baseUrl = baseUrl;
+  this.baseUrl = baseUrl;
 }
 
 get(): Observable<Cliente[]> {
@@ -89,5 +89,19 @@ get(): Observable<Cliente[]> {
       catchError(this.handleErrorService.handleError<string>('Elimiar Cliente', null))
     );
   }
+
+  getCount(): Observable<number> {
+
+    return this.http.get<number>(this.baseUrl + 'api/Cliente/numeroClientes')
+    
+    .pipe(
+    
+    tap(_ => this.handleErrorService.log('Consulta')),
+    
+    catchError(this.handleErrorService.handleError<number>('Consulta del Número de Clientes', null))
+    
+    );
+    
+    }
 
 }

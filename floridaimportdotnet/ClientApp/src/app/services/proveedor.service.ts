@@ -13,7 +13,7 @@ const httpOptionsPut = {
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
- 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -89,5 +89,19 @@ get(): Observable<Proveedor[]> {
       catchError(this.handleErrorService.handleError<string>('Elimiar Proveedor', null))
     );
   }
+
+  getCount(): Observable<number> {
+
+    return this.http.get<number>(this.baseUrl + 'api/Proveedor/numeroProveedores')
+    
+    .pipe(
+    
+    tap(_ => this.handleErrorService.log('Consulta')),
+    
+    catchError(this.handleErrorService.handleError<number>('Consulta del Número de Proveedores', null))
+    
+    );
+    
+    }
 
 }

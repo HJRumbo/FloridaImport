@@ -21,7 +21,7 @@ namespace FloridaImportTest
         ClienteService _clienteService;
         public void SetUp()
         {
-           
+        
 
         }
 
@@ -79,10 +79,8 @@ namespace FloridaImportTest
         {
             List<Cliente> clientesReturn;
             List<Cliente> clientes;
-
             clientesReturn = _clienteService.ConsultarTodos();
             clientes = clientesReturn;
-
             Assert.AreEqual(clientes, clientesReturn);
         }
     }

@@ -117,6 +117,11 @@ namespace Logica
 
         }
 
+        public int CountProveedores(){
+            List<Proveedor> proveedores = ConsultarTodos();
+            return proveedores.Count;
+        }
+
     }
 
     public class GuardarProveedorResponse 

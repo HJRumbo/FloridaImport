@@ -27,3 +27,9 @@
   #margen{
       margin-left: 100px;
   }
+
+  .botonSB{
+    border:0;
+    outline:none;
+    background-color: transparent;
+    }

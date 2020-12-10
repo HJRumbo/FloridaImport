@@ -61,7 +61,7 @@ namespace Logica
                 _conexion.Close();
                 return cliente;
             }
-            catch (Exception )
+            catch (Exception)
             {
                 return null;
             }
@@ -150,9 +150,15 @@ namespace Logica
 
         }
 
+        public int CountClientes()
+        {
+            List<Cliente> clientes = ConsultarTodos();
+            return clientes.Count;
+        }
+
     }
 
-    public class GuardarClienteResponse 
+    public class GuardarClienteResponse
     {
         public GuardarClienteResponse(Cliente cliente)
         {

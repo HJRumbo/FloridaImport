@@ -91,8 +91,17 @@ namespace floridaimportdotnet.Controllers
                 return BadRequest("No encontrado");
             }
             var mensaje=_pedidoService.Modificar(pedido);
-           return Ok(mensaje);
+            return Ok(mensaje);
 
+        }
+
+        [HttpGet]
+        [Route("totalVendido")]
+        public ActionResult<decimal> GetTotal()
+        {
+            var total = _pedidoService.SumarTotal();
+            if (total == 0) return NotFound();
+            return total;
         }
     }
 }

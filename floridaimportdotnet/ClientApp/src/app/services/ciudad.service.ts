@@ -54,4 +54,13 @@ put(ciudad: Ciudad): Observable<any> {
     catchError(this.handleErrorService.handleError<any>('Editar Ciudad'))
   );
 }
+
+delete(ciudad: Ciudad| string): Observable<string> {
+  const codigo = typeof ciudad === 'string' ? ciudad : ciudad.codigo;
+  return this.http.delete<string>(this.baseUrl + 'api/Ciudad/'+ codigo)
+  .pipe(
+    tap(_ => this.handleErrorService.log('datos enviados')),
+    catchError(this.handleErrorService.handleError<string>('Elimiar Ciudad', null))
+  );
+}
 }

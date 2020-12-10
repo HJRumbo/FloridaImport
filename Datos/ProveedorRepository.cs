@@ -18,21 +18,23 @@ namespace Datos
         }
         public void Guardar(Proveedor proveedor)
         {
+            var Estado = "Activo";
             using (var command = _connection.CreateCommand())
             {
                 command.CommandText = @"Insert Into Proveedor (Identificacion,Nombre,
-                Correo,Contrasena,Descripcion) 
-                values (@Identificacion,@Nombre,@Correo, @Contrasena,@Descripcion)";
+                Correo,Contrasena,Descripcion, Estado) 
+                values (@Identificacion,@Nombre,@Correo, @Contrasena,@Descripcion, @Estado)";
                 command.Parameters.AddWithValue("@Identificacion", proveedor.Identificacion);
                 command.Parameters.AddWithValue("@Nombre", proveedor.Nombre);
                 command.Parameters.AddWithValue("@Correo", proveedor.Correo);
                 command.Parameters.AddWithValue("@Contrasena", proveedor.Contrasena);
                 command.Parameters.AddWithValue("@Descripcion", proveedor.Descripcion);
+                command.Parameters.AddWithValue("@Estado", Estado);
                 var filas = command.ExecuteNonQuery();
                 //GuardarProductos(proveedor.Productos);
             }
         }
-       
+        
         /*public void GuardarProductos(List<Producto> productos)
         {
             foreach (var item in productos)
@@ -61,7 +63,7 @@ namespace Datos
             List<Proveedor> proveedores = new List<Proveedor>();
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = "Select * from Proveedor ";
+                command.CommandText = "Select * from Proveedor where estado='Activo' ";
                 dataReader = command.ExecuteReader();
                 if (dataReader.HasRows)
                 {
@@ -74,7 +76,7 @@ namespace Datos
             }
             return proveedores;
         }
-       
+        
         private Proveedor DataReaderMapToProv(SqlDataReader dataReader)
         {
             if(!dataReader.HasRows) return null;
@@ -166,10 +168,12 @@ namespace Datos
 
         public void Eliminar(Proveedor proveedor)
         {
+            var estado = "Eliminado";
             using (var command = _connection.CreateCommand())
             {
                 productos.EliminarProductos(proveedor.Identificacion);
-                command.CommandText = "Delete from proveedor where Identificacion=@Identificacion";
+                command.CommandText = "Update proveedor set Estado=@Estado where Identificacion=@Identificacion";
+                command.Parameters.AddWithValue("@Estado", estado);
                 command.Parameters.AddWithValue("@Identificacion", proveedor.Identificacion);
                 command.ExecuteNonQuery();
             }

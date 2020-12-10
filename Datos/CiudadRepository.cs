@@ -17,13 +17,16 @@ namespace Datos
 
         public void GuardarUnaCiudad(Ciudad ciudad, decimal codigo)
         {
+            var Estado = "Activa";
+
             using (var command = _connection.CreateCommand())
             {
             
-                command.CommandText = @"Insert Into Ciudad (Codigo,Nombre,codPais) 
-                values (NEXT VALUE FOR CodCiudSequence,@Nombre, @CodPais)";
+                command.CommandText = @"Insert Into Ciudad (Codigo,Nombre,codPais, Estado) 
+                values (NEXT VALUE FOR CodCiudSequence,@Nombre, @CodPais, @Estado)";
                 command.Parameters.AddWithValue("@Nombre", ciudad.Nombre);
                 command.Parameters.AddWithValue("@CodPais", codigo);
+                command.Parameters.AddWithValue("@Estado", Estado);
                 var filas = command.ExecuteNonQuery();
                     
             }
@@ -35,6 +38,7 @@ namespace Datos
             {
                 command.CommandText = "update ciudad set nombre=@Nombre where codigo=@Codigo";
                 command.Parameters.AddWithValue("@Nombre", ciudad.Nombre);
+                command.Parameters.AddWithValue("@Codigo", ciudad.Codigo);
                 command.ExecuteNonQuery();
             }
         }
@@ -44,7 +48,7 @@ namespace Datos
             SqlDataReader dataReader;
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = "select * from ciudad where codigo=@codigo";
+                command.CommandText = "select * from ciudad where codigo=@codigo and estado='Activa' ";
                 command.Parameters.AddWithValue("@codigo", codigo);
                 dataReader = command.ExecuteReader();
                 dataReader.Read();
@@ -65,9 +69,11 @@ namespace Datos
 
         public void Eliminar(Ciudad ciudad)
         {
+            var estado = "Eliminada";
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = "Delete from ciudad where codigo=@codigo";
+                command.CommandText = "Update ciudad set Estado=@Estado where codigo=@codigo";
+                command.Parameters.AddWithValue("@Estado", estado);
                 command.Parameters.AddWithValue("@codigo", ciudad.Codigo);
                 command.ExecuteNonQuery();
             }

@@ -47,6 +47,20 @@ export class ProductoService {
     );
     
     }
+
+    getNoDisponible(): Observable<Producto[]> {
+  
+      return this.http.get<Producto[]>(this.baseUrl + 'api/Producto/NoDisponible')
+      
+      .pipe(
+      
+      tap(_ => this.handleErrorService.log('Consulta')),
+      
+      catchError(this.handleErrorService.handleError<Producto[]>('Consulta Producto', null))
+      
+      );
+      
+      }
   
     post(producto: Producto): Observable<Producto> {
   
@@ -81,6 +95,16 @@ export class ProductoService {
       );
     }
 
+    reactivar(codigo: number): Observable<any> {
+      const url = `${this.baseUrl}api/Producto/Reactivar/${codigo}`;
+      return this.http.put(url, codigo, httpOptions)
+      .pipe(
+        tap(_ => this.handleErrorService.log('Informacion del producto modificada correctamente')),
+        catchError(this.handleErrorService.handleError<any>('Editar Producto'))
+      );
+    }
+
+
     delete(producto: Producto| string): Observable<string> {
       const codigo = typeof producto === 'string' ? producto : producto.codigo;
       return this.http.delete<string>(this.baseUrl + 'api/Producto/'+ codigo)
@@ -89,4 +113,18 @@ export class ProductoService {
         catchError(this.handleErrorService.handleError<string>('Elimiar producto', null))
       );
     }
+
+    getCount(): Observable<number> {
+
+      return this.http.get<number>(this.baseUrl + 'api/Producto/numeroProductos')
+      
+      .pipe(
+      
+      tap(_ => this.handleErrorService.log('Consulta')),
+      
+      catchError(this.handleErrorService.handleError<number>('Consulta del Número de Productos', null))
+      
+      );
+      
+      }
 }

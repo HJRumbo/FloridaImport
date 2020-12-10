@@ -82,4 +82,18 @@ get(): Observable<Pedido[]> {
     );
   }
 
+  getTotal(): Observable<number> {
+
+    return this.http.get<number>(this.baseUrl + 'api/Pedido/totalVendido')
+    
+    .pipe(
+    
+    tap(_ => this.handleErrorService.log('Consulta')),
+    
+    catchError(this.handleErrorService.handleError<number>('Consulta del total vendido', null))
+    
+    );
+    
+    }
+
 }

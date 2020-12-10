@@ -10,5 +10,6 @@ namespace Entity
         public string Proveedor {get;set;}
         public string Tipo {get;set;}
         public string Imagen {get;set;}
+        public string Estado {get;set;}
     }
 }

@@ -11,6 +11,7 @@ import { Label } from 'ng2-charts';
 import { PedidoService } from '../services/pedido.service';
 import { Pedido } from '../florida/models/pedido';
 import { groupBy } from 'rxjs/operators';
+import { ClienteService } from '../services/cliente.service';
 
 @Component({
   selector: 'app-home',
@@ -43,10 +44,15 @@ export class HomeComponent implements OnInit{
   codigo1: number;
   codio2: number;
   id: string;
+  numeroCliente: number;
+  numeroProducto: number;
+  totalVendido: number;
+  numeroProveedor: number;
   constructor(private productoServicio: ProductoService, 
     private proveedorServicio: ProveedorService, 
     private modalService: NgbModal,
-    private pedidoService: PedidoService) { }
+    private pedidoService: PedidoService,
+    private clienteService: ClienteService) { }
 
   ngOnInit(){
     this.rol = sessionStorage.getItem('User');
@@ -66,9 +72,9 @@ export class HomeComponent implements OnInit{
       this.getProv();
       this.isEnabled = true;
     }
-    /*if(this.rol=="Admin"){
-      this.getPedidos();
-    }*/
+    if(this.rol=="Admin"){
+      this.getDatos();
+    }
   }
 
   getProv(){
@@ -325,6 +331,21 @@ export class HomeComponent implements OnInit{
   ];
   public lineChartLabels: Label[] = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio',
   'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+
+  getDatos(){
+    this.clienteService.getCount().subscribe(numero => {
+      this.numeroCliente = numero;
+    })
+    this.productoServicio.getCount().subscribe(numero => {
+      this.numeroProducto = numero;
+    })
+    this.pedidoService.getTotal().subscribe(numero => {
+      this.totalVendido = numero;
+    })
+    this.proveedorServicio.getCount().subscribe(numero => {
+      this.numeroProveedor = numero;
+    })
+  }
 
 }
 

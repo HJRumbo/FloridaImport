@@ -2,6 +2,7 @@ using Datos;
 using Entity;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Logica
 {
@@ -74,6 +75,12 @@ namespace Logica
             }
             finally { _conexion.Close(); }
 
+        }
+
+        public decimal SumarTotal(){
+            List<Pedido> pedidos = ConsultarTodos();
+            decimal suma = pedidos.Sum(item => item.TotalPedido);
+            return suma;
         }
     }
 

@@ -27,7 +27,15 @@ namespace floridaimportdotnet.Controllers
         [HttpGet]
         public IEnumerable<ProductoViewModel> Gets()
         {
-            var productos = _productoService.ConsultarTodos().Select(p=> new ProductoViewModel(p));
+            var productos = _productoService.ConsultarDisponible().Select(p=> new ProductoViewModel(p));
+            return productos;
+        }
+
+        [HttpGet]
+        [Route("NoDisponible")]
+        public IEnumerable<ProductoViewModel> GetNoDisponibles()
+        {
+            var productos = _productoService.ConsultarNoDisponible().Select(p=> new ProductoViewModel(p));
             return productos;
         }
         
@@ -88,8 +96,30 @@ namespace floridaimportdotnet.Controllers
                 return BadRequest("No encontrado");
             }
             var mensaje=_productoService.Modificar(producto);
-           return Ok(mensaje);
+            return Ok(mensaje);
 
+        }
+
+        [HttpPut]
+        [Route("Reactivar/{codigo}")]
+        public ActionResult<string> Reactivar(decimal codigo)
+        {
+            var id=_productoService.BuscarxCodigo(codigo);
+            if(id==null){
+                return BadRequest("No encontrado");
+            }
+            var mensaje=_productoService.Reactivar(codigo);
+            return Ok(mensaje);
+
+        }
+
+        [HttpGet]
+        [Route("numeroProductos")]
+        public ActionResult<int> GetCount()
+        {
+            var contador = _productoService.CountProductos();
+            if (contador == 0) return NotFound();
+            return contador;
         }
     }
 }

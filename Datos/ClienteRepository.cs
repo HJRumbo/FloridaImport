@@ -17,12 +17,13 @@ namespace Datos
         public void Guardar(Cliente cliente)
         {
             var Rol = "Cliente";
+            var Estado = "Activo";
 
             using (var command = _connection.CreateCommand())
             {
                 command.CommandText = @"Insert Into Cliente (Identificacion,Nombre,
-                Apellido, TipoPersona, Correo,Contrasena, Rol) 
-                values (@Identificacion,@Nombre,@Apellido,@TipoPersona,@Correo, @Contrasena, @Rol)";
+                Apellido, TipoPersona, Correo,Contrasena, Rol, Estado) 
+                values (@Identificacion,@Nombre,@Apellido,@TipoPersona,@Correo, @Contrasena, @Rol, @Estado)";
                 command.Parameters.AddWithValue("@Identificacion", cliente.Identificacion);
                 command.Parameters.AddWithValue("@Nombre", cliente.Nombre);
                 command.Parameters.AddWithValue("@Apellido", cliente.Apellido);
@@ -30,17 +31,18 @@ namespace Datos
                 command.Parameters.AddWithValue("@Correo", cliente.Correo);
                 command.Parameters.AddWithValue("@Contrasena", cliente.Contrasena);
                 command.Parameters.AddWithValue("@Rol", Rol);
+                command.Parameters.AddWithValue("@Estado", Estado);
                 var filas = command.ExecuteNonQuery();
             }
         }
-       
+        
         public List<Cliente> ConsultarTodos()
         {
             SqlDataReader dataReader;
             List<Cliente> clientes = new List<Cliente>();
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = "Select * from cliente where rol != 'Admin'";
+                command.CommandText = "Select * from cliente where estado='Activo' ";
                 dataReader = command.ExecuteReader();
                 if (dataReader.HasRows)
                 {
@@ -98,7 +100,7 @@ namespace Datos
             SqlDataReader dataReader;
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = "select * from cliente where correo=@correo and rol != 'Admin'";
+                command.CommandText = "select * from cliente where correo=@correo and estado='Activo'";
                 command.Parameters.AddWithValue("@correo", correo);
                 dataReader = command.ExecuteReader();
                 dataReader.Read();
@@ -148,9 +150,11 @@ namespace Datos
 
         public void Eliminar(Cliente cliente)
         {
+            var estado = "Eliminado";
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = "Delete from cliente where Correo=@Correo";
+                command.CommandText = "Update cliente set Estado=@Estado where Correo=@Correo";
+                command.Parameters.AddWithValue("@Estado", estado);
                 command.Parameters.AddWithValue("@Correo", cliente.Correo);
                 command.ExecuteNonQuery();
             }
@@ -169,7 +173,5 @@ namespace Datos
                 return DataReaderMapToClient(dataReader);
             }
         }
-
-       
     }
 }

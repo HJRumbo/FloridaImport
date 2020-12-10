@@ -16,12 +16,14 @@ namespace Datos
         }
         public void Guardar(Producto producto)
         {
+            var Estado = "Disponible";
+
             using (var command = _connection.CreateCommand())
             {
                 command.CommandText = @"Insert Into Producto (Codigo,Nombre,
-                Descripcion, Cantidad, Precio,Proveedor, Tipo, Imagenes) 
+                Descripcion, Cantidad, Precio,Proveedor, Tipo, Imagenes, Estado) 
                 values (NEXT VALUE FOR CodigoSequence,@Nombre,@Descripcion,
-                @Cantidad,@Precio, @Proveedor, @Tipo, @Imagenes)";
+                @Cantidad,@Precio, @Proveedor, @Tipo, @Imagenes, @Estado)";
                 command.Parameters.AddWithValue("@Nombre", producto.Nombre);
                 command.Parameters.AddWithValue("@Descripcion", producto.Descripcion);
                 command.Parameters.AddWithValue("@Cantidad", producto.Cantidad);
@@ -29,10 +31,11 @@ namespace Datos
                 command.Parameters.AddWithValue("@Proveedor", producto.Proveedor);
                 command.Parameters.AddWithValue("@Tipo", producto.Tipo);
                 command.Parameters.AddWithValue("@Imagenes", producto.Imagen);
+                command.Parameters.AddWithValue("@Estado", Estado);
                 var filas = command.ExecuteNonQuery();
             }
         }
-       
+        
         public List<Producto> ConsultarTodos()
         {
             SqlDataReader dataReader;
@@ -52,7 +55,7 @@ namespace Datos
             }
             return productos;
         }
-       
+        
         private Producto DataReaderMapToProduct(SqlDataReader dataReader)
         {
             if(!dataReader.HasRows) return null;
@@ -65,6 +68,7 @@ namespace Datos
             producto.Proveedor = (string)dataReader["Proveedor"];
             producto.Tipo = (string)dataReader["Tipo"];
             producto.Imagen = (string)dataReader["Imagenes"];
+            producto.Estado = (string)dataReader["Estado"];
             return producto;
         }
 
@@ -96,11 +100,24 @@ namespace Datos
             }
         }
 
-        public void Eliminar(Producto producto)
+        public void Reactivar(decimal codigo)
         {
             using (var command = _connection.CreateCommand())
             {
-                command.CommandText = "Delete from producto where codigo=@codigo";
+                command.CommandText = "update producto set Estado=@Estado where codigo=@codigo";
+                command.Parameters.AddWithValue("@codigo", codigo.ToString());
+                command.Parameters.AddWithValue("@Estado", "Disponible");
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public void Eliminar(Producto producto)
+        {
+            var estado = "Eliminado";
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "Update producto set Estado=@Estado where codigo=@codigo";
+                command.Parameters.AddWithValue("@Estado", estado);
                 command.Parameters.AddWithValue("@codigo", producto.Codigo.ToString());
                 command.ExecuteNonQuery();
             }

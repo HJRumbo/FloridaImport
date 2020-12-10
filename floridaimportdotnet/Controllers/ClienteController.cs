@@ -44,8 +44,8 @@ namespace floridaimportdotnet.Controllers
             return clientes;
         }
 
-       [HttpGet]
-       [Route("Identificacion/{identificacion}")]
+        [HttpGet]
+        [Route("Identificacion/{identificacion}")]
         public ActionResult<ClienteViewModel> GetId(string identificacion)
         {
             var cliente = _clienteService.BuscarxIdentificacion(identificacion);
@@ -82,16 +82,13 @@ namespace floridaimportdotnet.Controllers
         }
 
         [HttpPut("{identificacion}")]
-        public ActionResult<string> Put(string identificacion, Cliente cliente)
-        {
+        public ActionResult<string> Put(string identificacion, Cliente cliente){
             var id=_clienteService.BuscarxIdentificacion(cliente.Identificacion);
             if(id==null){
                 return BadRequest("No encontrado");
             }
             var mensaje=_clienteService.Modificar(cliente);
-           return Ok(mensaje);
-
-        }
+            return Ok(mensaje);}
         
         private Cliente MapearCliente(ClienteInputModel clienteInput)
         {
@@ -116,6 +113,15 @@ namespace floridaimportdotnet.Controllers
             if (cliente == null) return NotFound();
             var clienteViewModel = new ClienteViewModel(cliente);
             return clienteViewModel;
+        }
+
+        [HttpGet]
+        [Route("numeroClientes")]
+        public ActionResult<decimal> GetCount()
+        {
+            var contador = _clienteService.CountClientes();
+            if (contador == 0) return NotFound();
+            return contador;
         }
         
     }

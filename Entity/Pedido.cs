@@ -17,7 +17,7 @@ namespace Entity
 
             foreach (var item in Detalles)
             {
-              TotalPedido = TotalPedido + item.TotalDetalle;   
+                TotalPedido = TotalPedido + item.TotalDetalle;   
             }
         }
 

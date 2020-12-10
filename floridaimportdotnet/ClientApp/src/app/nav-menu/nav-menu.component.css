@@ -1,13 +1,13 @@
 a.navbar-brand {
   white-space: normal;
-  text-align: center;
+  text-align: left;
   word-break: break-all;
 }
 
 html {
   font-size: 14px;
 }
-@media (min-width: 768px) {
+@media screen and (min-width: 777px) {
   html {
     font-size: 16px;
   }
@@ -33,4 +33,17 @@ html {
 .margen{
 
   margin-right: 10%;
+}
+
+.logo{
+  position: absolute;
+  left:0;
+  top: 3%;
+  right: 3%;
+}
+
+.padClass{
+  margin-top: 2%;
+  margin-bottom: 5%;
+  margin-left: 3%;
 }
