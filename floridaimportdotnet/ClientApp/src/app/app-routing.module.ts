@@ -3,7 +3,6 @@ import { ClienteConsultaComponent } from './florida/cliente-consulta/cliente-con
 import { ClienteEliminarComponent } from './florida/cliente-eliminar/cliente-eliminar.component';
 import { ProveedorRegistroComponent } from './florida/proveedor-registro/proveedor-registro.component';
 import { ProveedorConsultaComponent } from './florida/proveedor-consulta/proveedor-consulta.component';
-import { AdministradorVistaComponent } from './florida/administrador-vista/administrador-vista.component';
 import { ProductoRegistroComponent } from './florida/producto-registro/producto-registro.component';
 import { ProductoConsultaComponent } from './florida/producto-consulta/producto-consulta.component';
 import { ProductoEditarComponent } from './florida/producto-editar/producto-editar.component';
@@ -12,7 +11,6 @@ import { FrutasConsultaComponent } from './florida/frutas-consulta/frutas-consul
 import { HortalizasConsultaComponent } from './florida/hortalizas-consulta/hortalizas-consulta.component';
 import { PersonaPerfilComponent } from './florida/persona-perfil/persona-perfil.component';
 import { FormularioContactoComponent } from './florida/formulario-contacto/formulario-contacto.component';
-import { NosotrosConsultaComponent } from './florida/nosotros-consulta/nosotros-consulta.component';
 import { PedidoRegistroComponent } from './florida/pedido-registro/pedido-registro.component';
 import { HomeComponent } from './home/home.component';
 import { IngresoComponent } from './florida/ingreso/ingreso.component';
@@ -59,10 +57,6 @@ const routes: Routes = [
     component: ProductoProveedorRegistroComponent
   },
   {
-    path: 'administradorVista',
-    component: AdministradorVistaComponent
-  },
-  {
     path: 'productoConsulta',
     component: ProductoConsultaComponent
   },
@@ -105,10 +99,6 @@ const routes: Routes = [
   {
     path: 'formularioContacto',
     component: FormularioContactoComponent
-  },
-  {
-    path: 'nosotrosConsulta',
-    component: NosotrosConsultaComponent
   },
   {
     path: 'ingreso',

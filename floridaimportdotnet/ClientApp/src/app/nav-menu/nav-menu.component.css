@@ -17,32 +17,32 @@ html {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 
-.letra{
+.letra {
 
   font-size:13px;
 }
 
-.pInput{
+.pInput {
   margin-left: 10%;
 }
 
-.pButton{
+.pButton {
   margin-right: 10%;
 }
 
-.margen{
+.margen {
 
   margin-right: 10%;
 }
 
-.logo{
+.logo {
   position: absolute;
   left:0;
   top: 3%;
   right: 3%;
 }
 
-.padClass{
+.padClass {
   margin-top: 2%;
   margin-bottom: 5%;
   margin-left: 3%;

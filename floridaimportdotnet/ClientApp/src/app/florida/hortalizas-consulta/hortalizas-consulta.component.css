@@ -17,7 +17,7 @@
     border-bottom: 4;
     border-color: green;
     
-  }
+}
 
 .footer {
     position: absolute;
@@ -28,12 +28,12 @@
     min-height: 60px;
     line-height: 60px; /* Vertically center the text there */
     background-color: #1A1A1A;
-  }
+}
 
-  #margen{
-      margin-left: 100px;
-  }
+#margen {
+    margin-left: 100px;
+}
 
-  .margenp{
-      margin-top: 50%;
-  }
+.margenp {
+    margin-top: 50%;
+}

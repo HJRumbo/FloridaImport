@@ -7,9 +7,6 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
-import { NosotrosConsultaComponent } from './florida/nosotros-consulta/nosotros-consulta.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ClienteConsultaComponent } from './florida/cliente-consulta/cliente-consulta.component';
 import { ClienteRegistroComponent } from './florida/cliente-registro/cliente-registro.component';
@@ -20,7 +17,6 @@ import { IngresoComponent } from './florida/ingreso/ingreso.component';
 import { FiltroClientePipe } from './pipe/filtro-cliente.pipe';
 import { ProveedorConsultaComponent } from './florida/proveedor-consulta/proveedor-consulta.component';
 import { ProveedorRegistroComponent } from './florida/proveedor-registro/proveedor-registro.component';
-import { AdministradorVistaComponent } from './florida/administrador-vista/administrador-vista.component';
 import { ProductoConsultaComponent } from './florida/producto-consulta/producto-consulta.component';
 import { ProductoRegistroComponent } from './florida/producto-registro/producto-registro.component';
 import { AlertModalComponent } from './@base/alert-modal/alert-modal.component';
@@ -40,13 +36,11 @@ import { VerdurasConsultaComponent } from './florida/verduras-consulta/verduras-
 import { HortalizasConsultaComponent } from './florida/hortalizas-consulta/hortalizas-consulta.component';
 import { PedidoRegistroComponent } from './florida/pedido-registro/pedido-registro.component';
 import { ReistroPagoComponent } from './florida/reistro-pago/reistro-pago.component';
-import { ConsultaPagoComponent } from './florida/consulta-pago/consulta-pago.component';
 import { ModificarUbicacionComponent } from './florida/modificar-ubicacion/modificar-ubicacion.component';
 import { PedidoService } from './services/pedido.service';
 import { PedidoCosultaComponent } from './florida/pedido-cosulta/pedido-cosulta.component';
 import { DetallesCosultaComponent } from './florida/detalles-cosulta/detalles-cosulta.component';
 import { JwtInterceptor } from './services/jwt.interceptor';
-import { PedidoEditarComponent } from './florida/pedido-editar/pedido-editar.component';
 import { FiltroPedidoPipe } from './pipe/filtro-pedido.pipe';
 import { ProductoProveedorRegistroComponent } from './florida/producto-proveedor-registro/producto-proveedor-registro.component';
 import { ProductoProveedorConsultaComponent } from './florida/producto-proveedor-consulta/producto-proveedor-consulta.component';
@@ -68,9 +62,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    CounterComponent,
-    FetchDataComponent,
-    NosotrosConsultaComponent,
     ClienteConsultaComponent,
     ClienteRegistroComponent,
     FormularioContactoComponent,
@@ -78,7 +69,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FiltroClientePipe,
     ProveedorConsultaComponent,
     ProveedorRegistroComponent,
-    AdministradorVistaComponent,
     ProductoConsultaComponent,
     ProductoRegistroComponent,
     AlertModalComponent,
@@ -95,11 +85,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HortalizasConsultaComponent,
     PedidoRegistroComponent,
     ReistroPagoComponent,
-    ConsultaPagoComponent,
     ModificarUbicacionComponent,
     PedidoCosultaComponent,
     DetallesCosultaComponent,
-    PedidoEditarComponent,
     FiltroPedidoPipe,
     ProductoProveedorRegistroComponent,
     ProductoProveedorConsultaComponent,
@@ -113,9 +101,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
+      { path: '', component: HomeComponent, pathMatch: 'full' }
     ]),
     AppRoutingModule,
     NgbModule,
